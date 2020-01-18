@@ -7,7 +7,7 @@ import java.util.List;
 public class userimp {
 
     public static void findAll() {
-        System.out.println("find");
+        fileedit.find("test.txt","1");
     }
 
     public static void findById() {
@@ -19,7 +19,7 @@ public class userimp {
     }
 
     public static void insertUser() {
-        fileedit.write("test.txt", "hello world!");
+        fileedit.write("user.txt", "hello worlf");
 
     }
 

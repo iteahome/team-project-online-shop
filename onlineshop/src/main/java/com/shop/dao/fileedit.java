@@ -1,12 +1,9 @@
 package com.shop.dao;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.nio.CharBuffer;
 
 class fileedit {
-//    public String filename;
-//    public String datas;
     static void write(String filename, String continut) {
         try {
             FileWriter writer = new FileWriter(String.valueOf(filename), true);
@@ -15,6 +12,20 @@ class fileedit {
             bufferedwriter.newLine();
             bufferedwriter.close();
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    static void find(String filename, String id) {
+        try {
+            FileReader reader = new FileReader (filename);
+            BufferedReader bufferedReader = new BufferedReader(reader);
+            String line;
+
+            while ((line = bufferedReader.readLine()) !=null) {
+                System.out.println(line);
+            }
+            reader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
