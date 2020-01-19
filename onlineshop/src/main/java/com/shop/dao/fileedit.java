@@ -1,7 +1,9 @@
 package com.shop.dao;
 
 import java.io.*;
-import java.nio.CharBuffer;
+import java.util.regex.*;
+
+import static java.util.regex.Pattern.compile;
 
 class fileedit {
     static void write(String filename, String continut) {
@@ -16,18 +18,19 @@ class fileedit {
             e.printStackTrace();
         }
     }
-    static void find(String filename, String id) {
+    static String read(String filename, String regex) {
         try {
             FileReader reader = new FileReader (filename);
             BufferedReader bufferedReader = new BufferedReader(reader);
             String line;
 
             while ((line = bufferedReader.readLine()) !=null) {
-                System.out.println(line);
-            }
+                    System.out.println(line);
+                }
             reader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return "\n";
     }
 }

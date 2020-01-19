@@ -8,7 +8,9 @@ public class onlineshop {
     public static void main (String[] args) {
         System.out.println("WELCOME");
 //        userimp.insertUser();
-        userimp.findAll();
+//        userimp.findAll();
+        userimp.findbyname("world");
+
     }
 }
 
