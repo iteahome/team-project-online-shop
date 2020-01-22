@@ -1,16 +1,11 @@
 package com.shop;
 
-import com.shop.dao.userimp;
-import com.shop.model.User;
+import com.shop.ui.MainUI;
 
-public class onlineshop {
+public class OnlineShop {
 
     public static void main (String[] args) {
-        System.out.println("WELCOME");
-//        userimp.insertUser();
-//        userimp.findAll();
-        userimp.findbyname("world");
-
+        new MainUI().start();
     }
 }
 

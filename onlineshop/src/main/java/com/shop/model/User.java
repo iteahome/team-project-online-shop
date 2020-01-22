@@ -1,28 +1,21 @@
 package com.shop.model;
 
-import java.util.Scanner;
-
 // USER CLASS:
 public class User {
     private String userName;
     private String password;
-    private int userID;
-    private int phoneNo;
+    private String phoneNo;
     private String email;
-    private static String datas;
 
-    public User(String userName, String password, int userID, int phoneNo, String email) {
+    public User(String userName, String password, String phoneNo, String email) {
         this.userName = userName;
         this.password = password;
-        this.userID = userID;
         this.phoneNo = phoneNo;
         this.email = email;
-        datas = userID + "|" + userName + "|" + email + "|" + phoneNo + "|" + password;
     }
 
     // USERNAME GETTER AND SETTER:
     public String getUserName() {
-        Scanner input = new Scanner (System.in);
         return userName;
     }
 
@@ -39,21 +32,12 @@ public class User {
         this.password = password;
     }
 
-    // USER ID GETTER AND SETTER:
-    public int getUserID() {
-        return userID;
-    }
-
-    public void setUserID(int userID) {
-        this.userID = userID;
-    }
-
     // PHONE NUMBER GETTER AND SETTER:
-    public int getPhoneNo() {
+    public String getPhoneNo() {
         return phoneNo;
     }
 
-    public void setPhoneNo(int phoneNo) {
+    public void setPhoneNo(String phoneNo) {
         this.phoneNo = phoneNo;
     }
 
@@ -66,11 +50,4 @@ public class User {
         this.email = email;
     }
 
-    public static String getDatas() {
-        return datas;
-    }
-
-    public static void setDatas(String datas) {
-        User.datas = datas;
-    }
 }
