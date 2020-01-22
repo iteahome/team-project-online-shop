@@ -1,9 +1,11 @@
 package com.shop;
 
-public class onlineshop {
+import com.shop.ui.MainUI;
+
+public class OnlineShop {
 
     public static void main (String[] args) {
-        System.out.println("hello");
+        new MainUI().start();
     }
 }
 

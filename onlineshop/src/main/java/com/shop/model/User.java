@@ -1,28 +1,29 @@
 package com.shop.model;
 
+// USER CLASS:
 public class User {
-    private String username;
+    private String userName;
     private String password;
-    private int uniqueid;
-    private int phoneno;
+    private String phoneNo;
     private String email;
 
-    public User(String username, String password, int uniqueid, int phoneno, String email) {
-        this.username = username;
+    public User(String userName, String password, String phoneNo, String email) {
+        this.userName = userName;
         this.password = password;
-        this.uniqueid = uniqueid;
-        this.phoneno = phoneno;
+        this.phoneNo = phoneNo;
         this.email = email;
     }
 
-    public String getUsername() {
-        return username;
+    // USERNAME GETTER AND SETTER:
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
+    // PASSWORD GETTER AND SETTER:
     public String getPassword() {
         return password;
     }
@@ -31,22 +32,16 @@ public class User {
         this.password = password;
     }
 
-    public int getUniqueid() {
-        return uniqueid;
+    // PHONE NUMBER GETTER AND SETTER:
+    public String getPhoneNo() {
+        return phoneNo;
     }
 
-    public void setUniqueid(int uniqueid) {
-        this.uniqueid = uniqueid;
+    public void setPhoneNo(String phoneNo) {
+        this.phoneNo = phoneNo;
     }
 
-    public int getPhoneno() {
-        return phoneno;
-    }
-
-    public void setPhoneno(int phoneno) {
-        this.phoneno = phoneno;
-    }
-
+    // EMAIL GETTER AND SETTER:
     public String getEmail() {
         return email;
     }
@@ -54,4 +49,5 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
 }
