@@ -8,4 +8,3 @@ public class OnlineShop {
         new MainUI().start();
     }
 }
-
