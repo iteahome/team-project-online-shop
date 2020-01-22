@@ -1,1 +1,2 @@
-null
+mariusb|password|0771441355|marius.bistika@gmail.com
+marius1|passnum2|0771441355|bistika.marius@gmail.com
