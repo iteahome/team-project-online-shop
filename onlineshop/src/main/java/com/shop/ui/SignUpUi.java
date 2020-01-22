@@ -2,7 +2,6 @@ package com.shop.ui;
 
 import com.shop.exception.ShopException;
 import com.shop.exception.ShopTechnicalException;
-import com.shop.model.User;
 import com.shop.service.UserService;
 
 import java.util.Scanner;
@@ -18,10 +17,11 @@ public class SignUpUi {
         String password = scanner.nextLine();
         System.out.println("PhoneNo as '07xxxxxxxx': ");
         String phoneNo = scanner.nextLine();
-        System.out.println("Email as '07xxxxxxxx': ");
+        System.out.println("Email: ");
         String email = scanner.nextLine();
         try {
             userService.signup(UserName, password, phoneNo, email);
+            System.out.println("User successfully registered");
         } catch (ShopTechnicalException e) {
             e.printStackTrace();
         }

@@ -2,7 +2,6 @@ package com.shop.service;
 
 import com.shop.dao.UserDAO;
 import com.shop.exception.ShopException;
-import com.shop.exception.ShopTechnicalException;
 import com.shop.exception.ShopWrongCredentialsException;
 import com.shop.exception.UserAlreadyExistsException;
 import com.shop.model.User;
@@ -18,10 +17,12 @@ public class UserService {
         }
         throw new ShopWrongCredentialsException();
     }
-    public User signup(String inputuserName, String inputPassword, String InputPhoneNo, String inputEmail) throws ShopException {
+    public String signup(String inputuserName, String inputPassword, String InputPhoneNo, String inputEmail) throws ShopException {
+        String userdata = inputuserName + "|" + inputPassword + "|" + InputPhoneNo + "|" + inputEmail;
         for (User user: userDAO.FindAllUsers()) {
             if (!inputEmail.equals(user.getEmail())) {
-                return user;
+                UserDAO.AddUser(userdata);
+                return userdata;
             }
         }
         throw new UserAlreadyExistsException();

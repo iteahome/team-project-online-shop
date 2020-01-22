@@ -4,6 +4,7 @@ import com.shop.exception.ShopTechnicalException;
 import com.shop.model.User;
 import com.shop.service.UserService;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,9 +20,8 @@ public class UserDAO {
             return userList;
     }
 
-    public void AddUser() throws ShopTechnicalException {
-        String userdata =  User.getUserName() + "|" + User.get + "|" + InputPhoneNo + "|" + inputEmail + "\n";
-
+    public static void AddUser(String newuserdata) throws ShopTechnicalException {
+        FileEdit.write("user.txt", newuserdata);
     }
 
 //    public void updateUser(User User) {
