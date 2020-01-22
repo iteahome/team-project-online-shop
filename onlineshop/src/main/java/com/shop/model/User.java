@@ -9,7 +9,6 @@ public class User {
     private int userID;
     private int phoneNo;
     private String email;
-    private static String datas;
 
     public User(String userName, String password, int userID, int phoneNo, String email) {
         this.userName = userName;
@@ -17,12 +16,10 @@ public class User {
         this.userID = userID;
         this.phoneNo = phoneNo;
         this.email = email;
-        datas = userID + "|" + userName + "|" + email + "|" + phoneNo + "|" + password;
     }
 
     // USERNAME GETTER AND SETTER:
     public String getUserName() {
-        Scanner input = new Scanner (System.in);
         return userName;
     }
 
@@ -66,11 +63,4 @@ public class User {
         this.email = email;
     }
 
-    public static String getDatas() {
-        return datas;
-    }
-
-    public static void setDatas(String datas) {
-        User.datas = datas;
-    }
 }

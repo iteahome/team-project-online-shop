@@ -2,7 +2,7 @@ package com.shop.dao;
 
 import com.shop.model.User;
 
-public class userimp {
+public class UserDAO {
 
     public static void findAll() {
         fileedit.read("test.txt","");
@@ -13,11 +13,11 @@ public class userimp {
     }
 
     public static void findbyname (String name) {
-        fileedit.read("test.txt", String.format("^.*%s.*?\r\n", name));
+        String universregex = ".*" + name + ".*";
+        fileedit.read("test.txt", universregex);
     }
 
     public static void insertUser() {
-        fileedit.write("user.txt", User.getDatas());
 
     }
 

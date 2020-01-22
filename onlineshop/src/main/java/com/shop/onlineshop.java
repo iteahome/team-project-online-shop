@@ -1,6 +1,6 @@
 package com.shop;
 
-import com.shop.dao.userimp;
+import com.shop.dao.UserDAO;
 import com.shop.model.User;
 
 public class onlineshop {
@@ -9,7 +9,7 @@ public class onlineshop {
         System.out.println("WELCOME");
 //        userimp.insertUser();
 //        userimp.findAll();
-        userimp.findbyname("world");
+        UserDAO.findbyname("hello world");
 
     }
 }

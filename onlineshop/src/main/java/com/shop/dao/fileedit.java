@@ -18,19 +18,23 @@ class fileedit {
             e.printStackTrace();
         }
     }
-    static String read(String filename, String regex) {
+    static void read(String filename, String regex) {
+        String line = null;
+        String file = "./src/main/resources/"+filename;
         try {
-            FileReader reader = new FileReader (filename);
+            FileReader reader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(reader);
-            String line;
-
-            while ((line = bufferedReader.readLine()) !=null) {
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(regex);
+            while ((line = bufferedReader.readLine()) != null) {
+                matcher.reset(line);
+                if (matcher.find()) {
                     System.out.println(line);
                 }
+            }
             reader.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return "\n";
     }
 }
