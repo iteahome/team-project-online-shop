@@ -5,14 +5,14 @@ public class Product {
     private String productName;
     private String category;
     private double price;
-    private int reserve;
+    private int quantity;
 
     // PRODUCT CONSTRUCTOR:
-    public Product(String productName, String category, double price, int reserve) {
+    public Product(String productName, String category, double price, int quantity) {
         this.productName = productName;
         this.category = category;
         this.price = price;
-        this.reserve = reserve;
+        this.quantity = quantity;
     }
 
     // PRODUCT NAME GETTER AND SETTER:
@@ -41,13 +41,12 @@ public class Product {
     public void setPrice(double price) {
         this.price = price;
     }
-
-    // STOCK GETTER AND SETTER:
-    public int getReserve() {
-        return reserve;
+    public double getQuantity() {
+        return quantity;
     }
 
-    public void setReserve(int reserve) {
-        this.reserve = reserve;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
+
 }
