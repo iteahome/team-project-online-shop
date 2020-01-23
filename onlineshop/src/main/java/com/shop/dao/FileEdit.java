@@ -11,7 +11,7 @@ class FileEdit {
         try {
 
             String file = "./src/main/resources/"+filename;
-            FileWriter writer = new FileWriter(String.valueOf(file), true);
+            FileWriter writer = new FileWriter(file, true);
             BufferedWriter bufferedwriter = new BufferedWriter(writer);
             bufferedwriter.write(String.valueOf(continut));
             bufferedwriter.newLine();
@@ -42,4 +42,5 @@ class FileEdit {
         }
         return line;
     }
+
 }

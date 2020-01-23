@@ -19,8 +19,9 @@ public class User {
         return userName;
     }
 
-    public void setUserName(String userName) {
+    public String setUserName(String userName) {
         this.userName = userName;
+        return userName;
     }
 
     // PASSWORD GETTER AND SETTER:
