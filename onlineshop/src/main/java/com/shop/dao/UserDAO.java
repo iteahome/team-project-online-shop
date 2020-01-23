@@ -1,10 +1,7 @@
 package com.shop.dao;
 
-import com.shop.exception.ShopFileException;
 import com.shop.exception.ShopTechnicalException;
 import com.shop.model.User;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,20 +16,15 @@ public class UserDAO {
             return userList;
     }
 
-    public static void findbyname (String name) throws ShopTechnicalException {
-        String universregex = ".*(|.*){3}" + name + ".*";
-        FileEdit.read("user.txt", universregex);
+    public static void AddUser(String newuserdata) throws ShopTechnicalException {
+        FileEdit.write("user.txt", newuserdata);
     }
 
-    public static void insertUser() {
-
-    }
-
-    public void updateUser(User User) {
-
-    }
-
-    public void deleteUser(User User) {
-
-    }
+//    public void updateUser(User User) {
+//
+//    }
+//
+//    public void deleteUser(User User) {
+//
+//    }
 }
