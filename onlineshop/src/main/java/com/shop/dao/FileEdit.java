@@ -42,4 +42,5 @@ class FileEdit {
         }
         return line;
     }
+
 }

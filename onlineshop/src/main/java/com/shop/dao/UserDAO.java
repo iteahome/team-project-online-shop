@@ -2,10 +2,6 @@ package com.shop.dao;
 
 import com.shop.exception.ShopTechnicalException;
 import com.shop.model.User;
-import com.shop.service.UserService;
-
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 

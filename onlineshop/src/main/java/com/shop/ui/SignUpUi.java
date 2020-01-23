@@ -21,7 +21,6 @@ public class SignUpUi {
         String email = scanner.nextLine();
         try {
             userService.signup(UserName, password, phoneNo, email);
-            System.out.println("User successfully registered");
         } catch (ShopTechnicalException e) {
             e.printStackTrace();
         }
