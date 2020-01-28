@@ -11,11 +11,11 @@ public class MainUI {
     public void start() throws ShopException {
         System.out.println("Press 1 for Login and 2 for SignUp:_");
         Scanner scanner = new Scanner(System.in);
-        int user_input = scanner.nextInt();
-        if (user_input == 1) {
+        String user_input = scanner.nextLine();
+        if (user_input.equals("1")) {
             loginUi.DisplayLogin();
         }
-        if (user_input == 2) {
+        if (user_input.equals("2")) {
             signUpUi.DisplaySignUp();
         }
         else {
