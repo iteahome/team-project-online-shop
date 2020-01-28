@@ -1,7 +1,9 @@
 package com.shop.ui;
 import com.shop.exception.ShopException;
+import com.sun.tools.javac.Main;
 
 import java.util.Scanner;
+
 
 public class MainUI {
 
@@ -11,16 +13,19 @@ public class MainUI {
     public void start() throws ShopException {
         System.out.println("Press 1 for Login and 2 for SignUp:_");
         Scanner scanner = new Scanner(System.in);
-        String user_input = scanner.nextLine();
-        if (user_input.equals("1")) {
-            loginUi.DisplayLogin();
-        }
-        if (user_input.equals("2")) {
-            signUpUi.DisplaySignUp();
-        }
-        else {
-            System.out.println("Please insert a valid option.");
-            start();
+        for (;;) {
+            String user_input = scanner.nextLine();
+            if (user_input.equals("1")) {
+                loginUi.DisplayLogin();
+                break;
+            }
+            if (user_input.equals("2")) {
+                signUpUi.DisplaySignUp();
+                break;
+            }
+            else {
+                System.out.println("Please insert a valid option:_");
+            }
         }
     }
 }
