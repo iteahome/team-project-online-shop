@@ -15,8 +15,12 @@ public class MainUI {
         if (user_input == 1) {
             loginUi.DisplayLogin();
         }
-        else {
+        if (user_input == 2) {
             signUpUi.DisplaySignUp();
+        }
+        else {
+            System.out.println("Please insert a valid option.");
+            start();
         }
     }
 }
