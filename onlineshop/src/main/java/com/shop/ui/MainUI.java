@@ -10,7 +10,7 @@ public class MainUI {
     private LoginUi loginUi = new LoginUi();
 
     public void start() throws ShopException {
-        System.out.println("Press 1 for Login and 2 for SignUp:_");
+        System.out.println("Press 0 to exit, 1 for Login, and 2 for SignUp:_");
         Scanner scanner = new Scanner(System.in);
         for (;;) {
             String user_input = scanner.nextLine();
@@ -20,6 +20,9 @@ public class MainUI {
             }
             if (user_input.equals("2")) {
                 signUpUi.DisplaySignUp();
+                break;
+            }
+            if (user_input.equals("0")) {
                 break;
             }
             else {
