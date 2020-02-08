@@ -10,7 +10,7 @@ import java.util.regex.*;
 
 class FileEdit {
 
-//  Method for adding a new line of content to text files:
+    //  Method for adding a new line of content to text files:
     static void write(String fileName, String newContent) throws ShopTechnicalException {
 
         try {
@@ -49,6 +49,6 @@ class FileEdit {
             throw new ShopFileException("Error reading file", e);
         }
         return line;
-    }
 
+    }
 }

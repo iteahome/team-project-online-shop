@@ -32,10 +32,10 @@ class LoginUI {
 
 //      Checking the given data against the user database:
 
-//      If login is successfull:
+//      If login is successful:
         try {
             userService.login(email, password);
-            System.out.println("Login successfull."); /*AUTOMATICALLY TAKES USER TO SHOP?*/
+            System.out.println("Login successful."); /*AUTOMATICALLY TAKES USER TO SHOP?*/
 
 //      If credentials are not found in database:
         } catch (ShopWrongCredentialsException e) {

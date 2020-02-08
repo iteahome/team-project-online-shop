@@ -31,11 +31,13 @@ public class UserDAO {
         FileEdit.write("users.txt", newUserData);
     }
 
-//    public void updateUser(User User) { /*TO BE DEVELOPED*/
-//
-//    }
-//
+//  Method to modify user data in database (e.g.: change username, password or ):
+    public void updateUser(User User) {
+
+    }
+
 //    public void deleteUser(User User) { /*TO BE DEVELOPED*/
 //
 //    }
+
 }
