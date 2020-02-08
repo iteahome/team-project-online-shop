@@ -1,11 +1,17 @@
 package com.shop.exception;
 
-public class ShopWrongCredentialsException extends ShopBusinessException {
-    public ShopWrongCredentialsException () {
+/** Wrong credentials exception. Deals with user credentials. */
 
+public class ShopWrongCredentialsException extends ShopBusinessException {
+
+//  No-argument exception constructor:
+    public ShopWrongCredentialsException () {
     }
-        public ShopWrongCredentialsException(String message, Throwable cause) {
-            super(message, cause);
-        }
+
+//  Exception constructor:
+    public ShopWrongCredentialsException(String message, Throwable cause) {
+        super(message, cause);
     }
+
+}
 

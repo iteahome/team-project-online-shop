@@ -6,19 +6,27 @@ import com.shop.exception.ShopTechnicalException;
 import java.io.*;
 import java.util.regex.*;
 
-class FileEdit {
-    static void write(String filename, String continut) throws ShopTechnicalException {
-        try {
+/** FileEdit class - allows manipulation of any file in the resources folder. */
 
-            String file = "./src/main/resources/"+filename;
-            FileWriter writer = new FileWriter(file, true);
-            BufferedWriter bufferedwriter = new BufferedWriter(writer);
-            bufferedwriter.write(String.valueOf(continut));
+class FileEdit {
+
+//  Method for adding a new line of content to text files:
+    static void write(String fileName, String newContent) throws ShopTechnicalException {
+
+        try {
+//          Defining a String for the file path according to the given fileName:
+            String resourceFile = "./src/main/resources/" + fileName;
+//          Writing the given content to the given file:
+            BufferedWriter bufferedwriter = new BufferedWriter(new FileWriter(resourceFile, true));
+            bufferedwriter.write(String.valueOf(newContent));
+//          Creating a new line after writing:
             bufferedwriter.newLine();
+//          Closing the stream:
             bufferedwriter.close();
 
+//      If file doesn't exist:
         } catch (IOException e) {
-            throw new ShopFileException("file not found", e);
+            throw new ShopFileException("File not found", e);
         }
     }
 
