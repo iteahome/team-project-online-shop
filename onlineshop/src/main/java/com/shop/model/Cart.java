@@ -2,32 +2,35 @@ package com.shop.model;
 
 import java.util.ArrayList;
 
-// SHOPPING CART CLASS (WILL STORE PRODUCTS TEMPORARILY):
-public class Cart {
-    private int cartId;
-    private ArrayList cartContent;
+/** Cart class - stores products that have been added to cart. */
+/*  SHOULD PERSIST IN ONE OF 2 WAYS:
+    - AS A PROPERTY OF THE USER ("userValues[4]", SOMEHOW)
+    - AS A NEW FILE, LINKED TO THE USER, THAT ONLY HE/SHE AND ADMINS CAN ACCESS */
 
-    // CART CONSTRUCTOR:
-    public Cart(int cartId, ArrayList cartContent) {
+public class Cart {
+
+//  Cart parameters:
+    private int cartId;
+    private ArrayList<Product> cartContent;
+
+//  Cart class constructor:
+    public Cart(int cartId, ArrayList<Product> cartContent) {
         this.cartId = cartId;
         this.cartContent = cartContent;
     }
 
-    // CART ID GETTER AND SETTER:
+//  Cart getters and setters:
     public int getCartId() {
         return cartId;
     }
-
     public void setCartId(int cartId) {
         this.cartId = cartId;
     }
 
-    // CART CONTENT LIST GETTER AND SETTER:
-    public ArrayList getCartContent() {
+    public ArrayList<Product> getCartContent() {
         return cartContent;
     }
-
-    public void setCartContent(ArrayList cartContent) {
+    public void setCartContent(ArrayList<Product> cartContent) {
         this.cartContent = cartContent;
     }
 }
