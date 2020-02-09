@@ -14,7 +14,7 @@ public class SignUpUI {
     private UserService userService = new UserService();
 
 //  SignUp UI starting point:
-    void DisplaySignUp () throws ShopException { /*EXCEPTION IS NEVER THROWN*/
+    void displaySignUp() throws ShopException { /*EXCEPTION IS NEVER THROWN*/
 
 //      Giving user instructions and waiting for their input:
         System.out.println("To sign up, please fill in the following:\n");

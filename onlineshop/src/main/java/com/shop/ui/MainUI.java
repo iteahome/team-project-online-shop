@@ -9,8 +9,8 @@ import java.util.Scanner;
 public class MainUI {
 
 //  Initializing objects of every UI type defined so far:
-    private SignUpUI signUpUi = new SignUpUI();
-    private LoginUI loginUi = new LoginUI();
+    private SignUpUI signUpUI = new SignUpUI();
+    private LoginUI loginUI = new LoginUI();
 
 //  Main UI starting point:
     public void start() throws ShopException {
@@ -26,13 +26,13 @@ public class MainUI {
 
 //          Typing "1" sends user to Login menu:
             if (userInput.equals("1")) {
-                loginUi.DisplayLogin();
+                loginUI.displayLogin();
                 break;
             }
 
 //          Typing "2" sends user to SignUp menu:
             if (userInput.equals("2")) {
-                signUpUi.DisplaySignUp();
+                signUpUI.displaySignUp();
                 break;
             }
 

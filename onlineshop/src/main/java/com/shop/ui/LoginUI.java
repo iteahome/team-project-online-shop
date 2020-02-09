@@ -16,19 +16,19 @@ class LoginUI {
     private UserService userService = new UserService();
 
 //  Login UI starting point:
-    void DisplayLogin() throws ShopException { /*EXCEPTION IS NEVER THROWN*/
+    void displayLogin() throws ShopException { /*EXCEPTION IS NEVER THROWN*/
 
 //      Giving user instructions and waiting for their input:
         System.out.println("Please provide your credentials:\n");
-        Scanner scanner = new Scanner(System.in);
+        Scanner keyboardScanner = new Scanner(System.in);
 
 //      Asking for registered email:
         System.out.println("Insert email: ");
-        String email = scanner.nextLine();
+        String email = keyboardScanner.nextLine();
 
 //      Asking for registered password:
         System.out.println("Insert Password: ");
-        String password = scanner.nextLine();
+        String password = keyboardScanner.nextLine();
 
 //      Checking the given data against the user database:
 
