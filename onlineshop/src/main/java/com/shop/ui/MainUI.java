@@ -1,33 +1,49 @@
 package com.shop.ui;
+
 import com.shop.exception.ShopException;
 
 import java.util.Scanner;
 
+/** MainUI class - handles the initial contact with the user. */
 
 public class MainUI {
 
-    private SignUpUi signUpUi = new SignUpUi();
-    private LoginUi loginUi = new LoginUi();
+    //  Initializing objects of every UI type defined so far:
+    private SignUpUI signUpUI = new SignUpUI();
+    private LoginUI loginUI = new LoginUI();
 
+    //  Main UI starting point:
     public void start() throws ShopException {
-        System.out.println("Press 0 to exit, 1 for Login, and 2 for SignUp:_");
+
+//      Giving user instructions and waiting for their input:
+        System.out.println(
+                "Welcome to our online shop. \n" +
+                        "You can navigate menus by typing the action's number. \n\n" +
+                        "1. Login | 2. Sign Up | 3. Leave Shop");
         Scanner scanner = new Scanner(System.in);
         for (;;) {
-            String user_input = scanner.nextLine();
-            if (user_input.equals("1")) {
-                loginUi.DisplayLogin();
+            String userInput = scanner.nextLine();
+
+//          Typing "1" sends user to Login menu:
+            if (userInput.equals("1")) {
+                loginUI.displayLogin();
                 break;
             }
-            if (user_input.equals("2")) {
-                signUpUi.DisplaySignUp();
+
+//          Typing "2" sends user to SignUp menu:
+            if (userInput.equals("2")) {
+                signUpUI.displaySignUp();
                 break;
             }
-            if (user_input.equals("0")) {
+
+//          Typing "3" ends the program:
+            if (userInput.equals("3")) {
                 break;
             }
             else {
-                System.out.println("Please insert a valid option:_");
+                System.out.println("! Invalid input. Please type the action's number:");
             }
         }
+
     }
 }

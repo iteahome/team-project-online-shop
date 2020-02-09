@@ -1,0 +1,4 @@
+a|A|a@a.com|A0
+b|B|b@b.com|B0
+c|C|c@c.com|C0
+d|D|d@d.com|D0
