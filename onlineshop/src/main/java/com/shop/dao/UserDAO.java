@@ -2,9 +2,11 @@ package com.shop.dao;
 
 import com.shop.exception.ShopTechnicalException;
 import com.shop.model.User;
+import com.sun.tools.jdeprscan.scan.Scan;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /** UserDAO class - allows user database manipulation. */
 
@@ -32,9 +34,22 @@ public class UserDAO {
         FileEdit.write("users.txt", newUserValues);
     }
 
-//    public static void updateUser(User user) throws ShopTechnicalException {
-//
-//    }
+    public static void updateUser(User user) throws ShopTechnicalException { /* UPDATE USER UI NEEDED */
+
+        /* Find user by asking for credentials confirmation. */
+
+        System.out.println("Please confirm your current email address:");
+        String email = new Scanner(System.in).next();
+        System.out.println("Please confirm your current password:");
+        String password = new Scanner(System.in).next();
+
+        /* Use given credentials to find user in database. */
+
+        String userLine = FileEdit.read("users.txt", email);
+
+        /* Get new values from keyboard. */
+        /* Overwrite user with newly given values */
+    }
 
 //    public void deleteUser(User User) { /*TO BE DEVELOPED*/
 //
