@@ -19,49 +19,80 @@ public class UserService {
 //      Checking the provided email and password, user by user:
         for (User user : userDAO.findAllUsers()) {
             if (email.equals(user.getEmail()) && password.equals(user.getPassword())) {
-                System.out.println("Login successful. Happy shopping!");
+                System.out.println(
+                    "\n__________________________________________________" +
+                    "\nLogin successful. Happy shopping!                 " +
+                    "\n__________________________________________________\n");
                 return user;
             }
         }
 
-//      If no user is found using provided credentials:
+//      Managing possbile exception:
         throw new ShopWrongCredentialsException();
     }
 
-/** Signup method - adds given credentials to the user database: */
+/** SignUp method - tries to add given credentials to the user database: */
     public boolean signUp(String userName, String password, String email, String phoneNo) throws ShopTechnicalException {
 
-//      Setting a flag to confirm successful signup:
+//      Setting a flag to confirm successful sign up:
         boolean signedUp = false;
 
 //      Concatenating inputs sequentially into a new String, separated by "|":
         String userData = userName + "|" + password + "|" + email + "|" + phoneNo;
 
-//      If database is empty, add user directly:
+//      If database is empty, add first user directly:
         if (userDAO.findAllUsers().isEmpty()) {
             UserDAO.addUser(userData);
             signedUp = true;
-            System.out.println("Congratulations! You are our first registered user. Logging in with you new credentials...");
-            /** INSERT LINK TO SHOP HERE */
-        }
-
-//      Checking if user already exists:
-        boolean userExists = false;
-//      If email is already used in database:
-        for (User user : userDAO.findAllUsers()) {
-            if (email.equals(user.getEmail())) {
-                userExists = true;
-                System.out.println("A user with this email already exists.");
-                break;
+            System.out.println(
+                "\n.................................................." +
+                "\nCongratulations, you are now our first shopper!   " +
+                "\nLogging in with you new credentials...            " +
+                "\n..................................................");
+//          Automatically log first new user in:
+            try {
+                login(email, password);
+            } catch (ShopException e) {
+                e.printStackTrace();
             }
         }
-//      If email is not yet used, add user to database:
-        if (!userExists) {
+
+//      Checking if user already exists - starting by initializing a flag:
+        boolean userExists = false;
+//      If this wasn't the first added user:
+        if (!signedUp) {
+//      Checking the database for the user using their email:
+            for (User user : userDAO.findAllUsers()) {
+                if (email.equals(user.getEmail())) {
+                    userExists = true;
+                    System.out.println(
+                        "\n.................................................." +
+                        "\nA user with this email already exists.            " +
+                        "\n.................................................." +
+                        "\n");
+                    break;
+                }
+            }
+        }
+
+//      If this wasn't the first added user and the email has not been used, add user to database:
+        if (!signedUp & !userExists) {
             UserDAO.addUser(userData);
             signedUp = true;
-            System.out.println("User successfully registered. Logging in with you new credentials...");
-            /** INSERT LINK TO LOGIN HERE */
+            System.out.println(
+                "\n.................................................." +
+                "\nUser successfully registered.                     " +
+                "\nLogging in with you new credentials...            " +
+                "\n..................................................");
+//          Automatically log new user in:
+            try {
+                login(email, password);
+            } catch (ShopException e) {
+                e.printStackTrace();
+            }
         }
+
+//      Method's end result - confirmation of a successful/failed sign up:
         return signedUp;
 
     }

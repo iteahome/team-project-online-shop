@@ -1,7 +1,6 @@
 package com.shop.ui;
 
 import com.shop.exception.ShopException;
-import com.shop.exception.ShopTechnicalException;
 import com.shop.exception.ShopWrongCredentialsException;
 import com.shop.service.UserService;
 
@@ -15,18 +14,21 @@ class LoginUI {
     private UserService userService = new UserService();
 
 //  Login UI starting point:
-    void displayLogin() throws ShopException { /*EXCEPTION IS NEVER THROWN*/
+    void displayLogin() throws ShopException {
 
 //      Giving user instructions and waiting for their input:
-        System.out.println("Please provide valid credentials:\n");
+        System.out.println(
+            "\n.................................................." +
+            "\nPlease provide valid credentials:                 " +
+            "\n..................................................\n");
         Scanner keyboardScanner = new Scanner(System.in);
 
 //      Asking for registered email:
-        System.out.println("Insert email: ");
+        System.out.println("Enter email: ");
         String email = keyboardScanner.nextLine();
 
 //      Asking for registered password:
-        System.out.println("Insert Password: ");
+        System.out.println("Enter password: ");
         String password = keyboardScanner.nextLine();
 
 //      Checking the given data against the user database:
@@ -36,12 +38,14 @@ class LoginUI {
             userService.login(email, password);
             /** INSERT LINK TO USER TO SHOP HERE */
 
-//      If credentials are not found in database:
+//      Managing possible exception:
         } catch (ShopWrongCredentialsException e) {
 //          Giving user options to continue:
             System.out.println(
-                "User not found. Please choose an option:\n" +
-                "1. Retry Login | 2. Sign Up | 3. Leave Shop");
+                "\nUser not found. Please choose an option:          " +
+                "\n__________________________________________________" +
+                "\n1. Retry Login | 2. Sign Up | 3. Leave Shop       " +
+                "\n__________________________________________________\n");
             for (;;) {
                 String userInput = keyboardScanner.nextLine();
 //              Retrying login:
@@ -49,7 +53,7 @@ class LoginUI {
                     displayLogin();
                     break;
                 }
-//              Going directly to signUp:
+//              Going directly to sign up:
                 if (userInput.equals("2")) {
                     SignUpUI signUpUI = new SignUpUI();
                     signUpUI.displaySignUp();
@@ -57,25 +61,24 @@ class LoginUI {
                 }
 //              Closing the program:
                 if (userInput.equals("3")) {
+                    System.out.println(
+                        "\n__________________________________________________" +
+                        "\nCome back soon!                                   " +
+                        "\n__________________________________________________\n");
                     break;
                 }
 //              If input invalid:
                 else {
-                    System.out.println("Invalid input. Please type a valid action number:");
+                    System.out.println("\nInvalid input. Please type a valid action number:");
                 }
             }
 
-//      If login fails for technical reasons:
-        } catch (ShopTechnicalException e) {
-            e.printStackTrace();
-            System.out.println(
-                "A system error occured. We are sorry for the inconvenience." +
-                "Please try again later or contact us at +40 000 000 000. Thank you.");
-
-//      If login fails for other reasons:
+//      Managing possible exception:
         } catch (ShopException e) {
             e.printStackTrace();
         }
+
+        keyboardScanner.close();
 
     }
 }
