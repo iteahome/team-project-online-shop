@@ -19,7 +19,7 @@ public class UserService {
 //      Checking the provided email and password, user by user:
         for (User user : userDAO.findAllUsers()) {
             if (email.equals(user.getEmail()) && password.equals(user.getPassword())) {
-                System.out.println("Log In Successful");
+                System.out.println("Login successful. Happy shopping!");
                 return user;
             }
         }
@@ -29,7 +29,10 @@ public class UserService {
     }
 
 /** Signup method - adds given credentials to the user database: */
-    public String signUp(String userName, String password, String email, String phoneNo) throws ShopTechnicalException {
+    public boolean signUp(String userName, String password, String email, String phoneNo) throws ShopTechnicalException {
+
+//      Setting a flag to confirm successful signup:
+        boolean signedUp = false;
 
 //      Concatenating inputs sequentially into a new String, separated by "|":
         String userData = userName + "|" + password + "|" + email + "|" + phoneNo;
@@ -37,36 +40,29 @@ public class UserService {
 //      If database is empty, add user directly:
         if (userDAO.findAllUsers().isEmpty()) {
             UserDAO.addUser(userData);
-            System.out.println(
-                "Congratulations! You are our first registered user.\n" +
-                "LINK TO LOGIN (OR DIRECTLY TO SHOP) NOT YET DEVELOPED");
+            signedUp = true;
+            System.out.println("Congratulations! You are our first registered user. Logging in with you new credentials...");
             /** INSERT LINK TO SHOP HERE */
-        } else {
-
-//      Checking if user already exists:
-            for (User user : userDAO.findAllUsers()) {
-//              If email si already used in database:
-                if (email.equals(user.getEmail())) {
-                    System.out.println(
-                        "A user with this email already exists. \n" +
-                        "Please provide a different email address.\n" +
-                        "LINK TO RETRY SIGNUP NOT YET DEVELOPED");
-                    /** INSERT CODE TO RETRY SIGNUP */
-                    break;
-//          If email is not yet used, add user to database:
-                } else {
-                    UserDAO.addUser(userData);
-                    System.out.println(
-                        "User successfully registered.\n" +
-                        "LINK TO LOGIN (OR DIRECTLY TO SHOP) NOT YET DEVELOPED");
-                    /** INSERT LINK TO SHOP HERE */
-                    break;
-                }
-            }
         }
 
-//      End result of signUp method - returning a String:
-        return userData;
+//      Checking if user already exists:
+        boolean userExists = false;
+//      If email is already used in database:
+        for (User user : userDAO.findAllUsers()) {
+            if (email.equals(user.getEmail())) {
+                userExists = true;
+                System.out.println("A user with this email already exists.");
+                break;
+            }
+        }
+//      If email is not yet used, add user to database:
+        if (!userExists) {
+            UserDAO.addUser(userData);
+            signedUp = true;
+            System.out.println("User successfully registered. Logging in with you new credentials...");
+            /** INSERT LINK TO LOGIN HERE */
+        }
+        return signedUp;
 
     }
 }

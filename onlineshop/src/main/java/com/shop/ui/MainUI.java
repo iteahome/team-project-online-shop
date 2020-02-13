@@ -16,10 +16,7 @@ public class MainUI {
     public void start() throws ShopException {
 
 //      Giving user instructions and waiting for their input:
-        System.out.println(
-            "Welcome to our online shop. \n" +
-            "You can navigate menus by typing the action's number. \n\n" +
-            "1. Login | 2. Sign Up | 3. Leave Shop");
+        System.out.println("1. Login | 2. Sign Up | 3. Leave Shop");
         Scanner scanner = new Scanner(System.in);
         for (;;) {
             String userInput = scanner.nextLine();

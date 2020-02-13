@@ -1,0 +1,6 @@
+a|a|a|a
+b|b|b|b
+a|a|c|a
+d|d|d|d
+e|e|e|e
+f|f|f|f

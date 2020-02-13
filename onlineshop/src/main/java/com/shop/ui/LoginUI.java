@@ -51,8 +51,8 @@ class LoginUI {
                 }
 //              Going directly to signUp:
                 if (userInput.equals("2")) {
-                    System.out.println("! LINK TO SIGNUP FROM LOGIN NOT DEVELOPED YET. EXITING.");
-                    /** INSERT LINK TO SIGNUP HERE */
+                    SignUpUI signUpUI = new SignUpUI();
+                    signUpUI.displaySignUp();
                     break;
                 }
 //              Closing the program:

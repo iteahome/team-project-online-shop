@@ -3,10 +3,9 @@ package com.shop.ui;
 import com.shop.exception.ShopException;
 import com.shop.exception.ShopTechnicalException;
 import com.shop.service.UserService;
-
 import java.util.Scanner;
 
-/** SignUpUI class - creates new users via user input. */
+/** SignUpUI class - creates new users by collecting user inputs. */
 
 public class SignUpUI {
 
@@ -14,49 +13,81 @@ public class SignUpUI {
     private UserService userService = new UserService();
 
 //  SignUp UI starting point:
-    void displaySignUp() throws ShopException { /*EXCEPTION IS NEVER THROWN*/
+    void displaySignUp() throws ShopException { /** EXCEPTION IS NEVER THROWN */
 
-//      Giving user instructions and waiting for their input:
-        System.out.println("To sign up, please fill in the following:\n");
         Scanner scanner = new Scanner(System.in);
 
 //      Asking for desired username:
-        System.out.println("Desired username: (type \"0\" or leave empty to cancel)");
-//        String userInput = scanner.nextLine();
-        String userName = null;
-        while (!(userName = scanner.nextLine()).isEmpty())
-
-
-        if (!userInput.isEmpty()) {
-
-
-            if (userInput.equals("0")) {
-                System.out.println("LINK TO MAIN MENU NOT YET DEVELOPED");
-                /** INSERT CODE HERE TO RETURN TO MainUI MENU */
-            } else {
-                userName = userInput;
-            }
+        System.out.println("Enter desired username (or type \"0\" to cancel):");
+        String userName;
+//      If input is empty, the program keeps asking for a valid response:
+        while ((userName = scanner.nextLine()).isEmpty()) {
+            System.out.println("Enter desired username (or type \"0\" to cancel):");
+        }
+//      Typing "0" cancels the signUp:
+        if (userName.matches("0")) {
+            MainUI mainUi = new MainUI();
+            mainUi.start();
         }
 
 //      Asking for desired password:
-        System.out.println("Desired password: ");
-        /** SHOULD BE ABLE TO CANCEL HERE (IF USER SUDDENLY REMEMBERS CREDENTIALS)*/
-        String password = scanner.nextLine();
+        System.out.println("Enter desired password (or type \"0\" to cancel):");
+        String password;
+//      If input is empty, the program keeps asking for a valid response:
+        while ((password = scanner.nextLine()).isEmpty()) {
+            System.out.println("Enter desired password (or type \"0\" to cancel):");
+        }
+//      Typing "0" cancels the signUp:
+        if (password.matches("0")) {
+            MainUI mainUi = new MainUI();
+            mainUi.start();
+        }
 
 //      Asking for email:
-        System.out.println("Your email address: ");
-        /** SHOULD BE ABLE TO CANCEL HERE (IF USER SUDDENLY REMEMBERS CREDENTIALS)*/
-        /** EMAIL IS THE IDENTIFIER: INSERT CODE HERE TO VERIFY EMAIL IN A LOOP HERE UNTIL VALID. OTHERWISE, USER HAS TO INPUT ALL THE DETAILS EVERY TIME... */
-        String email = scanner.nextLine();
+        System.out.println("Enter your email address (or type \"0\" to cancel):");
+        String email;
+//      If input is empty, the program keeps asking for a valid response:
+        while ((email = scanner.nextLine()).isEmpty()) {
+            System.out.println("Enter your email address (or type \"0\" to cancel):");
+        }
+//      Typing "0" cancels the signUp:
+        if (email.matches("0")) {
+            MainUI mainUi = new MainUI();
+            mainUi.start();
+        }
+/**     THE EMAIL VALIDATOR MUST BE CALLED HERE, FOR EXAMPLE VIA AN ELSE BLOCK */
 
-//      Asking for phone number:
-        System.out.println("Your phone number: ");
-        /** SHOULD BE ABLE TO CANCEL HERE (IF USER SUDDENLY REMEMBERS CREDENTIALS)*/
-        String phoneNo = scanner.nextLine();
+//      Asking for a phone number:
+        System.out.println("Enter your phone number (or type \"0\" to cancel):");
+        String phoneNo;
+//      If input is empty, the program keeps asking for a valid response:
+        while ((phoneNo = scanner.nextLine()).isEmpty()) {
+            System.out.println("Enter your phone number (or type \"0\" to cancel):");
+        }
+//      Typing "0" cancels the signUp:
+        if (phoneNo.matches("0")) {
+            MainUI mainUi = new MainUI();
+            mainUi.start();
+        }
+/**     THE PHONE NUMBER VALIDATOR MUST BE CALLED HERE, FOR EXAMPLE VIA AN ELSE BLOCK */
 
-//      Adding the given data to the user database: /**ERRORS OUT IF USER LIST IS EMPTY!*/
+//      Trying to add the given data to the user database:
         try {
-            userService.signUp(userName, password, email, phoneNo);
+//          Checking if email is already used:
+            while (!userService.signUp(userName, password, email, phoneNo)) {
+//              Asking for new email:
+                System.out.println("Enter a different email address (or type \"0\" to cancel):");
+//              If input is empty, the program keeps asking for a valid response:
+                while ((email = scanner.nextLine()).isEmpty()) {
+                    System.out.println("Enter a different email address (or type \"0\" to cancel):");
+                }
+//              Typing "0" cancels the signUp:
+                if (email.matches("0")) {
+                    MainUI mainUi = new MainUI();
+                    mainUi.start();
+                }
+                /** THE EMAIL VALIDATOR MUST BE CALLED HERE, FOR EXAMPLE VIA AN ELSE BLOCK */
+            }
         } catch (ShopTechnicalException e) {
             e.printStackTrace();
         }
