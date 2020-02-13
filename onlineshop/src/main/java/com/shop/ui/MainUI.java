@@ -8,18 +8,18 @@ import java.util.Scanner;
 
 public class MainUI {
 
-    //  Initializing objects of every UI type defined so far:
+//  Initializing objects of every UI type defined so far:
     private SignUpUI signUpUI = new SignUpUI();
     private LoginUI loginUI = new LoginUI();
 
-    //  Main UI starting point:
+//  Main UI starting point:
     public void start() throws ShopException {
 
 //      Giving user instructions and waiting for their input:
         System.out.println(
-                "Welcome to our online shop. \n" +
-                        "You can navigate menus by typing the action's number. \n\n" +
-                        "1. Login | 2. Sign Up | 3. Leave Shop");
+            "Welcome to our online shop. \n" +
+            "You can navigate menus by typing the action's number. \n\n" +
+            "1. Login | 2. Sign Up | 3. Leave Shop");
         Scanner scanner = new Scanner(System.in);
         for (;;) {
             String userInput = scanner.nextLine();
