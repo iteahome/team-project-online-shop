@@ -2,7 +2,6 @@ package com.shop.dao;
 
 import com.shop.exception.ShopFileException;
 import com.shop.exception.ShopTechnicalException;
-
 import java.io.*;
 import java.util.regex.*;
 
@@ -10,7 +9,7 @@ import java.util.regex.*;
 
 class FileEdit {
 
-//  Method for adding a new line of content to text files:
+/** Method for adding a new line of content to text files: */
     static void write(String fileName, String newContent) throws ShopTechnicalException {
 
 //      Defining a String for the file path according to the given fileName:
@@ -31,7 +30,7 @@ class FileEdit {
         }
     }
 
-//  Method for reading lines of text from a file, with the possibility of filtering (searching) via regex:
+/** Method for returning a specific line of text (found via regex) from a file: */
     static String read(String filename, String regex) throws ShopTechnicalException {
 
 //      Defining a String for the resource file path according to the given fileName:
@@ -64,4 +63,9 @@ class FileEdit {
         return lineData;
 
     }
+
+//    static void replace(String filename, String identifier, String newData) throws ShopTechnicalException {
+/**   IN DEVELOPMENT BY MISU */
+//    }
+
 }

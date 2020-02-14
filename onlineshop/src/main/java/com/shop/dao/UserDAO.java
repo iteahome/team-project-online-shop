@@ -1,43 +1,62 @@
 package com.shop.dao;
 
-import com.shop.exception.ShopTechnicalException;
-import com.shop.model.User;
-
-import java.util.ArrayList;
-import java.util.List;
+        import com.shop.exception.ShopTechnicalException;
+        import com.shop.model.User;
+        import java.io.File;
+        import java.io.FileNotFoundException;
+        import java.util.ArrayList;
+        import java.util.List;
+        import java.util.Scanner;
 
 /** UserDAO class - allows user database manipulation. */
 
 public class UserDAO {
 
-//  Method to identify all users in the database and store them as objects in an ArrayList:
-    public List<User> findAllUsers() throws ShopTechnicalException {
+    /** Method to identify all users in the database and store them as objects in an ArrayList: */
+    public List<User> findAllUsers() {
 
-//      Finding every individual user line (containing user fields' values) from the database:
-        String userLine = FileEdit.read("users.txt","");
-//      Finding every individual value of the user fields within the line:
-        String[] userValues = userLine.split("\\|");
+//      Building a List of user data Strings from the users database:
+        List<String> userDataList = new ArrayList<>();
+        try {
+//          Pointing to the user database file:
+            File users = new File("./src/main/resources/users.txt");
+//          Scanning the database line by line and adding those lines to the user data List:
+            Scanner userScanner = new Scanner(users);
+            while (userScanner.hasNextLine()) {
+                userDataList.add(userScanner.nextLine());
+            }
+//      If access to the user database is interrupted:
+        } catch (FileNotFoundException e) {
+            System.out.println(
+                "\n.................................................." +
+                "\nUser Database not accessible.                     " +
+                "\n..................................................");
+        }
 
-//      Creating a users ArrayList:
+//      Converting the List of user data Strings into a List of User objects:
         List<User> userList = new ArrayList<>();
-//      Adding the newly found users to this ArrayList:
-        userList.add(new User(userValues[0], userValues[1], userValues[2], userValues[3]));
+        for (String userData : userDataList) {
+            String[] userDataValues = userData.split("\\|");
+            userList.add(new User(userDataValues[0], userDataValues[1], userDataValues[2], userDataValues[3]));
+        }
 
-//      End result of the method - returning the users ArrayList:
+//      End result of the method - returning the User object ArrayList:
         return userList;
     }
 
-//  Method to add new users to the database:
+    /** Method to add new users to the database: */
     public static void addUser(String newUserValues) throws ShopTechnicalException {
+
+//      Adding given values to end of the database:
         FileEdit.write("users.txt", newUserValues);
     }
 
-//    public static void updateUser(User user) throws ShopTechnicalException {
-//
+//    public static void updateUser(User user, String userInput, String newValue) {
+/**   IN DEVELOPMENT BY MISU */
 //    }
 
-//    public void deleteUser(User User) { /*TO BE DEVELOPED*/
-//
+//    public void deleteUser(User user) {
+/**   IN DEVELOPMENT BY MISU */
 //    }
 
 }
