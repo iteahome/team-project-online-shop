@@ -88,14 +88,13 @@ public class SignUpUI {
                     break;
                 }
                 /** THE EMAIL VALIDATOR MUST BE CALLED HERE, FOR EXAMPLE VIA AN ELSE BLOCK */
+                break;
             }
 
 //      Managing possible exception:
         } catch (ShopTechnicalException e) {
             e.printStackTrace();
         }
-
-        keyboardScanner.close();
 
     }
 }

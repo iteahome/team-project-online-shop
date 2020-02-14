@@ -19,9 +19,9 @@ public class MainUI {
             "\n__________________________________________________" +
             "\n1. Login | 2. Sign Up | 3. Leave Shop             " +
             "\n__________________________________________________\n");
-        Scanner keyboardScanner = new Scanner(System.in);
 
         for (;;) {
+            Scanner keyboardScanner = new Scanner(System.in);
             String userInput = keyboardScanner.nextLine();
 
 //          Typing "1" sends user to login menu:
@@ -48,8 +48,6 @@ public class MainUI {
                 System.out.println("\nInvalid input. Please type the action's number:");
             }
         }
-
-        keyboardScanner.close();
 
     }
 }
