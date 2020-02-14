@@ -12,7 +12,7 @@ public class OnlineShop {
             "\n__________________________________________________" +
             "\nWelcome to our online shop!                       " +
             "\nYou can navigate menus by typing their number.    " +
-            "\n__________________________________________________\n");
+            "\n__________________________________________________");
         MainUI mainUI = new MainUI();
         mainUI.start();
     }
