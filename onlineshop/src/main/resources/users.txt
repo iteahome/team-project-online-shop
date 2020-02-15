@@ -1,1 +1,2 @@
-a|a|a|a
+user1|password1|email1|phoneno1
+user2|password2|email2|phoneno2

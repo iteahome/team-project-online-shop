@@ -36,42 +36,17 @@ class LoginUI {
 //      If login is successful:
         try {
             userService.login(email, password);
+            /** IF LOGIN FAILS, RETURN TO MainUI.start() */
             /** INSERT LINK TO USER TO SHOP HERE */
 
-//      Managing possible exception:
+//      If credentials are not found in database:
         } catch (ShopWrongCredentialsException e) {
-//          Giving user options to continue:
             System.out.println(
-                "\nUser not found. Please choose an option:          " +
-                "\n__________________________________________________" +
-                "\n1. Retry Login | 2. Sign Up | 3. Leave Shop       " +
-                "\n__________________________________________________\n");
-            for (;;) {
-                String userInput = keyboardScanner.nextLine();
-//              Retrying login:
-                if (userInput.equals("1")) {
-                    displayLogin();
-                    break;
-                }
-//              Going directly to sign up:
-                if (userInput.equals("2")) {
-                    SignUpUI signUpUI = new SignUpUI();
-                    signUpUI.displaySignUp();
-                    break;
-                }
-//              Closing the program:
-                if (userInput.equals("3")) {
-                    System.out.println(
-                        "\n__________________________________________________" +
-                        "\nCome back soon!                                   " +
-                        "\n__________________________________________________\n");
-                    break;
-                }
-//              If input invalid:
-                else {
-                    System.out.println("\nInvalid input. Please type a valid action number:");
-                }
-            }
+                "..................................................\n" +
+                "Wrong email/password. Please choose an option:    \n" +
+                "..................................................");
+            MainUI mainUI = new MainUI();
+            mainUI.start();
 
 //      Managing possible exception:
         } catch (ShopException e) {
