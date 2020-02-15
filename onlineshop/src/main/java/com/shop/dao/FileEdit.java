@@ -1,6 +1,5 @@
 package com.shop.dao;
 
-import com.shop.exception.ShopException;
 import com.shop.exception.ShopFileException;
 import com.shop.exception.ShopTechnicalException;
 import java.io.*;
