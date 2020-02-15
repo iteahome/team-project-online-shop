@@ -1,1 +1,2 @@
-a|a|a|a
+Szocs Mihai|password|szocsmihai@gmail.com|0040 753 783 133
+Szocs Ligia|password|ligiaszocs@gmail.com|0040 747 623 284

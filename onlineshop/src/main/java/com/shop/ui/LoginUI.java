@@ -42,7 +42,7 @@ class LoginUI {
         } catch (ShopWrongCredentialsException e) {
 //          Giving user options to continue:
             System.out.println(
-                "\nUser not found. Please choose an option:          " +
+                "\nInvalid email/password. Please choose an option:          " +
                 "\n__________________________________________________" +
                 "\n1. Retry Login | 2. Sign Up | 3. Leave Shop       " +
                 "\n__________________________________________________\n");
