@@ -42,9 +42,9 @@ class LoginUI {
 //      If credentials are not found in database:
         } catch (ShopWrongCredentialsException e) {
             System.out.println(
-                "..................................................\n" +
+                "\n..................................................\n" +
                 "Wrong email/password. Please choose an option:    \n" +
-                "..................................................");
+                "..................................................\n");
             MainUI mainUI = new MainUI();
             mainUI.start();
 
