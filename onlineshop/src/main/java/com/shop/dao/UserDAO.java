@@ -27,10 +27,7 @@ public class UserDAO {
             }
 //      If access to the user database is interrupted:
         } catch (FileNotFoundException e) {
-            System.out.println(
-                "\n.................................................." +
-                "\nUser Database not accessible.                     " +
-                "\n..................................................");
+            System.out.println("File not found.");
         }
 
 //      Converting the List of user data Strings into a List of User objects:
