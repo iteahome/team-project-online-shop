@@ -1,0 +1,12 @@
+monitor|noidea|1|2
+exemplu|letutbe|34|32
+monitor|noidea|1|2
+monitor|noidea|1|2
+monitor|noidea|1|2
+monitor|noidea|1|2
+monitor|noidea|1|2
+monitor|noidea|1|2
+monitor|noidea|1|2
+monitor|noidea|1|2
+monitor|noidea|1|2
+monitor|noidea|1|2

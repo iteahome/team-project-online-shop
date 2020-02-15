@@ -7,11 +7,11 @@ public class Product {
 //  Product parameters:
     private String productName;
     private String category;
-    private double price;
-    private int quantity;
+    private String price;
+    private String quantity;
 
 //  Product class constructor:
-    public Product(String productName, String category, double price, int quantity) {
+    public Product(String productName, String category, String price, String quantity) {
         this.productName = productName;
         this.category = category;
         this.price = price;
@@ -33,17 +33,17 @@ public class Product {
         this.category = category;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
-    public double getQuantity() {
+    public String getQuantity() {
         return quantity;
     }
-    public void setQuantity(int quantity) {
+    public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
 
