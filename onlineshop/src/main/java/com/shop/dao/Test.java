@@ -8,7 +8,7 @@ public class Test {
 
     public static void main (String[] args) {
 
-        FileEdit.replace("users.txt", "ligiaszocs@gmail.com", "passwprd", "passkey");
+        FileEdit.replace("users.txt", "email2", "password2", "passkey2");
 
     }
 }

@@ -61,6 +61,7 @@ class FileEdit {
 //      End result of the method - the line of data matching the regex pattern:
         return  lineData;
 
+/**     INITIAL METHOD - BETTER? WORSE? */
 ////      Defining a String for the resource file path according to the given fileName:
 //        String resourceFile = "./src/main/resources/"+filename;
 ////      Initializing a String where the data will be stored:
@@ -134,31 +135,6 @@ class FileEdit {
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         }
-
-
-////      Initializing the String to be manipulated:
-//        String lineData = null;
-//
-//        try {
-////          Pointing to the file to be read:
-//            File resourceFile = new File("./src/main/resources/" + filename);
-//
-////          Initializing a way to read the file:
-//            Scanner resourceScanner = new Scanner(resourceFile);
-////          Reading the file line by line:
-//            while (resourceScanner.hasNextLine()) {
-////              Checking every line for a match to the given regex pattern:
-//                if ((lineData = resourceScanner.nextLine()).matches(regex)) {
-////                  Initializing a way to write to the file:
-//                    FileWriter resourceWriter = new FileWriter(resourceFile);
-////            fileWriter.replaceThatLineWithMyNewLinePleaseThankYou
-//            // maybe use OutputStream.write(byte[] b, int off, int len)
-//                }
-//            }
-//        } catch (IOException e) {
-//            System.out.println("Cannot read from/write to file.");
-//        }
-
 
     }
 }
