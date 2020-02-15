@@ -39,9 +39,14 @@ class LoginUI {
             /** IF LOGIN FAILS, RETURN TO MainUI.start() */
             /** INSERT LINK TO USER TO SHOP HERE */
 
-//      Managing possible exception:
+//      If credentials are not found in database:
         } catch (ShopWrongCredentialsException e) {
-            e.printStackTrace();
+            System.out.println(
+                "..................................................\n" +
+                "Wrong email/password. Please choose an option:    \n" +
+                "..................................................");
+            MainUI mainUI = new MainUI();
+            mainUI.start();
 
 //      Managing possible exception:
         } catch (ShopException e) {
