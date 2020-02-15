@@ -1,5 +1,6 @@
 package com.shop.dao;
 
+import com.shop.exception.ShopException;
 import com.shop.exception.ShopFileException;
 import com.shop.exception.ShopTechnicalException;
 import java.io.*;
@@ -66,11 +67,10 @@ class FileEdit {
     }
 
 /** Method for targeting a line of data from a text and replacing any part of its content: */
-    static void replace(String filename, String identifier, String oldData, String newData) {
+    static void replace(String filename, String identifier, String oldData, String newData) throws NullPointerException {
 
         try {
-//          *** READING THE RESOURCE FILE: ***
-
+//          Reading the resource file and storing its content in a string:
 //          Pointing to the file to be read:
             File resourceFile = new File("./src/main/resources/" + filename);
 //          Initializing a way to read the file:
@@ -81,31 +81,34 @@ class FileEdit {
                 contentBuilder.append(resourceScanner.nextLine() + System.lineSeparator());
             }
             String resourceFileContent = contentBuilder.toString();
-            /** JUST CHECKING */ System.out.println("\nOld content:\n\n" + resourceFileContent);
 //          The file scanner can be closed now:
             resourceScanner.close();
+            System.out.println("\n*** resourceFileContent: ***\n\n" + resourceFileContent);
 
-//          *** FINDING THE TARGET LINE OF TEXT: ***
+//          Finding the line of text containing the given identifier:
+            String targetLine = FileEdit.findLine(filename,"\\b" + identifier + "\\b");
+            System.out.println("\n*** targetLine: ***\n\n" + targetLine);
 
-            String targetLine = FileEdit.findLine(filename,identifier);
-            /** JUST CHECKING */ System.out.println("\nTarget line:\n\n" + targetLine);
+//          Updating the target line of data with the new data:
+            String newLine = targetLine.replaceAll(oldData, newData);
+            System.out.println("\n*** newLine: ***\n\n" + newLine);
 
-//          *** REPLACING THE OLD PIECE OF DATA WITH THE NEW DATA:
+//          Updating the file content string with the new data:
+            String newFileContent = resourceFileContent.replace(targetLine, newLine);
+            /** JUST CHECKING */ System.out.println("\n*** newFileContent: ***\n\n" + newFileContent);
 
-            if(targetLine.matches(oldData)) {
-                System.out.println("Match found.");
-                targetLine.replace(oldData, newData);
-            }
-            /** JUST CHECKING */ System.out.println("\nNew line:\n\n" + targetLine);
+//          Updating the resource file with the new content:
+//          Initializing a way to overwrite the file's content:
+            BufferedWriter bufferedwriter = new BufferedWriter(new FileWriter(resourceFile, false));
+            bufferedwriter.write(newFileContent);
+//          Closing the output stream:
+            bufferedwriter.close();
 
-//          *** REPLACING THE TARGET TEXT IN THE TEMPORARY CONTENT STRING: ***
-
-//            String newContentString = resourceFileContent.replaceAll(oldData, newData);
-//            /** JUST CHECKING */ System.out.println("New file string content:\n" + newContentString);
-
-//      If the resource file is not found:
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found");
+//      Managing possible exceptions:
+        } catch (IOException e) {
+            System.out.println("File not found.");
+        } catch (NullPointerException e) {
+            System.out.println("Identifier returned no results.");
         }
 
     }
