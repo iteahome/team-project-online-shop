@@ -1,5 +1,6 @@
 package com.shop.model;
 
+
 /** Product class - the "purpose" of the shop. */
 
 public class Product {
@@ -9,14 +10,22 @@ public class Product {
     private String category;
     private String price;
     private String quantity;
+    private String uniqueProdId;
 
 //  Product class constructor:
-    public Product(String productName, String category, String price, String quantity) {
+    public Product(String productName, String category, String price, String quantity, String uniqueProdId) {
         this.productName = productName;
         this.category = category;
         this.price = price;
         this.quantity = quantity;
+        this.uniqueProdId = uniqueProdId;
     }
+
+    @Override
+    public String toString (){
+        return "Name: " + productName + ", Category: " + category + ", Price: " + price + ", ProductId: " + uniqueProdId;
+    }
+
 
 //  Product getters and setters:
     public String getProductName() {
@@ -45,6 +54,9 @@ public class Product {
     }
     public void setQuantity(String quantity) {
         this.quantity = quantity;
+    }
+    public String getUniqueProdId() {
+        return uniqueProdId;
     }
 
 }
