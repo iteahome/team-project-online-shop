@@ -15,10 +15,10 @@ public class ProductDAO {
         FileEdit.write("products.txt", productData);
     }
 
-    public List <Product> findAllProducts() throws ShopFileException {
+    public static List <Product> findAllProducts() throws ShopFileException {
         List<String> ProductData = new ArrayList<>();
         try {
-            File productFile = new File("./src/main/resources/users.txt");
+            File productFile = new File("./src/main/resources/products.txt");
             Scanner productScanner = new Scanner(productFile);
             while (productScanner.hasNextLine()) {
                 ProductData.add(productScanner.nextLine());
@@ -26,12 +26,12 @@ public class ProductDAO {
 
         } catch (
                 IOException e) {
-            throw new ShopFileException("User File not found", e);
+            throw new ShopFileException("Products File not found", e);
         }
         List<Product> ProdList = new ArrayList<>();
         for (String prod : ProductData) {
             String[] prodValues = prod.split("\\|");
-            ProdList.add(new Product(prodValues[0], prodValues[1], prodValues[2], prodValues[3]));
+            ProdList.add(new Product(prodValues[0], prodValues[1], prodValues[2], prodValues[3], prodValues[4]));
         }
         return ProdList;
     }
