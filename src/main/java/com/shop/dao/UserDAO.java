@@ -48,12 +48,16 @@ public class UserDAO {
         FileEdit.write("users.txt", newUserValues);
     }
 
-//    public static void updateUser(User user, String userInput, String newValue) {
-/**   IN DEVELOPMENT BY MISU */
-//    }
+    public static void updateUser(String email, String targetParameter, String newValue) {
 
-//    public void deleteUser(User user) {
-/**   IN DEVELOPMENT BY MISU */
-//    }
+//      Replacing the target parameter's value with the desired new value in the database:
+        FileEdit.replace("users.txt", email, targetParameter, newValue);
+    }
+
+    public static void deleteUser(String email) {
+
+//      Deleting a user's data from the user database:
+        FileEdit.replace("users.txt", email, ".*", "");
+    }
 
 }
