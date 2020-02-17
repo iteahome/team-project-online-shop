@@ -12,7 +12,7 @@ package com.shop.dao;
 
 public class UserDAO {
 
-    /** Method to identify all users in the database and store them as objects in an ArrayList: */
+/** Method to identify all users in the database and store them as objects in an ArrayList: */
     public List<User> findAllUsers() {
 
 //      Building a List of user data Strings from the users database:
@@ -41,19 +41,25 @@ public class UserDAO {
         return userList;
     }
 
-    /** Method to add new users to the database: */
+/** Method to add new users to the database: */
     public static void addUser(String newUserValues) throws ShopTechnicalException {
 
 //      Adding given values to end of the database:
         FileEdit.write("users.txt", newUserValues);
     }
 
-//    public static void updateUser(User user, String userInput, String newValue) {
-/**   IN DEVELOPMENT BY MISU */
-//    }
+/** Method to update users in the database: */
+    public static void updateUser(String email, String targetParameter, String newValue) {
 
-//    public void deleteUser(User user) {
-/**   IN DEVELOPMENT BY MISU */
-//    }
+//      Replacing the target parameter's value with the desired new value in the database:
+        FileEdit.replace("users.txt", email, targetParameter, newValue);
+    }
+
+/** Method to remove users from the database: */
+    public static void deleteUser(String email) {
+
+//      Deleting a user's data from the user database:
+        FileEdit.replace("users.txt", email, ".*", "");
+    }
 
 }
