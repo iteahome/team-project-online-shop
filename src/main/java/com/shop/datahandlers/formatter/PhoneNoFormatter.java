@@ -1,6 +1,7 @@
 package com.shop.datahandlers.formatter;
 
-public class PhNoFormat {
+@Component
+public class PhoneNoFormatter {
     public static String format (String inputToFormat) {
         String numberOnly = inputToFormat.replaceAll("[^0-9+]", "");
         numberOnly = numberOnly.replaceAll("\\+40", "0040");

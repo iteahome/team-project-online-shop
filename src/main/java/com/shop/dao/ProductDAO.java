@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+@Repository
 public class ProductDAO {
     public static void createProduct(String productData) throws ShopTechnicalException {
         FileEdit.write("products.txt", productData);

@@ -10,6 +10,7 @@ package com.shop.dao;
 
 /** UserDAO class - allows user database manipulation. */
 
+@Repository
 public class UserDAO {
 
 /** Method to identify all users in the database and store them as objects in an ArrayList: */

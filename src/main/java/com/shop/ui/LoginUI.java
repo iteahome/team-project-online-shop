@@ -14,7 +14,7 @@ class LoginUI {
     private UserService userService = new UserService();
 
 //  Login UI starting point:
-    void displayLogin() throws ShopException {
+    boolean displayLogin() throws ShopException {
 
 //      Giving user instructions and waiting for their input:
         System.out.println(
@@ -38,22 +38,24 @@ class LoginUI {
             userService.login(email, password);
             /** IF LOGIN FAILS, RETURN TO MainUI.start() */
             /** INSERT LINK TO USER TO SHOP HERE */
-
+            return true;
 //      If credentials are not found in database:
         } catch (ShopWrongCredentialsException e) {
-            System.out.println(
-                "\n..................................................\n" +
-                "Wrong email/password. Please choose an option:    \n" +
-                "..................................................\n");
-            MainUI mainUI = new MainUI();
-            mainUI.start();
-
+//            System.out.println(
+//                "\n..................................................\n" +
+//                "Wrong email/password. Please choose an option:    \n" +
+//                "..................................................\n");
+//            MainUI mainUI = new MainUI();
+//            mainUI.start();
+            return false;
 //      Managing possible exception:
         } catch (ShopException e) {
+            System.out.println("Something wrong happened!");
             e.printStackTrace();
+        } finally {
+            keyboardScanner.close();
         }
 
-        keyboardScanner.close();
-
+        return false;
     }
 }

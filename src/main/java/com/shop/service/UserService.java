@@ -5,57 +5,74 @@ import com.shop.exception.ShopException;
 import com.shop.exception.ShopTechnicalException;
 import com.shop.exception.ShopWrongCredentialsException;
 import com.shop.model.User;
+import com.shop.security.UserContext;
 
 /** User Service class - allows login and sign up. */
 
+@Service
 public class UserService {
 
 //  Instancing a UserDAO object - provides methods to manipulate user database:
-    private UserDAO userDAO = new UserDAO();
+    @Autowired
+    private UserDAO userDAO;
+//    private UserDAO userDAO = new UserDAO();
 
 /** Login method - checks given credentials against user database: */
-    public User login(String email, String password) throws ShopException {
+    public void login(String email, String password) throws ShopException {
 
 //      Checking the provided email and password, user by user:
-        for (User user : userDAO.findAllUsers()) {
-            if (email.equals(user.getEmail()) && password.equals(user.getPassword())) {
-                System.out.println(
-                    "\n__________________________________________________" +
-                    "\nLogin successful. Happy shopping!                 " +
-                    "\n__________________________________________________\n");
-                return user;
-            }
-        }
+        User userLogged = userDAO.findAllUsers().stream()
+                .filter(user -> areCredentialsEquals(email, password, user))
+                .findFirst().orElseThrow(ShopWrongCredentialsException::new);
 
-//      Managing possbile exception:
-        throw new ShopWrongCredentialsException();
+        UserContext.setLoggedUser(userLogged);
+
+        System.out.println(
+                "\n__________________________________________________" +
+                        "\nLogin successful. Happy shopping!                 " +
+                        "\n__________________________________________________\n");
     }
 
-/** SignUp method - tries to add given credentials to the user database: */
+    private boolean areCredentialsEquals(String email, String password, User user) {
+        return email.equals(user.getEmail()) && password.equals(user.getPassword());
+    }
+
+    /** SignUp method - tries to add given credentials to the user database: */
     public boolean signUp(String userName, String password, String email, String phoneNo) throws ShopTechnicalException {
 
 //      Setting a flag to confirm successful sign up:
         boolean signedUp = false;
 
 //      Concatenating inputs sequentially into a new String, separated by "|":
+
         String userData = userName + "|" + password + "|" + email + "|" + phoneNo;
 
+        User user = new User();
+        user.setEmail(email);
+        user.setPassword(password);
+
 //      If database is empty, add first user directly:
-        if (userDAO.findAllUsers().isEmpty()) {
-            UserDAO.addUser(userData);
-            signedUp = true;
-            System.out.println(
-                "\n.................................................." +
-                "\nCongratulations, you are now our first shopper!   " +
-                "\nLogging in with you new credentials...            " +
-                "\n..................................................");
-//          Automatically log first new user in:
-            try {
-                login(email, password);
-            } catch (ShopException e) {
-                e.printStackTrace();
-            }
-        }
+//        if (userDAO.findAllUsers().isEmpty()) {
+//            UserDAO.addUser(userData);
+//            signedUp = true;
+//            System.out.println(
+//                "\n.................................................." +
+//                "\nCongratulations, you are now our first shopper!   " +
+//                "\nLogging in with you new credentials...            " +
+//                "\n..................................................");
+////          Automatically log first new user in:
+//            try {
+//                login(email, password);
+//            } catch (ShopException e) {
+//                e.printStackTrace();
+//            }
+//        }
+
+        userDAO.findAllUsers().stream()
+                .filter(user -> email.equals(user.getEmail()))
+                .findAny()
+                    .map(this::showUserExists)
+                    .orElseGet(()-> UserDAO.addUser(userData));
 
 //      Checking if user already exists - starting by initializing a flag:
         boolean userExists = false;
@@ -74,6 +91,7 @@ public class UserService {
                 }
             }
         }
+
 
 //      If this wasn't the first added user and the email has not been used, add user to database:
         if (!signedUp & !userExists) {
@@ -95,5 +113,15 @@ public class UserService {
 //      Method's end result - confirmation of a successful/failed sign up:
         return signedUp;
 
+    }
+
+    private User showUserExists(User user) {
+        System.out.println(
+                "\n.................................................." +
+                        "\nA user with this email already exists.            " +
+                        "\n.................................................." +
+                        "\n");
+
+        return user;
     }
 }

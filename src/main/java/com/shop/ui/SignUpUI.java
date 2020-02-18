@@ -1,6 +1,6 @@
 package com.shop.ui;
 
-import com.shop.datahandlers.formatter.PhNoFormat;
+import com.shop.datahandlers.formatter.PhoneNoFormatter;
 import com.shop.exception.ShopException;
 import com.shop.exception.ShopTechnicalException;
 import com.shop.service.UserService;
@@ -79,7 +79,7 @@ public class SignUpUI {
                 break;
             }
 /**     THE PHONE NUMBER VALIDATOR MUST BE CALLED HERE, FOR EXAMPLE VIA AN ELSE BLOCK */
-            phoneNo = PhNoFormat.format(phoneNo);
+            phoneNo = PhoneNoFormatter.format(phoneNo);
 //      Trying to add the given data to the user database:
             try {
 //          If sign up failed because email is already used:

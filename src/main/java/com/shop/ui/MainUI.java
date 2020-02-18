@@ -1,13 +1,17 @@
 package com.shop.ui;
 
 import com.shop.exception.ShopException;
+import com.shop.security.UserContext;
+
 import java.util.Scanner;
 
 /** MainUI class - handles the initial contact with the user. */
 
 public class MainUI {
 
-//  Initializing objects of every UI type defined so far:
+    public static final String OPTION_LOGIN = "1";
+    public static final String OPTION_LEAVE = "3";
+    //  Initializing objects of every UI type defined so far:
     private SignUpUI signUpUI = new SignUpUI();
     private LoginUI loginUI = new LoginUI();
 
@@ -19,21 +23,39 @@ public class MainUI {
             "\n__________________________________________________" +
             "\n1. Login | 2. Sign Up | 3. Leave Shop             " +
             "\n__________________________________________________\n");
-
-        for (;;) {
+        String userInput = null;
+        do {
             Scanner keyboardScanner = new Scanner(System.in);
-            String userInput = keyboardScanner.nextLine();
+            userInput = keyboardScanner.nextLine();
+            switch (userInput) {
+                case OPTION_LOGIN : {
+                    if (loginUI.displayLogin()) {
+                        if (UserContext.isAdminLogged()) {
+                            new AdminShopUI().showManageProducts();
+                        } else {
+                            new ShopperUI().showProducts();
+                        }
+                    }
+                }; break;
+
+                case OPTION_LEAVE: {
+
+                }
+
+                default: System.out.println("\nInvalid input. Please type the action's number:");
+            }
+//            for (;;) {
 
 //          Typing "1" sends user to login menu:
-            if (userInput.equals("1")) {
+            if (userInput.equals(OPTION_LOGIN)) {
                 loginUI.displayLogin();
-                break;
+//                break;
             }
 
 //          Typing "2" sends user to sign up menu:
             if (userInput.equals("2")) {
                 signUpUI.displaySignUp();
-                break;
+//                break;
             }
 
 //          Typing "3" ends the program:
@@ -42,12 +64,12 @@ public class MainUI {
                     "\n__________________________________________________" +
                     "\nCome back soon!                                   " +
                     "\n__________________________________________________\n");
-                break;
+//                break;
             }
             else {
                 System.out.println("\nInvalid input. Please type the action's number:");
             }
-        }
+        } while (!OPTION_LEAVE.equals(userInput))
 
     }
 }
