@@ -1,3 +1,2 @@
-
-null|itea|marius.bistika@gmail.com|null|ADMIN
-
+admin|adminadmin|admin@onlineshop.com|null|ADMIN
+marius|iteahome|marius.bistika@gmail.com|null|ADMIN

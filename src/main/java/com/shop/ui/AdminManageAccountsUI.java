@@ -60,6 +60,7 @@ class AdminManageAccountsUI {
                         }
 
                     }
+                    break;
                 }
                 case DELETE_USERS: {
                     PrintUI.printBox("Please insert full user email to delete user");
@@ -68,6 +69,7 @@ class AdminManageAccountsUI {
                         PrintUI.printBox(user.toString());
                         userService.deleteUser(user);
                     }
+                    break;
                 }
                 case EXIT: {
                     break;
