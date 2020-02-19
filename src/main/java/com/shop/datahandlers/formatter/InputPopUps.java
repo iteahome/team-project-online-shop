@@ -5,9 +5,8 @@ import javax.swing.JOptionPane;
 
 public class InputPopUps {
 
-    public static String main(String message) {
+    public static String input (String message) {
         JFrame frame = new JFrame();
-        String result = JOptionPane.showInputDialog(frame, message);
-        return result;
+        return JOptionPane.showInputDialog(frame, message);
     }
 }

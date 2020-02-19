@@ -34,7 +34,7 @@ public class UserDAO {
         List<User> userList = new ArrayList<>();
         for (String userData : userDataList) {
             String[] userDataValues = userData.split("\\|");
-            userList.add(new User(userDataValues[0], userDataValues[1], userDataValues[2], userDataValues[3]));
+            userList.add(new User(userDataValues[1], userDataValues[2], userDataValues[3]));
         }
 
 //      End result of the method - returning the User object ArrayList:

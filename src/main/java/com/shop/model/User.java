@@ -9,15 +9,18 @@ public class User {
     private String password;
     private String email;
     private String phoneNo;
+    private String role;
 
 //  User class constructor:
-    public User(String userName, String password, String email, String phoneNo) {
-        this.userName = userName;
+    public User(String password, String email, String role) {
         this.password = password;
         this.email = email;
-        this.phoneNo = phoneNo;
+        this.role = role;
     }
 
+    public String DBprint () {
+        return userName + "|" + password + "|" + email + "|" + phoneNo + "|" + role;
+    }
 //  User getters and setters:
     public String getUserName() {
         return userName;
@@ -46,6 +49,14 @@ public class User {
     }
     public void setPhoneNo(String phoneNo) {
         this.phoneNo = phoneNo;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
 }
