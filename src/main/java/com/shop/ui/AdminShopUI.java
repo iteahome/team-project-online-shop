@@ -1,53 +1,57 @@
 package com.shop.ui;
 
-import com.shop.OnlineShop;
-import com.shop.datahandlers.formatter.InputPopUps;
-import com.shop.datahandlers.formatter.PrintUI;
+import com.shop.ui.ui_handlers.InputPopUps;
+import com.shop.ui.ui_handlers.PrintUI;
 import com.shop.exception.ShopException;
-import com.shop.exception.ShopTechnicalException;
+import com.shop.model.Product;
 import com.shop.service.ProductService;
 
-import java.io.IOException;
-import java.util.Scanner;
-
 public class AdminShopUI {
+    private ProductService productService = new ProductService();
 
-    public void manageProducts () throws ShopException {
-        PrintUI.printBox("Admin Menu: ", "Create new products : 1", "Filter Products : 2", "Exit : 3");
-        String userInput = "";
-        try {
-            userInput = InputPopUps.main("Option: ");
-        } catch(NullPointerException e) {
-            userInput = "3";
-        }
-        if (userInput.equals("1")) {
-            PrintUI.printBox("Please insert new product name: ");
-            String inputProdName = InputPopUps.main("Product Name: ");
-            PrintUI.printBox("Please insert new product category: ");
-            String inputProdCategory = InputPopUps.main("Product Category: ");
-            PrintUI.printBox("Please insert new product quantity: ");
-            String inputProdQuantity = InputPopUps.main("Product Quantity: ");
-            PrintUI.printBox("Please insert new product price: ");
-            String inputProdPrice = InputPopUps.main("Product Price: ");
-            ProductService.addProduct(inputProdName, inputProdCategory, inputProdQuantity, inputProdPrice);
-            PrintUI.printBox("Product Created.");
-            manageProducts();
-        }
-        if (userInput.equals("2")) {
-            PrintUI.printBox("Please insert part of the product category and name as requested (blank accepted).");
-            String categoryName =  InputPopUps.main("Category: ");;
-            String productName = InputPopUps.main("Product Name: ");;
+    void manageProducts() throws ShopException {
+        PrintUI.printBox("Admin Menu: ", "Create new products : 1", "Filter Products : 2", "Exit : 0");
+        String userInput = null;
+        final String EXIT_MENU = "0";
+        do {
+            userInput = InputPopUps.input("Option: ");
+            final String CREATE_PRODUCT = "1";
+            final String FILTER_PRODUCTS = "2";
+            switch (userInput) {
+                case CREATE_PRODUCT: {
+                    PrintUI.printBox("Please insert new product name: ");
+                    String inputProdName = InputPopUps.input("Product Name: ");
+                    PrintUI.printBox("Please insert new product category: ");
+                    String inputProdCategory = InputPopUps.input("Product Category: ");
+                    PrintUI.printBox("Please insert new product quantity: ");
+                    String inputProdQuantity = InputPopUps.input("Product Quantity: ");
+                    PrintUI.printBox("Please insert new product price: ");
+                    String inputProdPrice = InputPopUps.input("Product Price: ");
+                    ProductService.addProduct(inputProdName, inputProdCategory, inputProdQuantity, inputProdPrice);
+                    PrintUI.printBox("Product Created.");
+                    break;
+                }
+                case FILTER_PRODUCTS: {
+                        PrintUI.printBox("Please insert part of the product category and name as requested (blank accepted).");
+                        String categoryName = InputPopUps.input("Category: ");
+                        String productName = InputPopUps.input("Product Name: ");
+                        for (Product product : productService.getProductsByCategoryAndName(categoryName, productName)) {
+                            {
+                                PrintUI.printBox(product.toString());
+                            }
+                        }
+                    }
+                    break;
 
-            ProductService.displayProductsByCategoryAndName(categoryName, productName);
-            manageProducts();
-        }
-        if (userInput.equals("3")) {
-        //This part is about to be added latter on the code
-            PrintUI.printBox("this should get us on previous UI");
-            MainUI mainUI = new MainUI();
-            mainUI.start();
-        }
+                case EXIT_MENU: {
+                    break;
+                }
+                default: {
+                    PrintUI.printBox("Please choose a valid option");
+                }
+
+            }
+        } while (!userInput.equals(EXIT_MENU));
 
     }
-
 }

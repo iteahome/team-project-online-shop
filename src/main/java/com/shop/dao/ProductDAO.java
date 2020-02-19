@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static java.lang.Integer.parseInt;
+
 public class ProductDAO {
     public static void createProduct(String productData) throws ShopTechnicalException {
         FileEdit.write("products.txt", productData);
@@ -31,7 +33,7 @@ public class ProductDAO {
         List<Product> ProdList = new ArrayList<>();
         for (String prod : ProductData) {
             String[] prodValues = prod.split("\\|");
-            ProdList.add(new Product(prodValues[0], prodValues[1], prodValues[2], prodValues[3], prodValues[4]));
+            ProdList.add(new Product(prodValues[0], prodValues[1], prodValues[2], prodValues[3], parseInt(prodValues[4])));
         }
         return ProdList;
     }

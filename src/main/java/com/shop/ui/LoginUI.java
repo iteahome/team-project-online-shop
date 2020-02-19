@@ -1,59 +1,30 @@
 package com.shop.ui;
 
+import com.shop.security.UserContext;
+import com.shop.ui.ui_handlers.InputPopUps;
+import com.shop.ui.ui_handlers.PrintUI;
 import com.shop.exception.ShopException;
 import com.shop.exception.ShopWrongCredentialsException;
 import com.shop.service.UserService;
-
-import java.util.Scanner;
 
 /** LoginUI class - lets existing users login to online shop: */
 
 class LoginUI {
 
-//  Initializing a UserService object for interacting with user database:
+    //  Initializing a UserService object for interacting with user database:
     private UserService userService = new UserService();
 
-//  Login UI starting point:
+    //  Login UI starting point:
     void displayLogin() throws ShopException {
+        PrintUI.printBox("Please provide your Login Credentials: ");
+        String email = InputPopUps.input("Email:");
+        String password = InputPopUps.input("Password:");
 
-//      Giving user instructions and waiting for their input:
-        System.out.println(
-            "\n.................................................." +
-            "\nPlease provide valid credentials:                 " +
-            "\n..................................................\n");
-        Scanner keyboardScanner = new Scanner(System.in);
-
-//      Asking for registered email:
-        System.out.println("Enter email: ");
-        String email = keyboardScanner.nextLine();
-
-//      Asking for registered password:
-        System.out.println("Enter password: ");
-        String password = keyboardScanner.nextLine();
-
-//      Checking the given data against the user database:
-
-//      If login is successful:
         try {
             userService.login(email, password);
-            /** IF LOGIN FAILS, RETURN TO MainUI.start() */
-            /** INSERT LINK TO USER TO SHOP HERE */
-
-//      If credentials are not found in database:
+            PrintUI.printBox("Login Successful");
         } catch (ShopWrongCredentialsException e) {
-            System.out.println(
-                "\n..................................................\n" +
-                "Wrong email/password. Please choose an option:    \n" +
-                "..................................................\n");
-            MainUI mainUI = new MainUI();
-            mainUI.start();
-
-//      Managing possible exception:
-        } catch (ShopException e) {
-            e.printStackTrace();
+            PrintUI.printBox("Wrong credentials.");
         }
-
-        keyboardScanner.close();
-
     }
 }
