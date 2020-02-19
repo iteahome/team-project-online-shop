@@ -1,12 +1,17 @@
 package com.shop.ui.ui_handlers;
 
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
-public class InputPopUps {
+public class InputPopUps extends JFrame {
 
     public static String input (String message) {
-        JFrame frame = new JFrame();
-        return JOptionPane.showInputDialog(frame, message);
+        try {JFrame frame = new JFrame();
+            String result = JOptionPane.showInputDialog(frame, message);
+            if (result.isEmpty()){
+                result = "0";
+            }return result;
+        } catch (NullPointerException e){
+            return "NullPointerExceptionFound";
+        }
     }
 }
