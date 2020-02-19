@@ -21,7 +21,6 @@ public class UserService {
         User userLogged = userDAO.findAllUsers().stream()
                 .filter(user -> areCredentialsEqual(email, password, user))
                 .findFirst().orElseThrow(ShopWrongCredentialsException::new);
-        System.out.println(userLogged.dbPrint());
         UserContext.setLoggedUser(userLogged);
     }
 
