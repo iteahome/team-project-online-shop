@@ -1,12 +1,15 @@
 package com.shop.service;
 
 import com.shop.dao.UserDAO;
-import com.shop.datahandlers.formatter.PrintUI;
+import com.shop.ui.ui_handlers.PrintUI;
 import com.shop.exception.ShopException;
 import com.shop.exception.ShopTechnicalException;
 import com.shop.exception.ShopWrongCredentialsException;
 import com.shop.model.User;
 import com.shop.security.UserContext;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /** User Service class - allows login and sign up. */
 
@@ -18,6 +21,7 @@ public class UserService {
         User userLogged = userDAO.findAllUsers().stream()
                 .filter(user -> areCredentialsEqual(email, password, user))
                 .findFirst().orElseThrow(ShopWrongCredentialsException::new);
+        System.out.println(userLogged.dbPrint());
         UserContext.setLoggedUser(userLogged);
     }
 
@@ -27,16 +31,29 @@ public class UserService {
 
 
 /** SignUp method - tries to add given credentials to the user database: */
-    public void signUp(String password, String email) throws ShopTechnicalException {
+    public boolean signUp(String password, String email) throws ShopTechnicalException {
         boolean userExists = userDAO.findAllUsers().stream()
                 .anyMatch(user -> email.equals(user.getEmail()));
 
         if (!userExists) {
             User user = new User(password, email, "Shopper");
-            UserDAO.addUser(user.DBprint());
+            userDAO.addUser(user.dbPrint());
         }
-        else {
-            PrintUI.printBox("User Exists, Please Login.");
+        return userExists;
+    }
+
+
+    public List<User> getUsersbyEmail(String email) throws ShopException {
+        return userDAO.findAllUsers().stream()
+                .filter(user -> user.getEmail().matches(".*" + email + ".*"))
+                .collect(Collectors.toList());
+    }
+
+    public void replaceUserData (User user) throws ShopException {
+            userDAO.deleteUser(user.getEmail());
+            userDAO.addUser(user.dbPrint());
         }
+    public void deleteUser (User user) {
+        userDAO.deleteUser(user.getEmail());
     }
 }

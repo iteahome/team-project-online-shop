@@ -1,4 +1,4 @@
-package com.shop.datahandlers.formatter;
+package com.shop.ui.ui_handlers;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;

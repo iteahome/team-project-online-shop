@@ -1,12 +1,11 @@
 package com.shop.ui;
 
-import com.shop.datahandlers.formatter.InputPopUps;
-import com.shop.datahandlers.formatter.PrintUI;
+import com.shop.security.UserContext;
+import com.shop.ui.ui_handlers.InputPopUps;
+import com.shop.ui.ui_handlers.PrintUI;
 import com.shop.exception.ShopException;
 import com.shop.exception.ShopWrongCredentialsException;
 import com.shop.service.UserService;
-
-import java.util.Scanner;
 
 /** LoginUI class - lets existing users login to online shop: */
 

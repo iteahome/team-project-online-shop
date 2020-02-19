@@ -24,8 +24,4 @@ public class UserContext {
     public static boolean isAdminLogged() {
         return ROLE_ADMIN.equals(loggedUser.getRole());
     }
-
-    public static boolean isShopperLogged() {
-        return ROLE_SHOPPER.equals(loggedUser.getRole());
-    }
 }

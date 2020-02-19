@@ -1,13 +1,13 @@
 package com.shop.ui;
 
-import com.shop.datahandlers.formatter.InputPopUps;
-import com.shop.datahandlers.formatter.PrintUI;
+import com.shop.ui.ui_handlers.InputPopUps;
+import com.shop.ui.ui_handlers.PrintUI;
 import com.shop.exception.ShopException;
-import com.shop.model.User;
 import com.shop.security.UserContext;
 
 class ShopUI {
     private AdminShopUI adminShopUI = new AdminShopUI();
+    private AdminManageAccountsUI adminManageAccountsUI = new AdminManageAccountsUI();
     void start() throws ShopException {
         String userInput = null;
         final String SHOP = "1";
@@ -28,7 +28,7 @@ class ShopUI {
                         }
                         case Account : {
                             if (UserContext.isAdminLogged()){
-                                PrintUI.printBox("Admin account");
+                                adminManageAccountsUI.manageAccounts();
                             }
                             else {
                                 PrintUI.printBox("User account");

@@ -1,7 +1,7 @@
 package com.shop.ui;
 
-import com.shop.datahandlers.formatter.InputPopUps;
-import com.shop.datahandlers.formatter.PrintUI;
+import com.shop.ui.ui_handlers.InputPopUps;
+import com.shop.ui.ui_handlers.PrintUI;
 import com.shop.exception.ShopException;
 import com.shop.service.UserService;
 
@@ -16,6 +16,10 @@ class SignUpUI {
         PrintUI.printBox("To sign up, please provide the following credentials:");
         String inputEmail = InputPopUps.input("Email:");
         String inputPassword = InputPopUps.input("New Password");
-        userService.signUp(inputPassword, inputEmail);
+        if (userService.signUp(inputPassword, inputEmail)) {
+            PrintUI.printBox("User Exists, Please Login.");
+        } else {
+            PrintUI.printBox("Welcome! Sign Up successful, please proceed to LogIn");
+        }
     }
 }

@@ -1,7 +1,7 @@
 package com.shop.ui;
 
-import com.shop.datahandlers.formatter.InputPopUps;
-import com.shop.datahandlers.formatter.PrintUI;
+import com.shop.ui.ui_handlers.InputPopUps;
+import com.shop.ui.ui_handlers.PrintUI;
 import com.shop.exception.ShopException;
 
 import static com.shop.security.UserContext.isUserLogged;
@@ -46,5 +46,6 @@ public class MainUI {
                 } while (!userInput.equals(OPTION_LEAVE) & !isUserLogged());
             } else shopUI.start();
         } while (!userInput.equals(OPTION_LEAVE));
+
     }
 }

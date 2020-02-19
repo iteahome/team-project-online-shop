@@ -1,4 +1,4 @@
-package com.shop.datahandlers.formatter;
+package com.shop.ui.ui_handlers;
 
 public class PrintUI {
     private static int getMaxLength(String... strings) {

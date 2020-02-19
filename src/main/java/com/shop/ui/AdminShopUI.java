@@ -1,7 +1,7 @@
 package com.shop.ui;
 
-import com.shop.datahandlers.formatter.InputPopUps;
-import com.shop.datahandlers.formatter.PrintUI;
+import com.shop.ui.ui_handlers.InputPopUps;
+import com.shop.ui.ui_handlers.PrintUI;
 import com.shop.exception.ShopException;
 import com.shop.model.Product;
 import com.shop.service.ProductService;

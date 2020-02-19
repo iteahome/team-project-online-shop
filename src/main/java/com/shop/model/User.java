@@ -18,7 +18,19 @@ public class User {
         this.role = role;
     }
 
-    public String DBprint () {
+    public User(String userName, String password, String email, String phoneNo, String role) {
+        this.userName = userName;
+        this.password = password;
+        this.email = email;
+        this.phoneNo = phoneNo;
+        this.role = role;
+    }
+
+    @Override
+    public String toString (){
+        return "Name: " + userName + ", password: " + "private" + ", Email: " + email + ", PhoneNo: " + phoneNo + ", Role: " + role;
+    }
+    public String dbPrint() {
         return userName + "|" + password + "|" + email + "|" + phoneNo + "|" + role;
     }
 //  User getters and setters:
