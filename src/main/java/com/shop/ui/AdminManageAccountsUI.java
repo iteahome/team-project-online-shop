@@ -8,6 +8,7 @@ import com.shop.ui.ui_handlers.PrintUI;
 
 class AdminManageAccountsUI {
     private UserService userService = new UserService();
+    private static final String CANCEL = "NullPointerExceptionFound";
 
     void manageAccounts() throws ShopException {
         String userInput = null;
@@ -22,56 +23,80 @@ class AdminManageAccountsUI {
                 case VIEW_USERS: {
                     PrintUI.printBox("Please insert user email (blanks accepted)");
                     String email = InputPopUps.input("Email");
-                    try {
-                        for (User user : userService.getUsersbyEmail(email)){
-                            PrintUI.printBox(user.toString());
-                        }
-                    } catch (ShopException e) {
-                        e.printStackTrace();
+                    if (!email.equals(CANCEL)) {
+                            for (User user : userService.getUsersbyEmail(email)) {
+                                PrintUI.printBox(user.toString());
+                            }
+                    } else {
+                        PrintUI.printBox("User canceled operation");
                     }
                     break;
                 }
                 case EDIT_USERS: {
                     PrintUI.printBox("Please insert full user email");
                     String email = InputPopUps.input("Email");
-                    for (User user : userService.getUsersbyEmail(email)) {
-                        PrintUI.printBox(user.toString());
-                        final String CHANGEROLE = "1";
-                        final String RESETPASSWORD = "2";
-                        PrintUI.printBox("Change Role : 1", "Reset password : 2");
-                        String adminChoice = InputPopUps.input("Option: ");
-                        switch (adminChoice) {
-                            case CHANGEROLE: {
-                                user.setRole(InputPopUps.input("New Role"));
-                                userService.replaceUserData(user);
-                                break;
+                    if (!email.equals(CANCEL)) {
+                        for (User user : userService.getUsersbyEmail(email)) {
+                            PrintUI.printBox(user.toString());
+                            final String CHANGEROLE = "1";
+                            final String RESETPASSWORD = "2";
+                            PrintUI.printBox("Change Role : 1", "Reset password : 2");
+                            String adminChoice = InputPopUps.input("Option: ");
+                            switch (adminChoice) {
+                                case CHANGEROLE: {
+                                    user.setRole(InputPopUps.input("New Role"));
+                                    if (!user.getRole().equals(CANCEL)) {
+                                        userService.replaceUserData(user);
+                                    } else {
+                                        PrintUI.printBox("User canceled operation");
+                                    }
+                                    break;
+                                }
+                                case RESETPASSWORD: {
+                                    user.setPassword(InputPopUps.input("New Password"));
+                                    if (!user.getPassword().equals(CANCEL)) {
+                                        userService.replaceUserData(user);
+                                    } else {
+                                        PrintUI.printBox("User canceled operation");
+                                    }
+                                    break;
+                                }
+                                case EXIT: {
+                                    break;
+                                }
+                                case CANCEL: {
+                                    PrintUI.printBox("User canceled operation.");
+                                    break;
+                                }
+                                default: {
+                                    PrintUI.printBox("Please insert a valid option");
+                                }
                             }
-                            case RESETPASSWORD: {
-                                user.setPassword(InputPopUps.input("New Password"));
-                                userService.replaceUserData(user);
-                                break;
-                            }
-                            case EXIT: {
-                                break;
-                            }
-                            default: {
-                                PrintUI.printBox("Please insert a valid option");
-                            }
-                        }
 
+                        }
+                        break;
+                    } else {
+                        PrintUI.printBox("User canceled operation");
                     }
-                    break;
                 }
                 case DELETE_USERS: {
                     PrintUI.printBox("Please insert full user email to delete user");
                     String email = InputPopUps.input("Email to DELETE User");
-                    for (User user : userService.getUsersbyEmail(email)) {
-                        PrintUI.printBox(user.toString());
-                        userService.deleteUser(user);
+                    if(!email.equals(CANCEL)){
+                        for (User user : userService.getUsersbyEmail(email)) {
+                            PrintUI.printBox(user.toString());
+                            userService.deleteUser(user);
+                        }
+                    } else {
+                        PrintUI.printBox("User canceled operation");
                     }
                     break;
                 }
                 case EXIT: {
+                    break;
+                }
+                case CANCEL: {
+                    PrintUI.printBox("User canceled operation.");
                     break;
                 }
                 default: {
