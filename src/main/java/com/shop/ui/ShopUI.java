@@ -10,14 +10,14 @@ class ShopUI {
     private AdminManageAccountsUI adminManageAccountsUI = new AdminManageAccountsUI();
     void start() throws ShopException {
         String userInput = null;
-        final String SHOP = "1";
-        final String Account = "2";
-        final String Logout = "0";
+        final String OPTION_SHOP = "1";
+        final String OPTION_ACCOUNT = "2";
+        final String OPTION_LOGOUT = "0";
         do {
             PrintUI.printBox("Welcome to Our Shop", "Shop : 1", "Account : 2", "Logout : 0");
             userInput = InputPopUps.input("Option:");
                     switch (userInput) {
-                        case SHOP : {
+                        case OPTION_SHOP : {
                             if (UserContext.isAdminLogged()){
                                 adminShopUI.manageProducts();
                             }
@@ -26,7 +26,7 @@ class ShopUI {
                             }
                             break;
                         }
-                        case Account : {
+                        case OPTION_ACCOUNT : {
                             if (UserContext.isAdminLogged()){
                                 adminManageAccountsUI.manageAccounts();
                             }
@@ -35,7 +35,7 @@ class ShopUI {
                             }
                             break;
                         }
-                        case Logout : {
+                        case OPTION_LOGOUT : {
                             UserContext.setLoggedUser(null);
                             PrintUI.printBox("Logging out");
                         }
@@ -43,6 +43,6 @@ class ShopUI {
                             PrintUI.printBox("Please insert a valid option.");
                         }
                     }
-        } while (!userInput.equals(Logout));
+        } while (!userInput.equals(OPTION_LOGOUT));
     }
 }

@@ -12,13 +12,13 @@ public class AdminShopUI {
     void manageProducts() throws ShopException {
         PrintUI.printBox("Admin Menu: ", "Create new products : 1", "Filter Products : 2", "Exit : 0");
         String userInput = null;
-        final String exitMenu = "0";
+        final String EXIT_MENU = "0";
         do {
             userInput = InputPopUps.input("Option: ");
-            final String createProduct = "1";
-            final String filterProducts = "2";
+            final String CREATE_PRODUCT = "1";
+            final String FILTER_PRODUCTS = "2";
             switch (userInput) {
-                case createProduct: {
+                case CREATE_PRODUCT: {
                     PrintUI.printBox("Please insert new product name: ");
                     String inputProdName = InputPopUps.input("Product Name: ");
                     PrintUI.printBox("Please insert new product category: ");
@@ -31,7 +31,7 @@ public class AdminShopUI {
                     PrintUI.printBox("Product Created.");
                     break;
                 }
-                case filterProducts: {
+                case FILTER_PRODUCTS: {
                         PrintUI.printBox("Please insert part of the product category and name as requested (blank accepted).");
                         String categoryName = InputPopUps.input("Category: ");
                         String productName = InputPopUps.input("Product Name: ");
@@ -43,7 +43,7 @@ public class AdminShopUI {
                     }
                     break;
 
-                case exitMenu: {
+                case EXIT_MENU: {
                     break;
                 }
                 default: {
@@ -51,7 +51,7 @@ public class AdminShopUI {
                 }
 
             }
-        } while (!userInput.equals(exitMenu));
+        } while (!userInput.equals(EXIT_MENU));
 
     }
 }

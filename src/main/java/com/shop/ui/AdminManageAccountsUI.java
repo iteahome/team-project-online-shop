@@ -11,15 +11,15 @@ class AdminManageAccountsUI {
 
     void manageAccounts() throws ShopException {
         String userInput = null;
-        final String VIEWUSERS = "1";
-        final String EDITUSERS = "2";
-        final String DELETEUSERS = "3";
+        final String VIEW_USERS = "1";
+        final String EDIT_USERS = "2";
+        final String DELETE_USERS = "3";
         final String EXIT = "0";
         do {
             PrintUI.printBox("View Users : 1", "Edit Users : 2", "Delete Users: 3", "Exit : 0");
             userInput = InputPopUps.input("Option");
             switch (userInput) {
-                case VIEWUSERS: {
+                case VIEW_USERS: {
                     PrintUI.printBox("Please insert user email (blanks accepted)");
                     String email = InputPopUps.input("Email");
                     try {
@@ -31,7 +31,7 @@ class AdminManageAccountsUI {
                     }
                     break;
                 }
-                case EDITUSERS: {
+                case EDIT_USERS: {
                     PrintUI.printBox("Please insert full user email");
                     String email = InputPopUps.input("Email");
                     for (User user : userService.getUsersbyEmail(email)) {
@@ -61,7 +61,7 @@ class AdminManageAccountsUI {
 
                     }
                 }
-                case DELETEUSERS: {
+                case DELETE_USERS: {
                     PrintUI.printBox("Please insert full user email to delete user");
                     String email = InputPopUps.input("Email to DELETE User");
                     for (User user : userService.getUsersbyEmail(email)) {
