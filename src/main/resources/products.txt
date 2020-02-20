@@ -1,8 +1,200 @@
-one|one|one|one|1
-one|one|one|one|2
-one|one|one|one|3
-one|one|one|one|4
-one|one|one|one|5
-one|one|one|one|6
-banane|fructe|3|7|45
-banane1|fructe|3|46|34
+Mountain-100 Silver, 38|Mountain Bikes|3399.99|1|10
+Mountain-100 Silver, 42|Mountain Bikes|3399.99|2|10
+Mountain-100 Silver, 44|Mountain Bikes|3399.99|3|10
+Mountain-100 Silver, 48|Mountain Bikes|3399.99|4|10
+Mountain-100 Black, 38|Mountain Bikes|3374.99|5|10
+Mountain-100 Black, 42|Mountain Bikes|3374.99|6|10
+Mountain-100 Black, 44|Mountain Bikes|3374.99|7|10
+Mountain-100 Black, 48|Mountain Bikes|3374.99|8|10
+Mountain-200 Silver, 38|Mountain Bikes|2319.99|9|10
+Mountain-200 Silver, 42|Mountain Bikes|2319.99|10|10
+Mountain-200 Silver, 46|Mountain Bikes|2319.99|11|10
+Mountain-200 Black, 38|Mountain Bikes|2294.99|12|10
+Mountain-200 Black, 42|Mountain Bikes|2294.99|13|10
+Mountain-200 Black, 46|Mountain Bikes|2294.99|14|10
+Mountain-300 Black, 38|Mountain Bikes|1079.99|15|10
+Mountain-300 Black, 40|Mountain Bikes|1079.99|16|10
+Mountain-300 Black, 44|Mountain Bikes|1079.99|17|10
+Mountain-300 Black, 48|Mountain Bikes|1079.99|18|10
+Mountain-400-W Silver, 38|Mountain Bikes|769.49|19|10
+Mountain-400-W Silver, 40|Mountain Bikes|769.49|20|10
+Mountain-400-W Silver, 42|Mountain Bikes|769.49|21|10
+Mountain-400-W Silver, 46|Mountain Bikes|769.49|22|10
+Mountain-500 Silver, 40|Mountain Bikes|564.99|23|10
+Mountain-500 Silver, 42|Mountain Bikes|564.99|24|10
+Mountain-500 Silver, 44|Mountain Bikes|564.99|25|10
+Mountain-500 Silver, 48|Mountain Bikes|564.99|26|10
+Mountain-500 Silver, 52|Mountain Bikes|564.99|27|10
+Mountain-500 Black, 40|Mountain Bikes|539.99|28|10
+Mountain-500 Black, 42|Mountain Bikes|539.99|29|10
+Mountain-500 Black, 44|Mountain Bikes|539.99|30|10
+Mountain-500 Black, 48|Mountain Bikes|539.99|31|10
+Mountain-500 Black, 52|Mountain Bikes|539.99|32|10
+Road-150 Red, 62|Road Bikes|3578.27|33|10
+Road-150 Red, 44|Road Bikes|3578.27|34|10
+Road-150 Red, 48|Road Bikes|3578.27|35|10
+Road-150 Red, 52|Road Bikes|3578.27|36|10
+Road-150 Red, 56|Road Bikes|3578.27|37|10
+Road-450 Red, 58|Road Bikes|1457.99|38|10
+Road-450 Red, 60|Road Bikes|1457.99|39|10
+Road-450 Red, 44|Road Bikes|1457.99|40|10
+Road-450 Red, 48|Road Bikes|1457.99|41|10
+Road-450 Red, 52|Road Bikes|1457.99|42|10
+Road-650 Red, 58|Road Bikes|782.99|43|10
+Road-650 Red, 60|Road Bikes|782.99|44|10
+Road-650 Red, 62|Road Bikes|782.99|45|10
+Road-650 Red, 44|Road Bikes|782.99|46|10
+Road-650 Red, 48|Road Bikes|782.99|47|10
+Road-650 Red, 52|Road Bikes|782.99|48|10
+Road-650 Black, 58|Road Bikes|782.99|49|10
+Road-650 Black, 60|Road Bikes|782.99|50|10
+LL Mountain Handlebars|Handlebars|44.54|51|10
+ML Mountain Handlebars|Handlebars|61.92|52|10
+HL Mountain Handlebars|Handlebars|120.27|53|10
+LL Road Handlebars|Handlebars|44.54|54|10
+ML Road Handlebars|Handlebars|61.92|55|10
+HL Road Handlebars|Handlebars|120.27|56|10
+LL Touring Handlebars|Handlebars|46.09|57|10
+HL Touring Handlebars|Handlebars|91.57|58|10
+LL Bottom Bracket|Bottom Brackets|53.99|59|10
+ML Bottom Bracket|Bottom Brackets|101.24|60|10
+HL Bottom Bracket|Bottom Brackets|121.49|61|10
+Rear Brakes|Brakes|106.5|62|10
+Front Brakes|Brakes|106.5|63|10
+Chain|Chains|20.24|64|10
+LL Crankset|Cranksets|175.49|65|10
+ML Crankset|Cranksets|256.49|66|10
+HL Crankset|Cranksets|404.99|67|10
+Rear Derailleur|Derailleurs|121.46|68|10
+Front Derailleur|Derailleurs|91.49|69|10
+LL Fork|Forks|148.22|70|10
+ML Fork|Forks|175.49|71|10
+HL Fork|Forks|229.49|72|10
+LL Headset|Headsets|34.2|73|10
+ML Headset|Headsets|102.29|74|10
+HL Headset|Headsets|124.73|75|10
+HL Mountain Frame - Silver, 42|Mountain Frames|1364.5|76|10
+HL Mountain Frame - Silver, 44|Mountain Frames|1364.5|77|10
+HL Mountain Frame - Silver, 48|Mountain Frames|1364.5|78|10
+HL Mountain Frame - Silver, 46|Mountain Frames|1364.5|79|10
+HL Mountain Frame - Black, 42|Mountain Frames|1349.6|80|10
+HL Mountain Frame - Black, 44|Mountain Frames|1349.6|81|10
+HL Mountain Frame - Black, 48|Mountain Frames|1349.6|82|10
+HL Mountain Frame - Black, 46|Mountain Frames|1349.6|83|10
+HL Mountain Frame - Black, 38|Mountain Frames|1349.6|84|10
+HL Mountain Frame - Silver, 38|Mountain Frames|1364.5|85|10
+ML Mountain Frame - Black, 38|Mountain Frames|348.76|86|10
+ML Mountain Frame - Black, 40|Mountain Frames|348.76|87|10
+ML Mountain Frame - Black, 44|Mountain Frames|348.76|88|10
+ML Mountain Frame - Black, 48|Mountain Frames|348.76|89|10
+ML Mountain Frame-W - Silver, 40|Mountain Frames|364.09|90|10
+ML Mountain Frame-W - Silver, 42|Mountain Frames|364.09|91|10
+ML Mountain Frame-W - Silver, 46|Mountain Frames|364.09|92|10
+LL Mountain Frame - Silver, 42|Mountain Frames|264.05|93|10
+LL Mountain Frame - Silver, 44|Mountain Frames|264.05|94|10
+LL Mountain Frame - Silver, 48|Mountain Frames|264.05|95|10
+LL Mountain Frame - Silver, 52|Mountain Frames|264.05|96|10
+LL Mountain Frame - Black, 42|Mountain Frames|249.79|97|10
+LL Mountain Frame - Black, 44|Mountain Frames|249.79|98|10
+LL Mountain Frame - Black, 48|Mountain Frames|249.79|99|10
+LL Mountain Frame - Black, 52|Mountain Frames|249.79|100|10
+LL Bottom Bracket|Bottom Brackets|53.99|101|10
+ML Bottom Bracket|Bottom Brackets|101.24|102|10
+HL Bottom Bracket|Bottom Brackets|121.49|103|10
+Rear Brakes|Brakes|106.5|104|10
+Front Brakes|Brakes|106.5|105|10
+Chain|Chains|20.24|106|10
+LL Crankset|Cranksets|175.49|107|10
+ML Crankset|Cranksets|256.49|108|10
+HL Crankset|Cranksets|404.99|109|10
+Rear Derailleur|Derailleurs|121.46|110|10
+Front Derailleur|Derailleurs|91.49|111|10
+LL Fork|Forks|148.22|112|10
+ML Fork|Forks|175.49|113|10
+HL Fork|Forks|229.49|114|10
+LL Headset|Headsets|34.2|115|10
+ML Headset|Headsets|102.29|116|10
+HL Headset|Headsets|124.73|117|10
+LL Mountain Pedal|Pedals|40.49|118|10
+ML Mountain Pedal|Pedals|62.09|119|10
+HL Mountain Pedal|Pedals|80.99|120|10
+LL Road Pedal|Pedals|40.49|121|10
+ML Road Pedal|Pedals|62.09|122|10
+HL Road Pedal|Pedals|80.99|123|10
+Touring Pedal|Pedals|80.99|124|10
+LL Mountain Seat/Saddle|Saddles|27.12|125|10
+ML Mountain Seat/Saddle|Saddles|39.14|126|10
+HL Mountain Seat/Saddle|Saddles|52.64|127|10
+LL Road Seat/Saddle|Saddles|27.12|128|10
+ML Road Seat/Saddle|Saddles|39.14|129|10
+HL Road Seat/Saddle|Saddles|52.64|130|10
+LL Touring Seat/Saddle|Saddles|27.12|131|10
+ML Touring Seat/Saddle|Saddles|39.14|132|10
+HL Touring Seat/Saddle|Saddles|52.64|133|10
+LL Mountain Front Wheel|Wheels|60.75|134|10
+ML Mountain Front Wheel|Wheels|209.03|135|10
+HL Mountain Front Wheel|Wheels|300.22|136|10
+LL Road Front Wheel|Wheels|85.57|137|10
+ML Road Front Wheel|Wheels|248.39|138|10
+HL Road Front Wheel|Wheels|330.06|139|10
+Touring Front Wheel|Wheels|218.01|140|10
+LL Mountain Rear Wheel|Wheels|87.75|141|10
+ML Mountain Rear Wheel|Wheels|236.03|142|10
+HL Mountain Rear Wheel|Wheels|327.22|143|10
+LL Road Rear Wheel|Wheels|112.57|144|10
+ML Road Rear Wheel|Wheels|275.39|145|10
+HL Road Rear Wheel|Wheels|357.06|146|10
+Touring Rear Wheel|Wheels|245.01|147|10
+Men's Bib-Shorts, S|Bib-Shorts|89.99|148|10
+Men's Bib-Shorts, M|Bib-Shorts|89.99|149|10
+Men's Bib-Shorts, L|Bib-Shorts|89.99|150|10
+HL Crankset|Cranksets|404.99|151|10
+HL Road Rear Wheel|Wheels|357.06|152|10
+HL Road Front Wheel|Wheels|330.06|153|10
+HL Mountain Rear Wheel|Wheels|327.22|154|10
+HL Mountain Front Wheel|Wheels|300.22|155|10
+ML Road Rear Wheel|Wheels|275.39|156|10
+ML Crankset|Cranksets|256.49|157|10
+ML Road Front Wheel|Wheels|248.39|158|10
+Touring Rear Wheel|Wheels|245.01|159|10
+ML Mountain Rear Wheel|Wheels|236.03|160|10
+HL Fork|Forks|229.49|161|10
+Touring Front Wheel|Wheels|218.01|162|10
+ML Mountain Front Wheel|Wheels|209.03|163|10
+ML Fork|Forks|175.49|164|10
+LL Crankset|Cranksets|175.49|165|10
+LL Fork|Forks|148.22|166|10
+Touring-Panniers, Large|Panniers|125|167|10
+HL Headset|Headsets|124.73|168|10
+HL Bottom Bracket|Bottom Brackets|121.49|169|10
+Rear Derailleur|Derailleurs|121.46|170|10
+LL Road Rear Wheel|Wheels|112.57|171|10
+Rear Brakes|Brakes|106.5|172|10
+Front Brakes|Brakes|106.5|173|10
+ML Headset|Headsets|102.29|174|10
+ML Bottom Bracket|Bottom Brackets|101.24|175|10
+Front Derailleur|Derailleurs|91.49|176|10
+Men's Bib-Shorts, L|Bib-Shorts|89.99|177|10
+Men's Bib-Shorts, S|Bib-Shorts|89.99|178|10
+Men's Bib-Shorts, M|Bib-Shorts|89.99|179|10
+LL Mountain Rear Wheel|Wheels|87.75|180|10
+LL Road Front Wheel|Wheels|85.57|181|10
+Touring Pedal|Pedals|80.99|182|10
+HL Mountain Pedal|Pedals|80.99|183|10
+HL Road Pedal|Pedals|80.99|184|10
+Women's Tights, L|Tights|74.99|185|10
+Women's Tights, S|Tights|74.99|186|10
+Women's Tights, M|Tights|74.99|187|10
+Women's Mountain Shorts, L|Shorts|69.99|188|10
+Women's Mountain Shorts, S|Shorts|69.99|189|10
+Women's Mountain Shorts, M|Shorts|69.99|190|10
+Classic Vest, L|Vests|63.5|191|10
+Classic Vest, S|Vests|63.5|192|10
+Classic Vest, M|Vests|63.5|193|10
+ML Road Pedal|Pedals|62.09|194|10
+ML Mountain Pedal|Pedals|62.09|195|10
+LL Mountain Front Wheel|Wheels|60.75|196|10
+Men's Sports Shorts, L|Shorts|59.99|197|10
+Men's Sports Shorts, S|Shorts|59.99|198|10
+Men's Sports Shorts, XL|Shorts|59.99|199|10
+Men's Sports Shorts, M|Shorts|59.99|200|10
