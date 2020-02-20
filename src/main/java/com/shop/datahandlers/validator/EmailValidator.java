@@ -5,8 +5,7 @@ import java.util.regex.Pattern;
 
 public class EmailValidator {
 
-
-    public boolean validateEmail(String email) {
+    public static boolean validateEmail(String email) {
         String patternString = ".+@.+?\\..+";
         Pattern pattern = Pattern.compile(patternString);
         Matcher matcher = pattern.matcher(email);
@@ -14,13 +13,3 @@ public class EmailValidator {
 
     }
 }
-
-
-
-
-
-
-
-
-
-
