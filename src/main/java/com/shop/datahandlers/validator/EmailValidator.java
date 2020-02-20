@@ -3,8 +3,10 @@ package com.shop.datahandlers.validator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
 public class EmailValidator {
-    private static final String EMAIL_REGEX = "^[\\w-+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$";
+    private static final String EMAIL_REGEX = "(.+@.+(?:\\..+)+)";
+
 
     private static Pattern pattern;
     public Matcher matcher;
@@ -19,3 +21,13 @@ public class EmailValidator {
         return matcher.matches();
     }
 }
+
+
+
+
+
+
+
+
+
+
