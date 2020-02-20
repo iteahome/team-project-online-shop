@@ -1,5 +1,6 @@
 package com.shop.ui;
 
+import com.shop.datahandlers.validator.EmailValidator;
 import com.shop.ui.ui_handlers.InputPopUps;
 import com.shop.ui.ui_handlers.PrintUI;
 import com.shop.exception.ShopException;
@@ -17,10 +18,14 @@ class SignUpUI {
         String inputEmail = InputPopUps.input("Email:");
         String inputPassword = InputPopUps.input("New Password");
         if (!inputEmail.matches(CANCEL) & !inputPassword.matches(CANCEL)) {
-            if (userService.signUp(inputPassword, inputEmail)) {
-                PrintUI.printBox("User Exists, Please Login.");
+            if (EmailValidator.validateEmail((inputEmail))) {
+                if (userService.signUp(inputPassword, inputEmail)) {
+                    PrintUI.printBox("User Exists, Please Login.");
+                } else {
+                    PrintUI.printBox("Welcome! Sign Up successful, please proceed to LogIn");
+                }
             } else {
-                PrintUI.printBox("Welcome! Sign Up successful, please proceed to LogIn");
+                PrintUI.printBox("Please try again with a valid email");
             }
         }
         else {
