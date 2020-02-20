@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 
 public class EmailValidator {
-    private static final String EMAIL_REGEX = "(.+@.+(?:\\..+)+)";
+    private static final String EMAIL_REGEX = "(.+@.+?:\\..+)";
 
 
     private static Pattern pattern;
