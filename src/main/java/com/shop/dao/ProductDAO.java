@@ -23,7 +23,10 @@ public class ProductDAO {
             File productFile = new File("./src/main/resources/products.txt");
             Scanner productScanner = new Scanner(productFile);
             while (productScanner.hasNextLine()) {
-                ProductData.add(productScanner.nextLine());
+                    String line = productScanner.nextLine();
+                if (line.length() != 0) {
+                    ProductData.add(line);
+                }
             }
 
         } catch (
