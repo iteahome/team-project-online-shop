@@ -11,10 +11,10 @@ public class AdminShopUI {
     private static final String CANCEL = "NullPointerExceptionFound";
 
     void manageProducts() throws ShopException {
-        PrintUI.printBox("Admin Menu: ", "Create new products : 1", "Filter Products : 2", "Exit : 0");
         String userInput = null;
         final String EXIT_MENU = "0";
         do {
+            PrintUI.printBox("Admin Menu: ", "Create new products : 1", "Filter Products : 2", "Exit : 0");
             userInput = InputPopUps.input("Option: ");
             final String CREATE_PRODUCT = "1";
             final String FILTER_PRODUCTS = "2";
