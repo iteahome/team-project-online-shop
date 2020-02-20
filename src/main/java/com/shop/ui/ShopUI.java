@@ -6,6 +6,7 @@ import com.shop.exception.ShopException;
 import com.shop.security.UserContext;
 
 class ShopUI {
+    private static final String CANCEL = "NullPointerExceptionFound";
     private AdminShopUI adminShopUI = new AdminShopUI();
     private AdminManageAccountsUI adminManageAccountsUI = new AdminManageAccountsUI();
     void start() throws ShopException {
@@ -38,6 +39,11 @@ class ShopUI {
                         case OPTION_LOGOUT : {
                             UserContext.setLoggedUser(null);
                             PrintUI.printBox("Logging out");
+                            break;
+                        }
+                        case CANCEL: {
+                            PrintUI.printBox("User canceled operation.");
+                            break;
                         }
                         default: {
                             PrintUI.printBox("Please insert a valid option.");

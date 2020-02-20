@@ -13,6 +13,7 @@ public class MainUI {
     private static final String OPTION_LOGIN = "1";
     private static final String OPTION_SiGN_UP = "2";
     private static final String OPTION_LEAVE = "0";
+    private static final String CANCEL = "NullPointerExceptionFound";
 
     private SignUpUI signUpUI = new SignUpUI();
     private LoginUI loginUI = new LoginUI();
@@ -37,6 +38,10 @@ public class MainUI {
                         }
                         case OPTION_LEAVE: {
                             PrintUI.printBox("Come back soon!");
+                            break;
+                        }
+                        case CANCEL: {
+                            PrintUI.printBox("User canceled operation.");
                             break;
                         }
                         default: {
