@@ -8,7 +8,7 @@ public class InputPopUps extends JFrame {
         try {JFrame frame = new JFrame();
             String result = JOptionPane.showInputDialog(frame, message);
             if (result.isEmpty()){
-                result = "0";
+                result = ".";
             }return result;
         } catch (NullPointerException e){
             return "NullPointerExceptionFound";
