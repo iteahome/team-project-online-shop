@@ -9,15 +9,15 @@ public class Product {
     private String productName;
     private String category;
     private String price;
-    private String quantity;
+    private String stock;
     private int uniqueProdId;
 
 //  Product class constructor:
-    public Product(String productName, String category, String price, String quantity, int uniqueProdId) {
+    public Product(String productName, String category, String price, String stock, int uniqueProdId) {
         this.productName = productName;
         this.category = category;
         this.price = price;
-        this.quantity = quantity;
+        this.stock = stock;
         this.uniqueProdId = uniqueProdId;
     }
 
@@ -26,7 +26,7 @@ public class Product {
         return "Name: " + productName + ", Category: " + category + ", Price: " + price + ", ProductId: " + uniqueProdId;
     }
     public String DBprint () {
-        return productName + "|" + category + "|" + price + "|" + uniqueProdId + "|" + quantity;
+        return productName + "|" + category + "|" + price + "|" + uniqueProdId + "|" + stock;
     }
 
 
@@ -52,11 +52,11 @@ public class Product {
         this.price = price;
     }
 
-    public String getQuantity() {
-        return quantity;
+    public String getStock() {
+        return stock;
     }
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
+    public void setStock(String stock) {
+        this.stock = stock;
     }
     public int getUniqueProdId() {
         return uniqueProdId;
