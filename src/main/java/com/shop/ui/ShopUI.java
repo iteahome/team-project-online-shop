@@ -16,8 +16,7 @@ class ShopUI {
         final String OPTION_ACCOUNT = "2";
         final String OPTION_LOGOUT = "0";
         do {
-            PrintUI.printBox("Welcome to Our Shop", "Shop : 1", "Account : 2", "Logout : 0");
-            userInput = InputPopUps.input("Option:");
+            userInput = InputPopUps.input("Welcome to Our Shop\nShop : 1\nAccount : 2\nLogout : 0");
                     switch (userInput) {
                         case OPTION_SHOP : {
                             if (UserContext.isAdminLogged()){

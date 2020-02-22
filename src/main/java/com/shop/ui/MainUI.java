@@ -25,8 +25,7 @@ public class MainUI {
         do{
             if (!isUserLogged()) {
                 do {
-                    PrintUI.printBox("Login : 1", "Sign Up : 2", "Leave Shop: 0");
-                    userInput = InputPopUps.input("Option:");
+                    userInput = InputPopUps.input("Login : 1\nSign Up : 2\nLeave Shop: 0");
                     switch (userInput) {
                         case OPTION_LOGIN: {
                             loginUI.displayLogin();

@@ -14,19 +14,21 @@ public class UserShopUi {
         String userInput = null;
         final String EXIT_MENU = "0";
         do {
-            PrintUI.printBox("Shop Menu: ", "Filter Products : 1", "Exit : 0");
-            userInput = InputPopUps.input("Option: ");
+            userInput = InputPopUps.input("Shop Menu\nFilter Products : 1\nExit : 0");
             final String FILTER_PRODUCTS = "1";
             switch (userInput) {
                 case FILTER_PRODUCTS: {
-                    PrintUI.printBox("Please insert part of the product category and name as requested (blank accepted).");
-                    String categoryName = InputPopUps.input("Category: ");
-                    String productName = InputPopUps.input("Product Name: ");
+                    String categoryName = InputPopUps.input("Filter by Category: ");
+                    String productName = InputPopUps.input("Filter by Product Name: ");
                     for (Product product : productService.getProductsByCategoryAndName(categoryName, productName)) {
                         {
                             PrintUI.printBox(product.toString());
                         }
                     }
+                    userInput = InputPopUps.input("in");
+//                    switch (userInput) {
+
+//                    }
                 }
                 break;
                 case CANCEL: {

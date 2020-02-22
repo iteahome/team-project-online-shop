@@ -14,8 +14,7 @@ class SignUpUI {
 
     //  SignUp UI starting point:
     void displaySignUp() throws ShopException {
-        PrintUI.printBox("To sign up, please provide the following credentials:");
-        String inputEmail = InputPopUps.input("Email:");
+        String inputEmail = InputPopUps.input("New Email:");
         String inputPassword = InputPopUps.input("New Password");
         if (!inputEmail.matches(CANCEL) & !inputPassword.matches(CANCEL)) {
             if (EmailValidator.validateEmail((inputEmail))) {
