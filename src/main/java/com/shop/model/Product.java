@@ -6,28 +6,27 @@ package com.shop.model;
 public class Product implements Writable{
 
 //  Product parameters:
-    private int id;
     private String name;
     private String category;
     private String price;
     private String stock;
-    private int uniqueProdId;
+    private int id;
 
 //  Product class constructor:
-    public Product(String name, String category, String price, String stock, int uniqueProdId) {
+    public Product(String name, String category, String price, String stock, int id) {
         this.name = name;
         this.category = category;
         this.price = price;
         this.stock = stock;
-        this.uniqueProdId = uniqueProdId;
+        this.id = id;
     }
 
     @Override
     public String toString (){
-        return "Name: " + name + ", Category: " + category + ", Price: " + price + ", ProductId: " + uniqueProdId;
+        return "Name: " + name + ", Category: " + category + ", Price: " + price + ", ProductId: " + id;
     }
     public String dbPrint() {
-        return name + "|" + category + "|" + price + "|" + uniqueProdId + "|" + stock;
+        return name + "|" + category + "|" + price + "|" + id + "|" + stock;
     }
 
 
@@ -59,12 +58,12 @@ public class Product implements Writable{
     public void setStock(String stock) {
         this.stock = stock;
     }
-    public int getUniqueProdId() {
-        return uniqueProdId;
+    public int getId() {
+        return id;
     }
 
     @Override
     public String toDb() {
-        return name + "|" + category + "|" + price + "|" + uniqueProdId + "|" + stock;
+        return id + "|" + name + "|" + category + "|" + price + "|" + "|" + stock;
     }
 }

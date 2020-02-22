@@ -1,4 +1,4 @@
-package com.shop.datahandlers.validator;
+package com.shop.ui.validator;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
