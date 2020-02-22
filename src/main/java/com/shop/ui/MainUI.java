@@ -14,18 +14,17 @@ import static com.shop.ui.handlers.InputPopUps.CANCELLED;
 public class MainUI {
 
     private static final String OPTION_LOGIN = "1";
-    private static final String OPTION_SiGN_UP = "2";
+    private static final String OPTION_SIGN_UP = "2";
     private static final String OPTION_LEAVE = "0";
 
     private SignUpUI signUpUI = new SignUpUI();
     private LoginUI loginUI = new LoginUI();
     private ShopUI shopUI = new ShopUI();
 
-    //  Main UI starting point:
     public void start() throws ShopException {
         String userInput = null;
         do {
-            userInput = InputPopUps.input("Login : 1\nSign Up : 2\nLeave Shop: 0");
+            userInput = InputPopUps.input("Login: 1\nSign Up: 2\nLeave Shop: 0");
             switch (userInput) {
                 case OPTION_LOGIN: {
                     loginUI.displayLogin();
@@ -34,7 +33,7 @@ public class MainUI {
                     }
                     break;
                 }
-                case OPTION_SiGN_UP: {
+                case OPTION_SIGN_UP: {
                     signUpUI.displaySignUp();
                     break;
                 }
@@ -47,10 +46,9 @@ public class MainUI {
                     break;
                 }
                 default: {
-                    PrintUI.printBox("Please choose a valid option:");
+                    PrintUI.printBox("Please enter a valid option:");
                 }
             }
-        } while (!userInput.equals(OPTION_LEAVE) & !isUserLogged());
-
+        } while (!userInput.equals(OPTION_LEAVE) && !isUserLogged());
     }
 }
