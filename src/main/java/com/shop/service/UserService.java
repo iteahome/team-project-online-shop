@@ -1,7 +1,6 @@
 package com.shop.service;
 
 import com.shop.dao.UserDAO;
-import com.shop.ui.ui_handlers.PrintUI;
 import com.shop.exception.ShopException;
 import com.shop.exception.ShopTechnicalException;
 import com.shop.exception.ShopWrongCredentialsException;

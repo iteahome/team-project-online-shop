@@ -1,4 +1,4 @@
-package com.shop.ui.ui_handlers;
+package com.shop.ui.handlers;
 
 public class PrintUI {
     private static int getMaxLength(String... strings) {

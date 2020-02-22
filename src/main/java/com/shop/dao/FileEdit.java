@@ -2,16 +2,18 @@ package com.shop.dao;
 
 import com.shop.exception.ShopFileException;
 import com.shop.exception.ShopTechnicalException;
+import com.shop.model.Writable;
+
 import java.io.*;
 import java.util.Scanner;
 import java.util.regex.*;
 
 /** FileEdit class - allows manipulation of any file in the resources folder. */
 
-class FileEdit {
+class FileEdit<T extends Writable> {
 
 /** Method for adding a new line of content to text files: */
-    static void write(String fileName, String newContent) throws ShopTechnicalException {
+    void write(String fileName, T newContent) throws ShopTechnicalException {
 
 //      Defining a String for the file path according to the given fileName:
         String resourceFile = "./src/main/resources/" + fileName;
@@ -21,7 +23,7 @@ class FileEdit {
             BufferedWriter bufferedwriter = new BufferedWriter(new FileWriter(resourceFile, true));
             //Creating a new line before writing:
             bufferedwriter.newLine();
-            bufferedwriter.write(String.valueOf(newContent));
+            bufferedwriter.write(newContent.toDb());
 //          Closing the output stream:
             bufferedwriter.close();
 
@@ -100,8 +102,10 @@ class FileEdit {
 
 //      Managing possible exceptions:
         } catch (IOException e) {
+            // TODO - wrap & rethrow
             System.out.println("File not found.");
         } catch (NullPointerException e) {
+            // TODO - never catch NPE or any other RuntimeException
             System.out.println("Identifier returned no results.");
         }
 

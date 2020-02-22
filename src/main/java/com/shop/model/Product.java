@@ -3,18 +3,19 @@ package com.shop.model;
 
 /** Product class - the "purpose" of the shop. */
 
-public class Product {
+public class Product implements Writable{
 
 //  Product parameters:
-    private String productName;
+    private int id;
+    private String name;
     private String category;
     private String price;
     private String stock;
     private int uniqueProdId;
 
 //  Product class constructor:
-    public Product(String productName, String category, String price, String stock, int uniqueProdId) {
-        this.productName = productName;
+    public Product(String name, String category, String price, String stock, int uniqueProdId) {
+        this.name = name;
         this.category = category;
         this.price = price;
         this.stock = stock;
@@ -23,19 +24,19 @@ public class Product {
 
     @Override
     public String toString (){
-        return "Name: " + productName + ", Category: " + category + ", Price: " + price + ", ProductId: " + uniqueProdId;
+        return "Name: " + name + ", Category: " + category + ", Price: " + price + ", ProductId: " + uniqueProdId;
     }
-    public String DBprint () {
-        return productName + "|" + category + "|" + price + "|" + uniqueProdId + "|" + stock;
+    public String dbPrint() {
+        return name + "|" + category + "|" + price + "|" + uniqueProdId + "|" + stock;
     }
 
 
 //  Product getters and setters:
-    public String getProductName() {
-        return productName;
+    public String getName() {
+        return name;
     }
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getCategory() {
@@ -62,4 +63,8 @@ public class Product {
         return uniqueProdId;
     }
 
+    @Override
+    public String toDb() {
+        return name + "|" + category + "|" + price + "|" + uniqueProdId + "|" + stock;
+    }
 }

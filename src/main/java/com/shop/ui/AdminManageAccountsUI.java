@@ -3,8 +3,8 @@ package com.shop.ui;
 import com.shop.exception.ShopException;
 import com.shop.model.User;
 import com.shop.service.UserService;
-import com.shop.ui.ui_handlers.InputPopUps;
-import com.shop.ui.ui_handlers.PrintUI;
+import com.shop.ui.handlers.InputPopUps;
+import com.shop.ui.handlers.PrintUI;
 
 class AdminManageAccountsUI {
     private UserService userService = new UserService();

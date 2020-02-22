@@ -1,8 +1,7 @@
 package com.shop.ui;
 
-import com.shop.security.UserContext;
-import com.shop.ui.ui_handlers.InputPopUps;
-import com.shop.ui.ui_handlers.PrintUI;
+import com.shop.ui.handlers.InputPopUps;
+import com.shop.ui.handlers.PrintUI;
 import com.shop.exception.ShopException;
 import com.shop.exception.ShopWrongCredentialsException;
 import com.shop.service.UserService;

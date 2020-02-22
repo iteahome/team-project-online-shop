@@ -1,9 +1,10 @@
 package com.shop.ui;
 
+import com.shop.exception.ShopException;
 import com.shop.model.User;
 import com.shop.service.UserService;
-import com.shop.ui.ui_handlers.InputPopUps;
-import com.shop.ui.ui_handlers.PrintUI;
+import com.shop.ui.handlers.InputPopUps;
+import com.shop.ui.handlers.PrintUI;
 
 public class UserAccountUI {
 
@@ -39,7 +40,11 @@ public class UserAccountUI {
                         case CHANGE_USERNAME: {
                             user.setUserName(InputPopUps.input("New Username:"));
                             if (!user.getUserName().equals(CANCEL)) {
-                                userService.replaceUserData(user);
+                                try {
+                                    userService.replaceUserData(user);
+                                } catch (ShopException e) {
+                                    e.printStackTrace();
+                                }
                             }
                         }
                         case CHANGE_PASSWORD: {}
