@@ -36,6 +36,7 @@ public class UserService {
         if (!userExists) {
             User user = new User(password, email, "Shopper");
             userDAO.addUser(user.dbPrint());
+            UserContext.setLoggedUser(user);
         }
         return userExists;
     }

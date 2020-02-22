@@ -6,29 +6,33 @@ import com.shop.ui.handlers.PrintUI;
 import com.shop.exception.ShopException;
 import com.shop.service.UserService;
 
+import static com.shop.ui.handlers.InputPopUps.CANCELLED;
+
 /** SignUpUI class - creates new users by collecting user inputs. */
 
 class SignUpUI {
-    private static final String CANCEL = "NullPointerExceptionFound";
-    private UserService userService = new UserService();
 
-    //  SignUp UI starting point:
+    private UserService userService = new UserService();
+    private EmailValidator emailValidator = new EmailValidator();
+
     void displaySignUp() throws ShopException {
-        String inputEmail = InputPopUps.input("New Email:");
-        String inputPassword = InputPopUps.input("New Password");
-        if (!inputEmail.matches(CANCEL) & !inputPassword.matches(CANCEL)) {
-            if (EmailValidator.validateEmail((inputEmail))) {
+
+        String inputEmail = InputPopUps.input("Please enter your email address:");
+        String inputPassword = InputPopUps.input("Please enter desired password:");
+
+        if (!inputEmail.matches(CANCELLED) && !inputPassword.matches(CANCELLED)) {
+            if (emailValidator.validateEmail(inputEmail)) {
                 if (userService.signUp(inputPassword, inputEmail)) {
-                    PrintUI.printBox("User Exists, Please Login.");
+                    PrintUI.printBox("User exists, please login.");
                 } else {
-                    PrintUI.printBox("Welcome! Sign Up successful, please proceed to LogIn");
+                    PrintUI.printBox("Welcome! You are now logged in with your new credentials.");
                 }
             } else {
-                PrintUI.printBox("Please try again with a valid email");
+                PrintUI.printBox("Please enter a valid email address:");
             }
         }
         else {
-            PrintUI.printBox("User canceled operation");
+            PrintUI.printBox("User canceled operation.");
         }
     }
 }
