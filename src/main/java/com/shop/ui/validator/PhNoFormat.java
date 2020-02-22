@@ -1,4 +1,4 @@
-package com.shop.datahandlers.formatter;
+package com.shop.ui.validator;
 
 public class PhNoFormat {
     public static String format (String inputToFormat) {

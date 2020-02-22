@@ -7,10 +7,11 @@ import com.shop.exception.ShopFileException;
 import com.shop.exception.ShopTechnicalException;
 import com.shop.model.Product;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static java.lang.Integer.parseInt;
 
 
 public class ProductService {
@@ -37,7 +38,7 @@ public class ProductService {
 
     public Product getProductByID(String id) throws ShopFileException, ProductNotFoundException {
         return productDAO.findAllProducts().stream()
-                .filter(product -> id.equals(product.getUniqueProdId()))
+                .filter(product -> parseInt(id).equals(product.getId()))
                 .findFirst()
                 .orElseThrow(ProductNotFoundException::new);
     }

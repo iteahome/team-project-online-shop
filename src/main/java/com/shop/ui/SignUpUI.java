@@ -1,6 +1,6 @@
 package com.shop.ui;
 
-import com.shop.datahandlers.validator.EmailValidator;
+import com.shop.ui.validator.EmailValidator;
 import com.shop.ui.handlers.InputPopUps;
 import com.shop.ui.handlers.PrintUI;
 import com.shop.exception.ShopException;

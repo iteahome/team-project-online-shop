@@ -2,26 +2,26 @@ package com.shop.model;
 
 /** User class - for login and shopping purposes. */
 
-public class User {
+public class User implements Writable {
 
 //  User parameters:
-    private String userName;
-    private String password;
     private String email;
+    private String password;
+    private String userName;
     private String phoneNo;
     private String role;
 
 //  User class constructor:
     public User(String password, String email, String role) {
-        this.password = password;
         this.email = email;
+        this.password = password;
         this.role = role;
     }
 
     public User(String userName, String password, String email, String phoneNo, String role) {
-        this.userName = userName;
-        this.password = password;
         this.email = email;
+        this.password = password;
+        this.userName = userName;
         this.phoneNo = phoneNo;
         this.role = role;
     }
@@ -74,4 +74,9 @@ public class User {
         this.role = role;
     }
 
+    @Override
+    public String toDb() {
+        return  email + "|" + password + "|" + userName + "|" + phoneNo + "|" + role;
+
+    }
 }
