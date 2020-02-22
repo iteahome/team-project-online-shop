@@ -17,7 +17,7 @@ import static java.lang.Integer.parseInt;
 public class ProductService {
 
     private ProductDAO productDAO = new ProductDAO();
-//    private ProductCache productCache = ProductCache.get();
+    private ProductCache productCache = ProductCache.get();
 
     public void addProduct(String inputProdName, String inputProdCategory, String inputProdQuantity, String inputProductPrice) throws ShopTechnicalException {
         // TODO - change this with sequence no
@@ -38,7 +38,7 @@ public class ProductService {
 
     public Product getProductByID(String id) throws ShopFileException, ProductNotFoundException {
         return productDAO.findAllProducts().stream()
-                .filter(product -> parseInt(id).equals(product.getId()))
+                .filter(product -> parseInt(id)==(product.getId()))
                 .findFirst()
                 .orElseThrow(ProductNotFoundException::new);
     }

@@ -19,9 +19,10 @@ public class ProductDAO {
 
     private FileUtil<Product> productReader = new FileUtil<>();
     private FileEdit<Product> productEditor = new FileEdit<>();
-
+    private FileUtil<Integer> sequenceReader = new FileUtil<>();
     public int getNextId() {
-
+        List<String> sequence = new ArrayList<>();
+        sequenceReader.readEntities("product_seq.txt", sequence.add());
         return 0;
     }
 
