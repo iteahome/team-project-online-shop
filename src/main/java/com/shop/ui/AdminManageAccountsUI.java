@@ -44,8 +44,9 @@ class AdminManageAccountsUI {
                             String adminChoice = InputPopUps.input("Option: ");
                             switch (adminChoice) {
                                 case CHANGEROLE: {
-                                    user.setRole(InputPopUps.input("New Role"));
-                                    if (!user.getRole().equals(CANCEL)) {
+                                    String newRole = InputPopUps.input("New Role:");
+                                    if (!newRole.equals(CANCEL)) {
+                                        user.setRole(newRole);
                                         userService.replaceUserData(user);
                                     } else {
                                         PrintUI.printBox("User canceled operation");
@@ -53,8 +54,9 @@ class AdminManageAccountsUI {
                                     break;
                                 }
                                 case RESETPASSWORD: {
-                                    user.setPassword(InputPopUps.input("New Password"));
-                                    if (!user.getPassword().equals(CANCEL)) {
+                                    String newPassword = InputPopUps.input("New Password:");
+                                    if (!newPassword.equals(CANCEL)) {
+                                        user.setPassword(newPassword);
                                         userService.replaceUserData(user);
                                     } else {
                                         PrintUI.printBox("User canceled operation");

@@ -33,6 +33,9 @@ public class User {
     public String dbPrint() {
         return userName + "|" + password + "|" + email + "|" + phoneNo + "|" + role;
     }
+    public String printCompleteUserData() {
+        return "Name: " + userName + ", password: " + password + ", Email: " + email + ", PhoneNo: " + phoneNo;
+    }
 //  User getters and setters:
     public String getUserName() {
         return userName;
