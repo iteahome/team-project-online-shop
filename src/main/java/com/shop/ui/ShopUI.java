@@ -9,6 +9,7 @@ class ShopUI {
     private static final String CANCEL = "NullPointerExceptionFound";
     private AdminShopUI adminShopUI = new AdminShopUI();
     private AdminManageAccountsUI adminManageAccountsUI = new AdminManageAccountsUI();
+    private UserShopUi userShopUi = new UserShopUi();
     void start() throws ShopException {
         String userInput = null;
         final String OPTION_SHOP = "1";
@@ -23,7 +24,7 @@ class ShopUI {
                                 adminShopUI.manageProducts();
                             }
                             else {
-                                PrintUI.printBox("Still missing UserSHopUi");
+                                userShopUi.browseProducts();
                             }
                             break;
                         }

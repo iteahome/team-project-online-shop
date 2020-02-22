@@ -28,8 +28,12 @@ public class AdminShopUI {
                     String inputProdQuantity = InputPopUps.input("Product Quantity: ");
                     PrintUI.printBox("Please insert new product price: ");
                     String inputProdPrice = InputPopUps.input("Product Price: ");
-                    ProductService.addProduct(inputProdName, inputProdCategory, inputProdQuantity, inputProdPrice);
-                    PrintUI.printBox("Product Created.");
+                    if (!inputProdCategory.equals(CANCEL)&!inputProdName.equals(CANCEL)&!inputProdPrice.equals(CANCEL)&!inputProdQuantity.equals(CANCEL)) {
+                        ProductService.addProduct(inputProdName, inputProdCategory, inputProdQuantity, inputProdPrice);
+                        PrintUI.printBox("Product Created.");
+                    } else {
+                        PrintUI.printBox("User Canceled operation.");
+                    }
                     break;
                 }
                 case FILTER_PRODUCTS: {
