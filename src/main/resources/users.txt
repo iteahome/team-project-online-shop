@@ -1,2 +1,3 @@
 admin|adminadmin|admin@onlineshop.com|null|ADMIN
 marius|iteahome|marius.bistika@gmail.com|null|ADMIN
+null|password|szocsmihai@gmail.com|null|Shopper
