@@ -28,6 +28,6 @@ public class ProductService {
     }
 
     private boolean matchesCategoryAndName(String categoryName, String ProductName, Product product) {
-        return product.getCategory().matches(".*" + categoryName + ".*") && product.getProductName().matches(".*" + ProductName + ".*");
+        return product.getCategory().matches("(?).*" + categoryName + ".*") && product.getProductName().matches("(?).*" + ProductName + ".*");
     }
 }
