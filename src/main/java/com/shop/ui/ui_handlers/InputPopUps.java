@@ -5,11 +5,14 @@ import javax.swing.*;
 public class InputPopUps extends JFrame {
 
     public static String input (String message) {
-        try {JFrame frame = new JFrame();
+        try {
+            JFrame frame = new JFrame();
             String result = JOptionPane.showInputDialog(frame, message);
+            frame.dispose();
             if (result.isEmpty()){
                 result = ".";
-            }return result;
+            }
+            return result;
         } catch (NullPointerException e){
             return "NullPointerExceptionFound";
         }

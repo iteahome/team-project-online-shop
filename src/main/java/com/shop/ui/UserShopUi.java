@@ -2,13 +2,17 @@ package com.shop.ui;
 
 import com.shop.exception.ShopException;
 import com.shop.model.Product;
+import com.shop.service.CartService;
 import com.shop.service.ProductService;
 import com.shop.ui.ui_handlers.InputPopUps;
 import com.shop.ui.ui_handlers.PrintUI;
 
+import static java.lang.Integer.parseInt;
+
 public class UserShopUi {
     private ProductService productService = new ProductService();
     private static final String CANCEL = "NullPointerExceptionFound";
+    CartService cartService = new CartService();
 
     void browseProducts() throws ShopException {
         String userInput = null;
@@ -25,10 +29,20 @@ public class UserShopUi {
                             PrintUI.printBox(product.toString());
                         }
                     }
-                    userInput = InputPopUps.input("in");
-//                    switch (userInput) {
-
-//                    }
+                    userInput = InputPopUps.input("Add Product to cart: 1\nContinue Browsing: 0");
+                    final String ADD_TO_CART = "1";
+                    switch (userInput) {
+                        case EXIT_MENU : {
+                            break;
+                        }
+                        case ADD_TO_CART : {
+                            String productIdForCart = InputPopUps.input("ID of the product to be added: ");
+                            String quantity = InputPopUps.input("Quantity Desired: ");
+                            if (!productIdForCart.equals(CANCEL)&!quantity.equals(CANCEL)){
+                                CartService.addToCart(productService.getProductByID(productIdForCart), parseInt(quantity));
+                            }
+                        }
+                    }
                 }
                 break;
                 case CANCEL: {

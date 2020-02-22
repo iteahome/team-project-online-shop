@@ -10,6 +10,6 @@ public class OnlineShop {
     public static void main(String[] args) throws ShopException {
             MainUI mainUI = new MainUI();
             mainUI.start();
-            Runtime.getRuntime().exit(0);
+//            Runtime.getRuntime().exit(0);
     }
 }
