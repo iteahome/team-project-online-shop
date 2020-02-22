@@ -1,7 +1,6 @@
 package com.shop.ui;
 
 import com.shop.datahandlers.validator.EmailValidator;
-import com.shop.security.UserContext;
 import com.shop.ui.handlers.InputPopUps;
 import com.shop.ui.handlers.PrintUI;
 import com.shop.exception.ShopException;
@@ -15,7 +14,6 @@ class SignUpUI {
 
     private UserService userService = new UserService();
     private EmailValidator emailValidator = new EmailValidator();
-    private UserContext userContext = new UserContext();
 
     void displaySignUp() throws ShopException {
 
