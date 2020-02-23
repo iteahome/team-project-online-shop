@@ -8,23 +8,25 @@ import java.util.Map;
 
 public class ProductCache {
 
-    private static final ProductCache instance;
+    private static final ProductCache instance = new ProductCache();
 
-    static {
-        try {
-            instance = new ProductCache();
-        } catch (ShopFileException e) {
-            e.printStackTrace();
-        }
-    }
+//    static {
+//        try {
+//            instance = new ProductCache();
+//        } catch (ShopFileException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     ProductDAO productDAO = new ProductDAO();
 
-    private Map<Integer, Product> cache;
+    public Map<Integer, Product> cache;
 
-    private ProductCache() throws ShopFileException {
-        load(); {
-
+    private ProductCache() {
+        try {
+            load();
+        } catch (ShopFileException e) {
+            e.printStackTrace();
         }
     }
 

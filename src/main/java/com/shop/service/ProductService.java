@@ -25,7 +25,7 @@ public class ProductService {
 //        for (Product product : productDAO.findAllProducts()) {
 //            productIds.add(product.getUniqueProdId());
 //        }
-        productDAO.createProduct(new Product(inputProdName, inputProdCategory, inputProdQuantity, inputProductPrice, (Collections.max(productIds) + 1)).dbPrint());
+        productDAO.createProduct(new Product(productDAO.getNextId(), inputProdName, inputProdCategory, inputProdQuantity, inputProductPrice));
         ProductCache.get().reload();
     }
 
@@ -37,11 +37,14 @@ public class ProductService {
     }
 
     public Product getProductByID(String id) throws ShopFileException, ProductNotFoundException {
-        return productDAO.findAllProducts().stream()
-                .filter(product -> parseInt(id)==(product.getId()))
-                .findFirst()
-                .orElseThrow(ProductNotFoundException::new);
+        return productCache.cache.get(id);
     }
+//    public Product getProductByID(String id) throws ShopFileException, ProductNotFoundException {
+//        return productDAO.findAllProducts().stream()
+//                .filter(product -> parseInt(id)==(product.getId()))
+//                .findFirst()
+//                .orElseThrow(ProductNotFoundException::new)
+//    }
 
     private boolean matchesCategoryAndName(String categoryName, String ProductName, Product product) {
         return product.getCategory().toLowerCase().matches(".*" + categoryName.toLowerCase() + ".*") && product.getName().toLowerCase().matches(".*" + ProductName.toLowerCase() + ".*");

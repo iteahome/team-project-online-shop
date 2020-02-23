@@ -11,16 +11,16 @@ import java.util.List;
 import static java.lang.Integer.parseInt;
 
 public class ProductDAO {
+        private FileUtil<Product> productReader = new FileUtil<>();
+        private FileEdit<Product> productEditor = new FileEdit<>();
+        private FileUtil<String> sequenceReader = new FileUtil<>();
 
-    private FileUtil<Product> productReader = new FileUtil<>();
-    private FileEdit<Product> productEditor = new FileEdit<>();
-    private FileUtil<String> sequenceReader = new FileUtil<>();
-    public void getNextId() throws ShopFileException {
-        List<String> sequence = new ArrayList<>();
-//        List<Integer> ids = new ArrayList<>();
-        List<String[]> ids = new ArrayList<>();
-        sequenceReader.readEntities("product_seq.txt", entity-> String.valueOf(ids.add(Collections.max(entity))));
-    }
+        public Integer getNextId() throws ShopFileException {
+            List<Integer> sequence = new ArrayList<>();
+            List<String[]> ids = new ArrayList<>();
+            sequenceReader.readEntities("product_seq.txt", i-> String.valueOf(sequence.add((parseInt(i[0])))));
+            return (Collections.max(sequence)+1);
+        }
 
     // TODO - instance methods
     public void createProduct(Product product) throws ShopTechnicalException {
@@ -28,7 +28,7 @@ public class ProductDAO {
     }
 
     public List<Product> findAllProducts() throws ShopFileException {
-        return productReader.readEntities("products.txt", lines -> new Product(lines[0], lines[1], lines[2], lines[4], parseInt(lines[3])));
+        return productReader.readEntities("products.txt", lines -> new Product(parseInt(lines[0]), lines[1], lines[2], lines[3], lines[4]));
     }
 
 }

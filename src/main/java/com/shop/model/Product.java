@@ -6,27 +6,24 @@ package com.shop.model;
 public class Product implements Writable{
 
 //  Product parameters:
+    private int id;
     private String name;
     private String category;
     private String price;
     private String stock;
-    private int id;
 
 //  Product class constructor:
-    public Product(String name, String category, String price, String stock, int id) {
+    public Product(int id, String name, String category, String price, String stock) {
+        this.id = id;
         this.name = name;
         this.category = category;
         this.price = price;
         this.stock = stock;
-        this.id = id;
     }
 
     @Override
     public String toString (){
         return "Name: " + name + ", Category: " + category + ", Price: " + price + ", ProductId: " + id;
-    }
-    public String dbPrint() {
-        return name + "|" + category + "|" + price + "|" + id + "|" + stock;
     }
 
 

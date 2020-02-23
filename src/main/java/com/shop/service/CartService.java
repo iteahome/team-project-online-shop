@@ -1,6 +1,8 @@
 package com.shop.service;
 
 import com.shop.model.Product;
+import com.shop.security.CartContext;
+
 import static com.shop.security.CartContext.cart;
 
 public class CartService {
