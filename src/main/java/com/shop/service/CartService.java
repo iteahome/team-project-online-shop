@@ -14,7 +14,7 @@ public class CartService {
     public ArrayList<Product> showKeys(){
         return new ArrayList<>(cart.keySet());
     }
-    public List<Integer> showQuantity(Product product) {
-        return new ArrayList<>(cart.get(product));
+    public Integer showQuantity(Product product) {
+        return cart.getOrDefault(product, 0);
     }
 }

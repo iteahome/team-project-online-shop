@@ -23,7 +23,7 @@ public class UserShopUI {
     void browseProducts() throws ShopException {
         String userInput = null;
         do {
-            userInput = InputPopUps.input("Shop Menu:\n\nFilter Products : 1\nExit : 0");
+            userInput = InputPopUps.input("Shop Menu:\n\nFilter Products : 1\nView Cart : 2\nExit : 0");
             switch (userInput) {
                 case FILTER_PRODUCTS: {
                     String categoryName = InputPopUps.input("Filter by Category: ");
@@ -31,7 +31,7 @@ public class UserShopUI {
                     for (Product product : productService.getProductsByCategoryAndName(categoryName, productName)) {
                         PrintUI.printBox(product.toString());
                     }
-                    userInput = InputPopUps.input("Add Product to cart : 1\nView Cart : 2\nContinue Browsing : 0");
+                    userInput = InputPopUps.input("Add Product to cart : 1\nContinue Browsing : 0");
                     final String ADD_TO_CART = "1";
                     switch (userInput) {
                         case EXIT_MENU: {
@@ -44,12 +44,14 @@ public class UserShopUI {
                                 cartService.addToCart(productService.getProductByID(parseInt(productIdForCart)), parseInt(quantity));
                             }
                         }
-                        case VIEW_CART : {
-                            cartUI.viewCart();
-                        }
+
                     }
                 }
                 break;
+                case VIEW_CART : {
+                    cartUI.viewCart();
+                    break;
+                }
                 case CANCELLED: {
                     PrintUI.printBox("User canceled operation.");
                     break;

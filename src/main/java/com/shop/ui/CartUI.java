@@ -13,7 +13,7 @@ public class CartUI {
 
     public void viewCart() throws ShopFileException, ProductNotFoundException {
         for (Product product : cartService.showKeys()) {
-            PrintUI.printBox(product.toString() + cartService.showQuantity(product));
+            PrintUI.printBox(product.toString(), "Quantity: " + cartService.showQuantity(product).toString());
         }
     }
 }
