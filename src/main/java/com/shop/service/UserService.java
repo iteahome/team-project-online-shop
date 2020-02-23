@@ -2,6 +2,7 @@ package com.shop.service;
 
 import com.shop.dao.UserDAO;
 import com.shop.exception.ShopException;
+import com.shop.exception.ShopFileException;
 import com.shop.exception.ShopTechnicalException;
 import com.shop.exception.ShopWrongCredentialsException;
 import com.shop.model.User;
@@ -46,7 +47,7 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-    public void deleteUser(User user) {
+    public void deleteUser(User user) throws ShopFileException {
         userDAO.deleteUser(user.getEmail());
     }
 

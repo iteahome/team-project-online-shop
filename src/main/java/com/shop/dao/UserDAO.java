@@ -1,5 +1,6 @@
 package com.shop.dao;
 
+        import com.shop.exception.ShopFileException;
         import com.shop.exception.ShopTechnicalException;
         import com.shop.model.Product;
         import com.shop.model.User;
@@ -50,7 +51,7 @@ public class UserDAO {
     }
 
 /** Method to remove users from the database: */
-    public void deleteUser(String email) {
+    public void deleteUser(String email) throws ShopFileException {
         userEditor.replace("users.txt", email, ".*", "");
     }
 
