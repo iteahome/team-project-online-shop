@@ -19,12 +19,12 @@ public class UserShopUI {
     private static final String FILTER_PRODUCTS = "1";
     private static final String VIEW_CART = "2";
     private static final String ADD_TO_CART = "1";
-
+    private static final String G0_BACK = "3";
 
     void browseProducts() throws ShopException {
         String userInput = null;
         do {
-            userInput = InputPopUps.input("Shop Menu:\n\nFilter Products : 1\nView Cart : 2\nExit : 0");
+            userInput = InputPopUps.input("Shop Menu:\n\nFilter Products : 1\nView Cart : 2\nExit : 3");
             switch (userInput) {
                 case FILTER_PRODUCTS: {
                     String categoryName = InputPopUps.input("Filter by Category: ");
@@ -59,7 +59,7 @@ public class UserShopUI {
                     break;
                 }
                 case CANCELLED:
-                case EXIT_MENU: {
+                case G0_BACK: {
                     break;
                 }
                 default: {
@@ -67,7 +67,7 @@ public class UserShopUI {
                 }
 
             }
-        } while (!userInput.equals(EXIT_MENU));
+        } while (!userInput.equals(G0_BACK));
 
     }
 }
