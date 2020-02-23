@@ -5,6 +5,7 @@ import com.shop.model.User;
 import com.shop.service.UserService;
 import com.shop.ui.handlers.InputPopUps;
 import com.shop.ui.handlers.PrintUI;
+import com.shop.ui.validator.PhoneNoValidator;
 
 import static com.shop.ui.handlers.InputPopUps.CANCELLED;
 
@@ -21,6 +22,7 @@ public class UserAccountUI {
     final String CHANGE_PHONENO = "3";
 
     UserService userService = new UserService();
+    PhoneNoValidator phoneNoValidator = new PhoneNoValidator();
 
     void manageAccount(User user) {
         String userInput;
@@ -69,9 +71,10 @@ public class UserAccountUI {
     }
 
     private void changePhoneNo(User user) {
-        String newPhoneNo = InputPopUps.input("Enter new phone number:");
-        if (!newPhoneNo.equals(CANCELLED)) {
-            user.setPhoneNo(newPhoneNo);
+        String newPhoneNo = InputPopUps.input("Enter new Romanian phone number:");
+        String formattedPhoneNo = phoneNoValidator.formatPhoneNo(newPhoneNo);
+        if (!newPhoneNo.equals(CANCELLED) && phoneNoValidator.isPhoneNoValid(formattedPhoneNo)) {
+            user.setPhoneNo(formattedPhoneNo);
             try {
                 userService.replaceUserData(user);
             } catch (ShopException e) {
