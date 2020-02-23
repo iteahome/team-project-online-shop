@@ -34,7 +34,7 @@ public class UserService {
 
     public void signUp(String password, String email) throws ShopTechnicalException {
         if (!doesUserExist(email)) {
-            User userSigningUp = new User(password, email, "SHOPPER");
+            User userSigningUp = new User(email, password, "SHOPPER");
             userDAO.addUser(userSigningUp);
             UserContext.setLoggedUser(userSigningUp);
         }
