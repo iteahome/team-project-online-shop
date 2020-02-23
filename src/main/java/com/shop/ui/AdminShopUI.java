@@ -19,10 +19,9 @@ public class AdminShopUI {
     private ProductService productService = new ProductService();
 
     public void manageProducts() throws ShopException {
-        String userInput = null;
+        String userInput;
         do {
-            PrintUI.printBox("Admin Menu: ", "Create new products : 1", "Filter Products : 2", "Exit : 0");
-            userInput = InputPopUps.input("Option: ");
+            userInput = InputPopUps.input("Admin product management options:\nAdd products: 1\nFilter Products: 2\nGo Back: 0");
             switch (userInput) {
                 case CREATE_PRODUCT:
                     showAddProduct();

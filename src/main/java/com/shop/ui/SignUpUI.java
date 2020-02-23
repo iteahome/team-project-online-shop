@@ -12,26 +12,26 @@ import static com.shop.ui.handlers.InputPopUps.CANCELLED;
 
 class SignUpUI {
 
-    private UserService userService = new UserService();
     private EmailValidator emailValidator = new EmailValidator();
+    private UserService userService = new UserService();
 
     void displaySignUp() throws ShopException {
 
-        String inputEmail = InputPopUps.input("Please enter your email address:");
-        String inputPassword = InputPopUps.input("Please enter desired password:");
+        String email = InputPopUps.input("Please enter your email address:");
+        String password = InputPopUps.input("Please enter desired password:");
 
-        if (!inputEmail.matches(CANCELLED) && !inputPassword.matches(CANCELLED)) {
-            if (emailValidator.validateEmail(inputEmail)) {
-                if (userService.signUp(inputPassword, inputEmail)) {
+        if (!email.matches(CANCELLED) && !password.matches(CANCELLED)) {
+            if (emailValidator.isEmailValid(email)) {
+                if (userService.doesUserExist(email)) {
                     PrintUI.printBox("User exists, please login.");
                 } else {
+                    userService.signUp(password, email);
                     PrintUI.printBox("Welcome! You are now logged in with your new credentials.");
                 }
             } else {
                 PrintUI.printBox("Please enter a valid email address:");
             }
-        }
-        else {
+        } else {
             PrintUI.printBox("User canceled operation.");
         }
     }

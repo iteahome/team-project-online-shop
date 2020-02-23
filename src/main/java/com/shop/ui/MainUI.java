@@ -7,9 +7,7 @@ import com.shop.exception.ShopException;
 import static com.shop.security.UserContext.isUserLogged;
 import static com.shop.ui.handlers.InputPopUps.CANCELLED;
 
-/**
- * MainUI class - handles the initial contact with the user.
- */
+/** MainUI class - directs user to LoginUI, signUpUI or shopUI. */
 
 public class MainUI {
 
@@ -22,9 +20,9 @@ public class MainUI {
     private ShopUI shopUI = new ShopUI();
 
     public void start() throws ShopException {
-        String userInput = null;
+        String userInput;
         do {
-            userInput = InputPopUps.input("Login: 1\nSign Up: 2\nLeave Shop: 0");
+            userInput = InputPopUps.input("Please choose an option by its number:\n\nLogin: 1\nSign Up: 2\nLeave Shop: 0");
             switch (userInput) {
                 case OPTION_LOGIN: {
                     loginUI.displayLogin();

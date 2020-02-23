@@ -24,7 +24,7 @@ class AdminManageAccountsUI {
                     PrintUI.printBox("Please insert user email (blanks accepted)");
                     String email = InputPopUps.input("Email");
                     if (!email.equals(CANCEL)) {
-                            for (User user : userService.getUsersbyEmail(email)) {
+                            for (User user : userService.getUsersByPartialEmail(email)) {
                                 PrintUI.printBox(user.toString());
                             }
                     } else {
@@ -36,7 +36,7 @@ class AdminManageAccountsUI {
                     PrintUI.printBox("Please insert full user email");
                     String email = InputPopUps.input("Email");
                     if (!email.equals(CANCEL)) {
-                        for (User user : userService.getUsersbyEmail(email)) {
+                        for (User user : userService.getUsersByPartialEmail(email)) {
                             PrintUI.printBox(user.toString());
                             final String CHANGEROLE = "1";
                             final String RESETPASSWORD = "2";
@@ -85,7 +85,7 @@ class AdminManageAccountsUI {
                     PrintUI.printBox("Please insert full user email to delete user");
                     String email = InputPopUps.input("Email to DELETE User");
                     if(!email.equals(CANCEL)){
-                        for (User user : userService.getUsersbyEmail(email)) {
+                        for (User user : userService.getUsersByPartialEmail(email)) {
                             PrintUI.printBox(user.toString());
                             userService.deleteUser(user);
                         }

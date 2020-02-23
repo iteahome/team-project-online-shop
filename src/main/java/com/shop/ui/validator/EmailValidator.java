@@ -5,11 +5,10 @@ import java.util.regex.Pattern;
 
 public class EmailValidator {
 
-    public boolean validateEmail(String email) {
+    public boolean isEmailValid(String email) {
         String patternString = ".+@.+?\\..+";
         Pattern pattern = Pattern.compile(patternString);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
-
     }
 }

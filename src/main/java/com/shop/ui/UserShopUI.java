@@ -9,7 +9,7 @@ import com.shop.ui.handlers.PrintUI;
 
 import static java.lang.Integer.parseInt;
 
-public class UserShopUi {
+public class UserShopUI {
     private ProductService productService = new ProductService();
     private static final String CANCEL = "NullPointerExceptionFound";
     CartService cartService = new CartService();
@@ -19,7 +19,7 @@ public class UserShopUi {
         final String EXIT_MENU = "0";
         final String FILTER_PRODUCTS = "1";
         do {
-            userInput = InputPopUps.input("Shop Menu\nFilter Products : 1\nExit : 0");
+            userInput = InputPopUps.input("Shop Menu:\n\nFilter Products : 1\nExit : 0");
             switch (userInput) {
                 case FILTER_PRODUCTS: {
                     String categoryName = InputPopUps.input("Filter by Category: ");

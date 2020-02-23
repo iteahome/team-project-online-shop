@@ -15,13 +15,13 @@ class ShopUI {
 
     private AdminShopUI adminShopUI = new AdminShopUI();
     private AdminManageAccountsUI adminManageAccountsUI = new AdminManageAccountsUI();
-    private UserShopUi userShopUi = new UserShopUi();
+    private UserShopUI userShopUi = new UserShopUI();
     private UserAccountUI userAccountUI = new UserAccountUI();
 
     public void start() throws ShopException {
-        String userInput = null;
+        String userInput;
         do {
-            userInput = InputPopUps.input("Welcome to our shop!\nShop: 1 | Manage account: 2 | Log out: 0");
+            userInput = InputPopUps.input("Welcome to our online shop!\n\nShop: 1\nManage account: 2\nLog out: 0");
             switch (userInput) {
                 case OPTION_SHOP: {
                     if (UserContext.isAdminLogged()) {
