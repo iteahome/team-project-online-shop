@@ -15,7 +15,7 @@ public class CartService {
 
     ProductService productService = new ProductService();
     OrderDAO orderDAO = new OrderDAO();
-    public boolean isCartNull = cart.isEmpty();
+    public boolean isCartNull = !cart.isEmpty();
 
     public void addToCart (Product product, Integer quantity){
         cart.put(product,quantity);
