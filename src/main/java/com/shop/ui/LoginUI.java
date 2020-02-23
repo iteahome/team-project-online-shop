@@ -22,7 +22,6 @@ class LoginUI {
         if (!email.equals(CANCELLED) && !password.equals(CANCELLED)) {
             try {
                 userService.login(email, password);
-                PrintUI.printBox("Login Successful.");
             } catch (ShopWrongCredentialsException e) {
                 PrintUI.printBox("Wrong credentials.");
             }

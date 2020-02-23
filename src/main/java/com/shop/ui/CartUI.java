@@ -2,6 +2,7 @@ package com.shop.ui;
 
 import com.shop.exception.ProductNotFoundException;
 import com.shop.exception.ShopFileException;
+import com.shop.exception.ShopTechnicalException;
 import com.shop.model.Product;
 import com.shop.service.CartService;
 import com.shop.service.ProductService;
@@ -16,18 +17,23 @@ public class CartUI {
 
     private static final String Edit_CART = "1";
     private static final String EXIT = "0";
+    private static final String CREATE_ORDER = "2";
 
-    public void manageCart() throws ShopFileException, ProductNotFoundException {
+    public void manageCart() throws ShopTechnicalException, ProductNotFoundException {
         String userInput;
 
         do {
             for (Product product : cartService.showKeys()) {
                 PrintUI.printBox(product.toString(), "Quantity: " + cartService.showQuantity(product).toString());
             }
-            userInput = InputPopUps.input("Edit Cart : 1\nKeep Shopping : 0");
+            userInput = InputPopUps.input("Edit Cart : 1\nCreate Order : 2\nKeep Shopping : 0");
             switch (userInput) {
                 case Edit_CART: {
                     editCart();
+                    break;
+                }
+                case CREATE_ORDER : {
+                    cartService.createOrder();
                     break;
                 }
                 case EXIT: {

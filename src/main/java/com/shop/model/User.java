@@ -30,9 +30,6 @@ public class User implements Writable {
     public String toString (){
         return "Name: " + userName + ", password: " + "private" + ", Email: " + email + ", PhoneNo: " + phoneNo + ", Role: " + role;
     }
-    public String dbPrint() {
-        return userName + "|" + password + "|" + email + "|" + phoneNo + "|" + role;
-    }
     public String printCompleteUserData() {
         return "Name: " + userName + ", password: " + password + ", Email: " + email + ", PhoneNo: " + phoneNo;
     }

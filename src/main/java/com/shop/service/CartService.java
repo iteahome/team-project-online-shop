@@ -1,17 +1,19 @@
 package com.shop.service;
 
-import com.shop.exception.ProductNotFoundException;
-import com.shop.exception.ShopFileException;
+import com.shop.dao.OrderDAO;
+import com.shop.exception.ShopTechnicalException;
+import com.shop.model.Cart;
 import com.shop.model.Product;
+import com.shop.security.UserContext;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import static com.shop.security.CartContext.cart;
+import static com.shop.model.Cart.cart;
 
 public class CartService {
 
     ProductService productService = new ProductService();
+    OrderDAO orderDAO = new OrderDAO();
 
     public void addToCart (Product product, Integer quantity){
         cart.put(product,quantity);
@@ -22,10 +24,14 @@ public class CartService {
     public Integer showQuantity(Product product) {
         return cart.getOrDefault(product, 0);
     }
-    public void editQuantity (Integer id, Integer quantity) throws ShopFileException, ProductNotFoundException {
+    public void editQuantity (Integer id, Integer quantity) {
         cart.replace(productService.getProductByID(id), quantity);
     }
-    public void deleteProduct (Integer id) throws ShopFileException, ProductNotFoundException {
+    public void deleteProduct (Integer id) {
         cart.remove(productService.getProductByID(id));
+    }
+    public void createOrder () throws ShopTechnicalException {
+        orderDAO.createOrder(cart.get(), UserContext.getLoggedUser());
+        cart.clear();
     }
 }

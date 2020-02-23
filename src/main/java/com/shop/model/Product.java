@@ -61,6 +61,6 @@ public class Product implements Writable{
 
     @Override
     public String toDb() {
-        return id + "|" + name + "|" + category + "|" + price + "|" + "|" + stock;
+        return id + "|" + name + "|" + category + "|" + price + "|" + stock;
     }
 }
