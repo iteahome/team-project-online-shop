@@ -47,8 +47,7 @@ class FileEdit<T extends Writable> {
     }
 
 /** Method for targeting a line of data from a text and replacing any part of its content: */
-    void replace(String filename, String identifier, String oldData, String newData) throws NullPointerException {
-
+    void replace(String filename, String identifier, String oldData, String newData) throws ShopFileException {
         try {
             File resourceFile = new File("./src/main/resources/" + filename);
             Scanner resourceScanner = new Scanner(resourceFile);
@@ -78,11 +77,7 @@ class FileEdit<T extends Writable> {
 
 //      Managing possible exceptions:
         } catch (IOException e) {
-            // TODO - wrap & rethrow
-            System.out.println("File not found.");
-        } catch (NullPointerException e) {
-            // TODO - never catch NPE or any other RuntimeException
-            System.out.println("Identifier returned no results.");
+            throw new ShopFileException("File Not Found", e);
         }
 
     }
