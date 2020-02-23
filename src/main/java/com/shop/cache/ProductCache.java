@@ -4,10 +4,7 @@ import com.shop.dao.ProductDAO;
 import com.shop.exception.ShopFileException;
 import com.shop.model.Product;
 
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
 
 public class ProductCache {
     ProductDAO productDAO = new ProductDAO();
@@ -38,7 +35,6 @@ public class ProductCache {
         return instance;
     }
 
-    // TODO - call it when you write in DAO
     public void reload() throws ShopFileException {
         load();
     }
