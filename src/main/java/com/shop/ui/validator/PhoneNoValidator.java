@@ -7,12 +7,9 @@ public class PhoneNoValidator {
 
     public String formatPhoneNo(String phoneNo) {
         String formattedPhoneNo = phoneNo.replaceAll("[^0-9+]", "");
-        System.out.println("Formatted phone number is now: " + formattedPhoneNo);
         formattedPhoneNo = formattedPhoneNo.replaceAll("\\+40", "0040");
-        System.out.println("Formatted phone number is now: " + formattedPhoneNo);
         if (!formattedPhoneNo.matches("0040.+")) {
             formattedPhoneNo = "004" + formattedPhoneNo;
-            System.out.println("Formatted phone number is now: " + formattedPhoneNo);
         }
         return formattedPhoneNo;
     }
@@ -22,7 +19,6 @@ public class PhoneNoValidator {
         String patternString = "^0040\\d{9}$";
         Pattern pattern = Pattern.compile(patternString);
         Matcher matcher = pattern.matcher(formattedPhoneNo);
-        System.out.println("Does formatted phone number match: " + matcher.matches());
         return matcher.matches();
     }
 }
