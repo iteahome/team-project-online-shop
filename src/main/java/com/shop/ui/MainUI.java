@@ -7,7 +7,9 @@ import com.shop.exception.ShopException;
 import static com.shop.security.UserContext.isUserLogged;
 import static com.shop.ui.handlers.InputPopUps.CANCELLED;
 
-/** MainUI class - directs user to LoginUI, signUpUI or shopUI. */
+/**
+ * MainUI class - directs user to LoginUI, signUpUI or shopUI.
+ */
 
 public class MainUI {
 
@@ -20,33 +22,35 @@ public class MainUI {
     private ShopUI shopUI = new ShopUI();
 
     public void start() throws ShopException {
-        String userInput;
+        String userInput = null;
         do {
-            userInput = InputPopUps.input("Please choose an option by its number:\n\nLogin: 1\nSign Up: 2\nLeave Shop: 0");
-            switch (userInput) {
-                case OPTION_LOGIN: {
-                    loginUI.displayLogin();
-                    if (isUserLogged()) {
-                        shopUI.start();
+            if (isUserLogged()) {
+                shopUI.start();
+            } else {
+                userInput = InputPopUps.input("Please choose an option by its number:\n\nLogin: 1\nSign Up: 2\nLeave Shop: 0");
+                switch (userInput) {
+                    case OPTION_LOGIN: {
+                        loginUI.displayLogin();
+                        break;
                     }
-                    break;
-                }
-                case OPTION_SIGN_UP: {
-                    signUpUI.displaySignUp();
-                    break;
-                }
-                case OPTION_LEAVE: {
-                    PrintUI.printBox("Come back soon!");
-                    break;
-                }
-                case CANCELLED: {
-                    PrintUI.printBox("User canceled operation.");
-                    break;
-                }
-                default: {
-                    PrintUI.printBox("Please enter a valid option:");
+                    case OPTION_SIGN_UP: {
+                        signUpUI.displaySignUp();
+                        break;
+                    }
+                    case OPTION_LEAVE: {
+                        PrintUI.printBox("Come back soon!");
+                        break;
+                    }
+                    case CANCELLED: {
+                        PrintUI.printBox("User canceled operation.");
+                        break;
+                    }
+                    default: {
+                        PrintUI.printBox("Please enter a valid option:");
+                    }
                 }
             }
-        } while (!userInput.equals(OPTION_LEAVE) && !isUserLogged());
+        }
+        while (!userInput.equals(OPTION_LEAVE));
     }
 }

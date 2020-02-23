@@ -26,7 +26,6 @@ class SignUpUI {
                     PrintUI.printBox("User exists, please login.");
                 } else {
                     userService.signUp(password, email);
-                    PrintUI.printBox("Welcome! You are now logged in with your new credentials.");
                 }
             } else {
                 PrintUI.printBox("Please enter a valid email address:");
