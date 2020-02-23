@@ -11,8 +11,8 @@ import static java.lang.Integer.parseInt;
 
 public class UserShopUI {
     private ProductService productService = new ProductService();
+    private  CartService cartService = new CartService();
     private static final String CANCEL = "NullPointerExceptionFound";
-    CartService cartService = new CartService();
 
     void browseProducts() throws ShopException {
         String userInput = null;
@@ -37,7 +37,7 @@ public class UserShopUI {
                             String productIdForCart = InputPopUps.input("ID of the product to be added: ");
                             String quantity = InputPopUps.input("Quantity Desired: ");
                             if (!productIdForCart.equals(CANCEL) & !quantity.equals(CANCEL)) {
-                                CartService.addToCart(productService.getProductByID(productIdForCart), parseInt(quantity));
+                                cartService.addToCart(productService.getProductByID(parseInt(productIdForCart)), parseInt(quantity));
                             }
                         }
                     }

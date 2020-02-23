@@ -36,7 +36,7 @@ public class ProductService {
                 .collect(Collectors.toList());
     }
 
-    public Product getProductByID(String id) throws ShopFileException, ProductNotFoundException {
+    public Product getProductByID(Integer id) throws ShopFileException, ProductNotFoundException {
         return productCache.cache.get(id);
     }
 //    public Product getProductByID(String id) throws ShopFileException, ProductNotFoundException {
