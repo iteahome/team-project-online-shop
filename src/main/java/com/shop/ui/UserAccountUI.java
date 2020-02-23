@@ -118,9 +118,10 @@ public class UserAccountUI {
         String newPhoneNo = InputPopUps.input("Enter new Romanian phone number:");
         do {
             if (phoneNoValidator.isPhoneNoValid((newPhoneNo))) {
+                newPhoneNo = phoneNoValidator.formatPhoneNo(newPhoneNo);
+                user.setPhoneNo(newPhoneNo);
                 userService.replaceUserData(user);
                 newPhoneNo = CANCELLED;
-                break;
             } else {
                 newPhoneNo = InputPopUps.input("Invalid number. Please try again:");
             }
