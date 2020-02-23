@@ -77,14 +77,15 @@ public class UserAccountUI {
                 case CANCELLED: {
                     break;
                 }
-                case ".": {
-                    PrintUI.printBox("Please choose a valid userName");
-                }
+
                 default: {
                     user.setUserName(newUserName);
                     userService.replaceUserData(user);
                     newUserName = CANCELLED;
                     break;
+                }
+                case ".": {
+                    PrintUI.printBox("Please choose a valid userName");
                 }
             }
         } while (!newUserName.equals(CANCELLED));
@@ -98,14 +99,15 @@ public class UserAccountUI {
                 case CANCELLED: {
                     break;
                 }
-                case ".": {
-                    PrintUI.printBox("Please choose a valid password");
-                }
+
                 default: {
                     user.setPassword(newPassword);
                     userService.replaceUserData(user);
                     newPassword = CANCELLED;
                     break;
+                }
+                case ".": {
+                    PrintUI.printBox("Please choose a valid password");
                 }
             }
         } while (!newPassword.equals(CANCELLED));
