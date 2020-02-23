@@ -18,6 +18,7 @@ public class UserShopUI {
     private static final String EXIT_MENU = "0";
     private static final String FILTER_PRODUCTS = "1";
     private static final String VIEW_CART = "2";
+    private static final String ADD_TO_CART = "1";
 
 
     void browseProducts() throws ShopException {
@@ -28,11 +29,13 @@ public class UserShopUI {
                 case FILTER_PRODUCTS: {
                     String categoryName = InputPopUps.input("Filter by Category: ");
                     String productName = InputPopUps.input("Filter by Product Name: ");
-                    for (Product product : productService.getProductsByCategoryAndName(categoryName, productName)) {
-                        PrintUI.printBox(product.toString());
-                    }
-                    userInput = InputPopUps.input("Add Product to cart : 1\nContinue Browsing : 0");
-                    final String ADD_TO_CART = "1";
+                    if (!categoryName.equals(CANCELLED) && !productName.equals(CANCELLED)) {
+                        for (Product product : productService.getProductsByCategoryAndName(categoryName, productName)) {
+                            PrintUI.printBox(product.toString());
+                        }
+                        userInput = InputPopUps.input("Add Product to cart : 1\nContinue Browsing : 0");
+                    } else break;
+
                     switch (userInput) {
                         case EXIT_MENU: {
                             break;
@@ -40,9 +43,9 @@ public class UserShopUI {
                         case ADD_TO_CART: {
                             String productIdForCart = InputPopUps.input("ID of the product to be added: ");
                             String quantity = InputPopUps.input("Quantity Desired: ");
-                            if (!productIdForCart.equals(CANCELLED) & !quantity.equals(CANCELLED)) {
+                            if (!productIdForCart.equals(CANCELLED) && !quantity.equals(CANCELLED)) {
                                 cartService.addToCart(productService.getProductByID(parseInt(productIdForCart)), parseInt(quantity));
-                            }
+                            } else break;
                         }
 
                     }
@@ -52,10 +55,7 @@ public class UserShopUI {
                     cartUI.manageCart();
                     break;
                 }
-                case CANCELLED: {
-                    PrintUI.printBox("User canceled operation.");
-                    break;
-                }
+                case CANCELLED:
                 case EXIT_MENU: {
                     break;
                 }
