@@ -12,13 +12,13 @@ public class User implements Writable {
     private String role;
 
 //  User class constructor:
-    public User(String password, String email, String role) {
+    public User(String email, String password, String role) {
         this.email = email;
         this.password = password;
         this.role = role;
     }
 
-    public User(String userName, String password, String email, String phoneNo, String role) {
+    public User(String email, String password, String userName, String phoneNo, String role) {
         this.email = email;
         this.password = password;
         this.userName = userName;
