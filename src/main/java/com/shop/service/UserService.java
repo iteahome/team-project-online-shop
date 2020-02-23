@@ -35,7 +35,7 @@ public class UserService {
 
         if (!userExists) {
             User user = new User(password, email, "Shopper");
-            userDAO.addUser(user.dbPrint());
+            userDAO.addUser(user);
             UserContext.setLoggedUser(user);
         }
         return userExists;
@@ -50,7 +50,7 @@ public class UserService {
 
     public void replaceUserData (User user) throws ShopException {
             userDAO.deleteUser(user.getEmail());
-            userDAO.addUser(user.dbPrint());
+            userDAO.addUser(user);
         }
     public void deleteUser (User user) {
         userDAO.deleteUser(user.getEmail());

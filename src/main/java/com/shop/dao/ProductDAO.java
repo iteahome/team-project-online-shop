@@ -4,14 +4,9 @@ import com.shop.exception.ShopFileException;
 import com.shop.exception.ShopTechnicalException;
 import com.shop.model.Product;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Scanner;
-import java.util.function.Function;
-import java.util.function.Supplier;
 
 import static java.lang.Integer.parseInt;
 
@@ -19,11 +14,12 @@ public class ProductDAO {
 
     private FileUtil<Product> productReader = new FileUtil<>();
     private FileEdit<Product> productEditor = new FileEdit<>();
-    private FileUtil<Integer> sequenceReader = new FileUtil<>();
-    public int getNextId() {
+    private FileUtil<String> sequenceReader = new FileUtil<>();
+    public void getNextId() throws ShopFileException {
         List<String> sequence = new ArrayList<>();
-        sequenceReader.readEntities("product_seq.txt", sequence.add());
-        return 0;
+//        List<Integer> ids = new ArrayList<>();
+        List<String[]> ids = new ArrayList<>();
+        sequenceReader.readEntities("product_seq.txt", entity-> String.valueOf(ids.add(Collections.max(entity))));
     }
 
     // TODO - instance methods
