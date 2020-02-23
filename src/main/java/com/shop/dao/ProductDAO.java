@@ -28,6 +28,7 @@ public class ProductDAO {
     }
 
     public List<Product> findAllProducts() throws ShopFileException {
+//            List<Product> productList = new ArrayList<>();
         return productReader.readEntities("products.txt", lines -> new Product(parseInt(lines[0]), lines[1], lines[2], lines[3], lines[4]));
     }
 

@@ -7,7 +7,7 @@ import com.shop.ui.MainUI;
 
 public class Application {
     public static void main(String[] args) throws ShopException {
-            MainUI mainUI = new MainUI();
-            mainUI.start();
+        MainUI mainUI = new MainUI();
+        mainUI.start();
     }
 }
