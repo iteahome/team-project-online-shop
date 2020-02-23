@@ -1,2 +1,2 @@
-admin|adminadmin|admin@onlineshop.com|null|ADMIN
-marius|iteahome|marius.bistika@gmail.com|null|ADMIN
+admin@onlineshop.com|admin|null|null|ADMIN
+user@onlineshop.com|user|null|null|SHOPPER

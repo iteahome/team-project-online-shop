@@ -1,35 +1,37 @@
 package com.shop.ui;
 
-import com.shop.datahandlers.validator.EmailValidator;
-import com.shop.ui.ui_handlers.InputPopUps;
-import com.shop.ui.ui_handlers.PrintUI;
+import com.shop.ui.validator.EmailValidator;
+import com.shop.ui.handlers.InputPopUps;
+import com.shop.ui.handlers.PrintUI;
 import com.shop.exception.ShopException;
 import com.shop.service.UserService;
+
+import static com.shop.ui.handlers.InputPopUps.CANCELLED;
 
 /** SignUpUI class - creates new users by collecting user inputs. */
 
 class SignUpUI {
-    private static final String CANCEL = "NullPointerExceptionFound";
+
+    private EmailValidator emailValidator = new EmailValidator();
     private UserService userService = new UserService();
 
-    //  SignUp UI starting point:
     void displaySignUp() throws ShopException {
-        PrintUI.printBox("To sign up, please provide the following credentials:");
-        String inputEmail = InputPopUps.input("Email:");
-        String inputPassword = InputPopUps.input("New Password");
-        if (!inputEmail.matches(CANCEL) & !inputPassword.matches(CANCEL)) {
-            if (EmailValidator.validateEmail((inputEmail))) {
-                if (userService.signUp(inputPassword, inputEmail)) {
-                    PrintUI.printBox("User Exists, Please Login.");
+
+        String email = InputPopUps.input("Please enter your email address:");
+        String password = InputPopUps.input("Please enter desired password:");
+
+        if (!email.matches(CANCELLED) && !password.matches(CANCELLED)) {
+            if (emailValidator.isEmailValid(email)) {
+                if (userService.doesUserExist(email)) {
+                    PrintUI.printBox("User exists, please login.");
                 } else {
-                    PrintUI.printBox("Welcome! Sign Up successful, please proceed to LogIn");
+                    userService.signUp(password, email);
                 }
             } else {
-                PrintUI.printBox("Please try again with a valid email");
+                PrintUI.printBox("Please enter a valid email address:");
             }
-        }
-        else {
-            PrintUI.printBox("User canceled operation");
+        } else {
+            PrintUI.printBox("User canceled operation.");
         }
     }
 }
