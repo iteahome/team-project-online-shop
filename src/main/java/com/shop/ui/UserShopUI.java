@@ -7,17 +7,21 @@ import com.shop.service.ProductService;
 import com.shop.ui.handlers.InputPopUps;
 import com.shop.ui.handlers.PrintUI;
 
+import static com.shop.ui.handlers.InputPopUps.CANCELLED;
 import static java.lang.Integer.parseInt;
 
 public class UserShopUI {
     private ProductService productService = new ProductService();
     private  CartService cartService = new CartService();
-    private static final String CANCEL = "NullPointerExceptionFound";
+    CartUI cartUI = new CartUI();
+
+    private static final String EXIT_MENU = "0";
+    private static final String FILTER_PRODUCTS = "1";
+    private static final String VIEW_CART = "2";
+
 
     void browseProducts() throws ShopException {
         String userInput = null;
-        final String EXIT_MENU = "0";
-        final String FILTER_PRODUCTS = "1";
         do {
             userInput = InputPopUps.input("Shop Menu:\n\nFilter Products : 1\nExit : 0");
             switch (userInput) {
@@ -27,7 +31,7 @@ public class UserShopUI {
                     for (Product product : productService.getProductsByCategoryAndName(categoryName, productName)) {
                         PrintUI.printBox(product.toString());
                     }
-                    userInput = InputPopUps.input("Add Product to cart: 1\nContinue Browsing: 0");
+                    userInput = InputPopUps.input("Add Product to cart : 1\nView Cart : 2\nContinue Browsing : 0");
                     final String ADD_TO_CART = "1";
                     switch (userInput) {
                         case EXIT_MENU: {
@@ -36,14 +40,17 @@ public class UserShopUI {
                         case ADD_TO_CART: {
                             String productIdForCart = InputPopUps.input("ID of the product to be added: ");
                             String quantity = InputPopUps.input("Quantity Desired: ");
-                            if (!productIdForCart.equals(CANCEL) & !quantity.equals(CANCEL)) {
+                            if (!productIdForCart.equals(CANCELLED) & !quantity.equals(CANCELLED)) {
                                 cartService.addToCart(productService.getProductByID(parseInt(productIdForCart)), parseInt(quantity));
                             }
+                        }
+                        case VIEW_CART : {
+                            cartUI.viewCart();
                         }
                     }
                 }
                 break;
-                case CANCEL: {
+                case CANCELLED: {
                     PrintUI.printBox("User canceled operation.");
                     break;
                 }
