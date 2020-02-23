@@ -9,7 +9,9 @@ import com.shop.ui.validator.PhoneNoValidator;
 
 import static com.shop.ui.handlers.InputPopUps.CANCELLED;
 
-/** UserAccountUI class - connects user input to UserService class to manage account data. */
+/**
+ * UserAccountUI class - connects user input to UserService class to manage account data.
+ */
 
 public class UserAccountUI {
 
@@ -24,7 +26,7 @@ public class UserAccountUI {
     UserService userService = new UserService();
     PhoneNoValidator phoneNoValidator = new PhoneNoValidator();
 
-    void manageAccount(User user) {
+    void manageAccount(User user) throws ShopException {
         String userInput;
         do {
             userInput = InputPopUps.input("User account menu:\n\nView account: 1\nModify account: 2\nGo Back: 0");
@@ -36,9 +38,7 @@ public class UserAccountUI {
                     modifyAccount(user);
                     break;
                 case GO_BACK:
-                    break;
                 case CANCELLED:
-                    PrintUI.printBox("User canceled operation.");
                     break;
                 default:
                     PrintUI.printBox("Please enter a valid option:");
@@ -46,7 +46,7 @@ public class UserAccountUI {
         } while (!userInput.equals(GO_BACK));
     }
 
-    private void modifyAccount(User user) {
+    private void modifyAccount(User user) throws ShopException {
         String dataToChange;
         do {
             dataToChange = InputPopUps.input("Modify account menu:\n\nChange username: 1\nChange password: 2\nChange phone number: 3\nGo Back: 0");
@@ -61,9 +61,7 @@ public class UserAccountUI {
                     changePhoneNo(user);
                     break;
                 case GO_BACK:
-                    break;
                 case CANCELLED:
-                    PrintUI.printBox("User canceled operation.");
                     break;
                 default:
                     PrintUI.printBox("Please enter a valid option:");
@@ -71,54 +69,61 @@ public class UserAccountUI {
         } while (!dataToChange.equals(GO_BACK));
     }
 
-    private void changeUserName(User user) {
-        String newUserName = InputPopUps.input("Enter new username:");
-        while (!newUserName.equals(CANCELLED)) {
-            if (newUserName.equals(".")) {
-                newUserName = InputPopUps.input("Please enter a valid option:");
-            } else {
-                user.setUserName(newUserName);
-                try {
+    private void changeUserName(User user) throws ShopException {
+        String newUserName;
+        do {
+            newUserName = InputPopUps.input("Enter new username:");
+            switch (newUserName) {
+                case CANCELLED: {
+                    break;
+                }
+                case ".": {
+                    PrintUI.printBox("Please choose a valid userName");
+                }
+                default: {
+                    user.setUserName(newUserName);
                     userService.replaceUserData(user);
-                } catch (ShopException e) {
-                    e.printStackTrace();
+                    newUserName = CANCELLED;
+                    break;
                 }
             }
-        }
-        PrintUI.printBox("User canceled operation.");
+        } while (!newUserName.equals(CANCELLED));
     }
 
-    private void changePassword(User user) {
-        String newPassword = InputPopUps.input("Enter new password:");
-        while (!newPassword.equals(CANCELLED)) {
-            if (newPassword.equals(".")) {
-                newPassword = InputPopUps.input("Please enter a valid option:");
-            } else {
-                user.setUserName(newPassword);
-                try {
+    private void changePassword(User user) throws ShopException {
+        String newPassword;
+        do {
+            newPassword = InputPopUps.input("Enter new password:");
+            switch (newPassword) {
+                case CANCELLED: {
+                    break;
+                }
+                case ".": {
+                    PrintUI.printBox("Please choose a valid password");
+                }
+                default: {
+                    user.setPassword(newPassword);
                     userService.replaceUserData(user);
-                } catch (ShopException e) {
-                    e.printStackTrace();
+                    newPassword = CANCELLED;
+                    break;
                 }
             }
-        }
-        PrintUI.printBox("User canceled operation.");
+        } while (!newPassword.equals(CANCELLED));
     }
 
-    private void changePhoneNo(User user) {
+
+    private void changePhoneNo(User user) throws ShopException {
         String newPhoneNo = InputPopUps.input("Enter new Romanian phone number:");
-        while (!newPhoneNo.equals(CANCELLED)) {
-            if (!phoneNoValidator.isPhoneNoValid(newPhoneNo)) {
-                newPhoneNo = InputPopUps.input("Invalid number. Please try again:");
+        do {
+            if (phoneNoValidator.isPhoneNoValid((newPhoneNo))) {
+                userService.replaceUserData(user);
+                newPhoneNo = CANCELLED;
+                break;
             } else {
-                user.setPhoneNo(phoneNoValidator.formatPhoneNo(newPhoneNo));
-                try {
-                    userService.replaceUserData(user);
-                } catch (ShopException e) {
-                    e.printStackTrace();
-                }
+                newPhoneNo = InputPopUps.input("Invalid number. Please try again:");
             }
-        }
-        PrintUI.printBox("User canceled operation.");
+
+        } while (!newPhoneNo.equals(CANCELLED));
+
     }
 }
