@@ -1,5 +1,6 @@
 package com.shop.dao;
 
+import com.shop.cache.ProductCache;
 import com.shop.exception.ShopFileException;
 import com.shop.exception.ShopTechnicalException;
 import com.shop.model.Product;
@@ -22,13 +23,11 @@ public class ProductDAO {
             return (Collections.max(sequence)+1);
         }
 
-    // TODO - instance methods
     public void createProduct(Product product) throws ShopTechnicalException {
         productEditor.write("products.txt", product);
     }
 
     public List<Product> findAllProducts() throws ShopFileException {
-//            List<Product> productList = new ArrayList<>();
         return productReader.readEntities("products.txt", lines -> new Product(parseInt(lines[0]), lines[1], lines[2], lines[3], lines[4]));
     }
 
