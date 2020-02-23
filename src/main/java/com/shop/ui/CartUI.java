@@ -1,11 +1,9 @@
 package com.shop.ui;
 
 import com.shop.exception.ProductNotFoundException;
-import com.shop.exception.ShopFileException;
 import com.shop.exception.ShopTechnicalException;
 import com.shop.model.Product;
 import com.shop.service.CartService;
-import com.shop.service.ProductService;
 import com.shop.ui.handlers.InputPopUps;
 import com.shop.ui.handlers.PrintUI;
 
@@ -30,9 +28,9 @@ public class CartUI {
             if (!userInput.equals(CANCELLED)) {
                 switch (userInput) {
                     case Edit_CART: {
-                        editCart();
+                            editCart();
+                        }
                         break;
-                    }
                     case CREATE_ORDER: {
                         cartService.createOrder();
                         break;

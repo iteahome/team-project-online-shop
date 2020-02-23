@@ -52,7 +52,10 @@ public class UserShopUI {
                 }
                 break;
                 case VIEW_CART : {
-                    cartUI.manageCart();
+                    if (!cartService.isCartNull) {
+                        cartUI.manageCart();
+                    }
+                    else {PrintUI.printBox("Your Shopping Cart is empty");}
                     break;
                 }
                 case CANCELLED:
