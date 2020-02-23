@@ -49,7 +49,7 @@ public class UserShopUI {
                 }
                 break;
                 case VIEW_CART : {
-                    cartUI.viewCart();
+                    cartUI.manageCart();
                     break;
                 }
                 case CANCELLED: {
