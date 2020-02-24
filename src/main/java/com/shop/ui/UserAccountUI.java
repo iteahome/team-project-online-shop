@@ -22,7 +22,6 @@ class UserAccountUI {
     private static final String CHANGE_PHONENO = "3";
     private static String userInput = "";
     private static String result = "";
-    private static final String EMPTY = ".";
 
     private UserService userService = new UserService();
     private PhoneNoValidator phoneNoValidator = new PhoneNoValidator();
@@ -50,20 +49,21 @@ class UserAccountUI {
     private void modifyAccount(User user) throws ShopException {
         do {
             userInput = InputPopUps.input("Modify account menu:\n\nChange username: 1\nChange password: 2\nChange phone number: 3\n\n" + result + "\n\n" + dataToShow);
+            dataToShow = "";
             switch (userInput) {
                 case CHANGE_USERNAME:
                     result = changeUserName(user);
-                    dataToShow = user.toString();
+                    dataToShow = user.printCompleteUserData();
                     userInput = "";
                     break;
                 case CHANGE_PASSWORD:
                     result = changePassword(user);
-                    dataToShow = user.toString();
+                    dataToShow = user.printCompleteUserData();
                     userInput = "";
                     break;
                 case CHANGE_PHONENO:
                     result = changePhoneNo(user);
-                    dataToShow = "";
+                    dataToShow = user.printCompleteUserData();
                     userInput = "";
                     break;
                 default:
