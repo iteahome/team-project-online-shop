@@ -25,6 +25,7 @@ public class MainUI {
         do {
             if (isUserLogged()) {
                 shopUI.start();
+                dataToShow = "";
             } else {
                 userInput = InputPopUps.input("Please choose an option by its number:\n\nLogin: 1\nSign Up: 2\n\n" + dataToShow);
                 switch (userInput) {
@@ -33,12 +34,7 @@ public class MainUI {
                         break;
                     }
                     case OPTION_SIGN_UP: {
-
-                        if (!signUpUI.displaySignUp()) {
-                            dataToShow = "User Exists, Please Login.";
-                        } else {
-                            dataToShow = "";
-                        }
+                        dataToShow = signUpUI.displaySignUp();
                         break;
                     }
                     case CANCELLED: {

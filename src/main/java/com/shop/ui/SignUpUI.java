@@ -16,7 +16,7 @@ class SignUpUI {
     private EmailValidator emailValidator = new EmailValidator();
     private UserService userService = new UserService();
 
-    boolean displaySignUp() throws ShopException {
+    String displaySignUp() throws ShopException {
         String dataToShow = "";
         String email;
         String password;
@@ -26,17 +26,17 @@ class SignUpUI {
             if (!email.matches(CANCELLED) && !password.matches(CANCELLED)) {
                 if (emailValidator.isEmailValid(email) && !password.equals(".")) {
                     if (userService.doesUserExist(email)) {
-                        return false;
+                        return "User Exists, Please Login.";
                     } else {
                         userService.signUp(password, email);
                         break;
                     }
-                } else {
+                    } else {
                     dataToShow = "Your email/password is invalid. Please retry.";
                 }
             }
         } while (!email.equals(CANCELLED) && !password.equals(CANCELLED));
 
-        return false;
+        return "";
     }
 }
