@@ -18,7 +18,6 @@ public class UserShopUI {
     private static final String FILTER_PRODUCTS = "1";
     private static final String VIEW_CART = "2";
     private static final String ADD_TO_CART = "3";
-    private static String dataToShow = "";
 
     void browseProducts() throws ShopException {
         String userInput = null;
@@ -35,7 +34,7 @@ public class UserShopUI {
                     if (!cartService.isCartNull()) {
                         cartUI.manageCart();
                         result = "";
-                            break;
+                        break;
                     } else {
                         result = "Your Shopping Cart is empty";
                         break;
@@ -64,7 +63,6 @@ public class UserShopUI {
         StringBuilder filteredProducts = new StringBuilder();
 
         do {
-            dataToShow = "";
             categoryMenu.setLength(0);
             productMenu.setLength(0);
 
