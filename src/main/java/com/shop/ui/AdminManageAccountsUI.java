@@ -3,6 +3,7 @@ package com.shop.ui;
 import com.shop.exception.ShopException;
 import com.shop.exception.ShopFileException;
 import com.shop.model.User;
+import com.shop.security.UserContext;
 import com.shop.service.UserService;
 import com.shop.ui.handlers.InputPopUps;
 
@@ -10,6 +11,7 @@ import static com.shop.ui.handlers.InputPopUps.CANCELLED;
 
 class AdminManageAccountsUI {
 	private UserService userService = new UserService();
+	private UserAccountUI userAccountUI = new UserAccountUI();
 
 	private static final String FIND_USERS = "1";
     private static final String EDIT_USERS = "2";
@@ -17,6 +19,7 @@ class AdminManageAccountsUI {
     private static final String CHANGE_ROLE = "1";
     private static final String RESET_PASSWORD = "2";
     private static final String CLEAN_FILTER = "4";
+    private static final String PERSONAL_ACCOUNT = "5";
 
     private static String userInput = null;
     private static String result = "";
@@ -26,7 +29,7 @@ class AdminManageAccountsUI {
     void manageAccounts() throws ShopException {
 
 		do {
-			userInput = InputPopUps.input("Find Users : 1\nEdit Users : 2\nDelete Users: 3\nClean Filter : 4" + result);
+			userInput = InputPopUps.input("Find Users : 1\nEdit Users : 2\nDelete Users: 3\nClean Filter : 4\nManage Personal Account : 5" + result);
 			switch (userInput) {
 				case FIND_USERS: {
 					userList = viewUsers();
@@ -44,6 +47,10 @@ class AdminManageAccountsUI {
                     userList = "";
                     break;
                 }
+				case PERSONAL_ACCOUNT : {
+					userAccountUI.manageAccount(UserContext.getLoggedUser());
+					break;
+				}
 				default:
 					result = "Please Insert a valid option:";
 			}
