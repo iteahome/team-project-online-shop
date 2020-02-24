@@ -1,4 +1,4 @@
 admin@onlineshop.com|admin|null|null|ADMIN
 marius.bistika@gmail.com|iteahome|null|null|ADMIN
-user@onlineshop.com|user|user1|0040000000000|SHOPPER
-u2u@shop.com|u|null|null|SHOPPER
+u@u.com|u|null|null|SHOPPER
+user@onlineshop.com|user|user|0040000000000|SHOPPER

@@ -1,8 +1,7 @@
 package com.shop.ui;
 
-import com.shop.ui.handlers.InputPopUps;
-import com.shop.ui.handlers.PrintUI;
 import com.shop.exception.ShopException;
+import com.shop.ui.handlers.InputPopUps;
 
 import static com.shop.security.UserContext.isUserLogged;
 import static com.shop.ui.handlers.InputPopUps.CANCELLED;
@@ -15,42 +14,42 @@ public class MainUI {
 
     private static final String OPTION_LOGIN = "1";
     private static final String OPTION_SIGN_UP = "2";
-    private static final String OPTION_LEAVE = "0";
 
     private SignUpUI signUpUI = new SignUpUI();
     private LoginUI loginUI = new LoginUI();
     private ShopUI shopUI = new ShopUI();
 
     public void start() throws ShopException {
-        String userInput = null;
+        String dataToShow = "";
+        String userInput = "";
         do {
             if (isUserLogged()) {
                 shopUI.start();
             } else {
-                userInput = InputPopUps.input("Please choose an option by its number:\n\nLogin: 1\nSign Up: 2\nLeave Shop: 0");
+                userInput = InputPopUps.input("Please choose an option by its number:\n\nLogin: 1\nSign Up: 2\n\n" + dataToShow);
                 switch (userInput) {
                     case OPTION_LOGIN: {
                         loginUI.displayLogin();
                         break;
                     }
                     case OPTION_SIGN_UP: {
-                        signUpUI.displaySignUp();
-                        break;
-                    }
-                    case OPTION_LEAVE: {
-                        PrintUI.printBox("Come back soon!");
+
+                        if (!signUpUI.displaySignUp()) {
+                            dataToShow = "User Exists, Please Login.";
+                        } else {
+                            dataToShow = "";
+                        }
                         break;
                     }
                     case CANCELLED: {
-                        PrintUI.printBox("User canceled operation.");
                         break;
                     }
                     default: {
-                        PrintUI.printBox("Please enter a valid option:");
+                        dataToShow = "Please enter a valid option:";
                     }
                 }
             }
         }
-        while (!userInput.equals(OPTION_LEAVE));
+        while (!userInput.equals(CANCELLED));
     }
 }

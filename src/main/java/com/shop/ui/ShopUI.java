@@ -1,9 +1,8 @@
 package com.shop.ui;
 
-import com.shop.ui.handlers.InputPopUps;
-import com.shop.ui.handlers.PrintUI;
 import com.shop.exception.ShopException;
 import com.shop.security.UserContext;
+import com.shop.ui.handlers.InputPopUps;
 
 import static com.shop.ui.handlers.InputPopUps.CANCELLED;
 
@@ -18,10 +17,11 @@ class ShopUI {
     private UserShopUI userShopUi = new UserShopUI();
     private UserAccountUI userAccountUI = new UserAccountUI();
 
-    public void start() throws ShopException {
+    void start() throws ShopException {
         String userInput;
+        String dataToShow = "";
         do {
-            userInput = InputPopUps.input("Welcome to our online shop!\n\nShop: 1\nManage account: 2\nLog out: 0");
+            userInput = InputPopUps.input("Welcome to our online shop!\n" + dataToShow + "\n\nShop: 1\nManage account: 2\nLog out: 0");
             switch (userInput) {
                 case OPTION_SHOP: {
                     if (UserContext.isAdminLogged()) {
@@ -41,15 +41,13 @@ class ShopUI {
                 }
                 case OPTION_LOGOUT: {
                     UserContext.setLoggedUser(null);
-                    PrintUI.printBox("You are now logged out.");
                     break;
                 }
                 case CANCELLED: {
-                    PrintUI.printBox("User canceled operation.");
                     break;
                 }
                 default: {
-                    PrintUI.printBox("Please enter a valid option.");
+                    dataToShow = "Please enter a valid option.";
                 }
             }
         } while (!userInput.equals(OPTION_LOGOUT));

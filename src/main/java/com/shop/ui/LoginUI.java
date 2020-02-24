@@ -1,10 +1,9 @@
 package com.shop.ui;
 
-import com.shop.ui.handlers.InputPopUps;
-import com.shop.ui.handlers.PrintUI;
 import com.shop.exception.ShopException;
 import com.shop.exception.ShopWrongCredentialsException;
 import com.shop.service.UserService;
+import com.shop.ui.handlers.InputPopUps;
 
 import static com.shop.ui.handlers.InputPopUps.CANCELLED;
 
@@ -18,15 +17,16 @@ class LoginUI {
 
         String email;
         String password;
+        String dataToShow = "";
         do {
-            email = InputPopUps.input("Please enter your email:");
+            email = InputPopUps.input("Please enter your email:\n\n" + dataToShow);
             password = InputPopUps.input("Please enter your password:");
             if (!email.equals(CANCELLED) && !password.equals(CANCELLED)) {
                 try {
                     userService.login(email, password);
                     break;
                 } catch (ShopWrongCredentialsException e) {
-                    PrintUI.printBox("Wrong credentials.");
+                    dataToShow = "Wrong credentials.";
                 }
             }
 
