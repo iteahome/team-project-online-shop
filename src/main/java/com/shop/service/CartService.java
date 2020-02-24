@@ -4,7 +4,6 @@ import com.shop.dao.OrderDAO;
 import com.shop.exception.ShopTechnicalException;
 import com.shop.model.Product;
 import com.shop.security.UserContext;
-import com.shop.ui.handlers.PrintUI;
 
 import java.util.ArrayList;
 
@@ -34,7 +33,6 @@ public class CartService {
 
     public void createOrder () throws ShopTechnicalException {
         orderDAO.createOrder(cart.get(), UserContext.getLoggedUser());
-        PrintUI.printBox("Order Sent.");
         cart.clear();
     }
 }
