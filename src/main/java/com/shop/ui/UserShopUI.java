@@ -25,23 +25,23 @@ public class UserShopUI {
         String result = "";
 
         do {
-            userInput = InputPopUps.input("Shop Menu:\n\nFilter Products : 1\nView Cart : 2\nAdd to Cart : 3\n\n" + result);
+            userInput = InputPopUps.input("Shop Menu:\nFilter Products : 1\nView Cart : 2\nAdd to Cart : 3\n\n" + result);
             switch (userInput) {
                 case FILTER_PRODUCTS: {
                     result = showFilterProducts();
                     break;
                 }
                 case VIEW_CART: {
-                    if (!cartService.isCartNull) {
+                    if (!cartService.isCartNull()) {
                         cartUI.manageCart();
                         result = "";
-                        break;
+                            break;
                     } else {
                         result = "Your Shopping Cart is empty";
+                        break;
                     }
-                    break;
                 }
-                case ADD_TO_CART : {
+                case ADD_TO_CART: {
                     result = addToCart(result);
                     break;
                 }
@@ -71,17 +71,22 @@ public class UserShopUI {
             for (String category : productService.getCategories()) {
                 categoryMenu.append(category).append("\n");
             }
-            String categoryName = InputPopUps.input("Please filter products by the following Categories: \n\n" + categoryMenu);
+            String categoryName = InputPopUps.input("To stop filtering products to view, press Cancel" +
+                    "\nPlease filter products you want to check by the following Categories: \n\n" + categoryMenu);
             if (!categoryName.equals(CANCELLED)) {
                 for (String name : productService.getProductNamesForCategory(categoryName)) {
                     productMenu.append(name).append("\n");
                 }
-                String productName = InputPopUps.input("Please filter products by name: \n\n" + productMenu);
-
-                for (Product product : productService.getProductsByCategoryAndName(categoryName, productName)) {
-                    filteredProducts.append(product.toString()).append("\n");
+                String productName = InputPopUps.input("To stop filtering products to view, press Cancel" +
+                        "\nPlease filter products by name: \n\n" + productMenu);
+                if (!productName.equals(CANCELLED)) {
+                    for (Product product : productService.getProductsByCategoryAndName(categoryName, productName)) {
+                        filteredProducts.append(product.toString()).append("\n");
+                    }
+                } else {
+                    break;
                 }
-                break;
+                userInput = "OK";
             } else {
                 userInput = CANCELLED;
             }
@@ -97,8 +102,8 @@ public class UserShopUI {
 
     private String addToCart(String filteredProductList) {
 
-        String productIdForCart = InputPopUps.input("ID of the product to be added: " + filteredProductList);
-        String quantity = InputPopUps.input("Quantity Desired: ");
+        String productIdForCart = InputPopUps.input("ID of the product to be added: \n\n" + filteredProductList);
+        String quantity = InputPopUps.input("Quantity Desired: \n");
         if (!productIdForCart.equals(CANCELLED) && !quantity.equals(CANCELLED) && IntCheck.check(productIdForCart) && IntCheck.check(quantity)) {
             cartService.addToCart(productService.getProductByID(parseInt(productIdForCart)), parseInt(quantity));
             return "Product added to Cart Successfully";

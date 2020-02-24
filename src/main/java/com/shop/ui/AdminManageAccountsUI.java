@@ -6,9 +6,10 @@ import com.shop.service.UserService;
 import com.shop.ui.handlers.InputPopUps;
 import com.shop.ui.handlers.PrintUI;
 
+import static com.shop.ui.handlers.InputPopUps.CANCELLED;
+
 class AdminManageAccountsUI {
     private UserService userService = new UserService();
-    private static final String CANCEL = "NullPointerExceptionFound";
 
     void manageAccounts() throws ShopException {
         String userInput = null;
@@ -23,7 +24,7 @@ class AdminManageAccountsUI {
                 case VIEW_USERS: {
                     PrintUI.printBox("Please insert user email (blanks accepted)");
                     String email = InputPopUps.input("Email");
-                    if (!email.equals(CANCEL)) {
+                    if (!email.equals(CANCELLED)) {
                             for (User user : userService.getUsersByPartialEmail(email)) {
                                 PrintUI.printBox(user.toString());
                             }
@@ -35,7 +36,7 @@ class AdminManageAccountsUI {
                 case EDIT_USERS: {
                     PrintUI.printBox("Please insert full user email");
                     String email = InputPopUps.input("Email");
-                    if (!email.equals(CANCEL)) {
+                    if (!email.equals(CANCELLED)) {
                         for (User user : userService.getUsersByPartialEmail(email)) {
                             PrintUI.printBox(user.toString());
                             final String CHANGEROLE = "1";
@@ -45,7 +46,7 @@ class AdminManageAccountsUI {
                             switch (adminChoice) {
                                 case CHANGEROLE: {
                                     String newRole = InputPopUps.input("New Role:");
-                                    if (!newRole.equals(CANCEL)) {
+                                    if (!newRole.equals(CANCELLED)) {
                                         user.setRole(newRole);
                                         userService.replaceUserData(user);
                                     } else {
@@ -55,7 +56,7 @@ class AdminManageAccountsUI {
                                 }
                                 case RESETPASSWORD: {
                                     String newPassword = InputPopUps.input("New Password:");
-                                    if (!newPassword.equals(CANCEL)) {
+                                    if (!newPassword.equals(CANCELLED)) {
                                         user.setPassword(newPassword);
                                         userService.replaceUserData(user);
                                     } else {
@@ -66,7 +67,7 @@ class AdminManageAccountsUI {
                                 case EXIT: {
                                     break;
                                 }
-                                case CANCEL: {
+                                case CANCELLED: {
                                     PrintUI.printBox("User canceled operation.");
                                     break;
                                 }
@@ -84,7 +85,7 @@ class AdminManageAccountsUI {
                 case DELETE_USERS: {
                     PrintUI.printBox("Please insert full user email to delete user");
                     String email = InputPopUps.input("Email to DELETE User");
-                    if(!email.equals(CANCEL)){
+                    if(!email.equals(CANCELLED)){
                         for (User user : userService.getUsersByPartialEmail(email)) {
                             PrintUI.printBox(user.toString());
                             userService.deleteUser(user);
@@ -97,7 +98,7 @@ class AdminManageAccountsUI {
                 case EXIT: {
                     break;
                 }
-                case CANCEL: {
+                case CANCELLED: {
                     PrintUI.printBox("User canceled operation.");
                     break;
                 }

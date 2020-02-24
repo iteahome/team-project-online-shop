@@ -4,7 +4,6 @@ import java.util.HashMap;
 
 public class Cart extends HashMap<Product, Integer> implements Writable {
 
-//    public static final Cart ShoppingCart = Cart.cart;
     public static final Cart cart = new Cart();
 
     public Cart get() {

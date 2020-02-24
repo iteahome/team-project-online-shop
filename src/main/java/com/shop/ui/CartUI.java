@@ -16,20 +16,15 @@ class CartUI {
 
     void manageCart() throws ShopTechnicalException {
         String userInput;
-        StringBuilder stringBuilder = new StringBuilder();
         String dataToShow = "";
         do {
-            stringBuilder.setLength(0);
-            for (Product product : cartService.showKeys()) {
-                stringBuilder.append(product.toString()).append(" ").append("Quantity: ").append(cartService.showQuantity(product).toString()).append("\n");
-            }
-            userInput = InputPopUps.input(dataToShow + "\n\nEdit Cart : 1\nCreate Order : 2\n\n" + stringBuilder);
+            userInput = InputPopUps.input(dataToShow + "\n\nEdit Cart : 1\nCreate Order : 2\n\n" + loadCart());
             if (!userInput.equals(CANCELLED)) {
                 switch (userInput) {
                     case Edit_CART: {
-                            editCart(stringBuilder.toString());
-                        }
-                        break;
+                        editCart(loadCart());
+                    }
+                    break;
                     case CREATE_ORDER: {
                         cartService.createOrder();
                         break;
@@ -39,30 +34,41 @@ class CartUI {
                     }
                 }
             }
-        } while (!userInput.equals(CANCELLED));
+        } while (!userInput.equals(CANCELLED) && !cartService.isCartNull());
     }
 
-    private void editCart(String stringBuilder) {
+    private void editCart(String shoppingCart) {
         String userInput;
         final String EDIT_QUANTITY = "1";
         final String DELETE_PRODUCT = "2";
-
-        userInput = InputPopUps.input("Edit Quantity : 1\nDelete Product : 2\n\n" + stringBuilder);
-        if (!userInput.equals(CANCELLED)) {
-            switch (userInput) {
-                case EDIT_QUANTITY: {
-                    String productId = InputPopUps.input("Product to be modified:" + stringBuilder);
-                    String newQuantity = InputPopUps.input("Quantity Desired:");
-                    cartService.editQuantity(parseInt(productId), parseInt(newQuantity));
-                    break;
-                }
-                case DELETE_PRODUCT: {
-                    String productId = InputPopUps.input("Product to be deleted:" + stringBuilder);
-                    cartService.deleteProduct(parseInt(productId));
-                    break;
+        do {
+            userInput = InputPopUps.input("Edit Quantity : 1\nDelete Product : 2\n\n" + shoppingCart);
+            if (!userInput.equals(CANCELLED)) {
+                switch (userInput) {
+                    case EDIT_QUANTITY: {
+                        String productId = InputPopUps.input("Product to be modified:\n\n" + shoppingCart);
+                        String newQuantity = InputPopUps.input("Quantity Desired:");
+                        cartService.editQuantity(parseInt(productId), parseInt(newQuantity));
+                        shoppingCart = loadCart();
+                        break;
+                    }
+                    case DELETE_PRODUCT: {
+                        String productId = InputPopUps.input("Product to be deleted:\n\n" + shoppingCart);
+                        cartService.deleteProduct(parseInt(productId));
+                        shoppingCart = loadCart();
+                        break;
+                    }
                 }
             }
-        }
+        } while (!cartService.isCartNull() && !userInput.equals(CANCELLED));
+    }
 
+    private String loadCart() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.setLength(0);
+        for (Product product : cartService.showKeys()) {
+            stringBuilder.append(product.toString()).append(" ").append("Quantity: ").append(cartService.showQuantity(product).toString()).append("\n");
+        }
+        return stringBuilder.toString();
     }
 }
