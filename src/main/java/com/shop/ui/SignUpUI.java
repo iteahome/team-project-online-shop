@@ -22,7 +22,7 @@ class SignUpUI {
         String password;
         do {
             email = InputPopUps.input(dataToShow + "\n\nPlease enter a valid email address:");
-            password = InputPopUps.input("Please enter a valid password:");
+            password = InputPopUps.input("Please enter a valid password:\nPassword cannot be empty");
             if (!email.matches(CANCELLED) && !password.matches(CANCELLED)) {
                 if (emailValidator.isEmailValid(email) && !password.equals(".")) {
                     if (userService.doesUserExist(email)) {
