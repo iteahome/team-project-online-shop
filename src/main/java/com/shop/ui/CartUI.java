@@ -19,6 +19,7 @@ class CartUI {
         String dataToShow = "";
         do {
             userInput = InputPopUps.input(dataToShow + "\n\nEdit Cart : 1\nCreate Order : 2\n\n" + loadCart());
+            dataToShow = "";
             if (!userInput.equals(CANCELLED)) {
                 switch (userInput) {
                     case Edit_CART: {
@@ -27,6 +28,7 @@ class CartUI {
                     break;
                     case CREATE_ORDER: {
                         cartService.createOrder();
+                        dataToShow = "Order created";
                         break;
                     }
                     default: {

@@ -25,6 +25,7 @@ public class UserShopUI {
 
         do {
             userInput = InputPopUps.input("Shop Menu:\nFilter Products : 1\nView Cart : 2\nAdd to Cart : 3\n\n" + result);
+            result = "";
             switch (userInput) {
                 case FILTER_PRODUCTS: {
                     result = showFilterProducts();

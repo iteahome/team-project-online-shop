@@ -29,7 +29,8 @@ class AdminManageAccountsUI {
     void manageAccounts() throws ShopException {
 
 		do {
-			userInput = InputPopUps.input("Find Users : 1\nEdit Users : 2\nDelete Users: 3\nClean Filter : 4\nManage Personal Account : 5" + result);
+			userInput = InputPopUps.input("Find Users : 1\nEdit Users : 2\nDelete Users: 3\nClean Filter : 4\nManage Personal Account : 5" + result + "\n\n" + userList);
+//			result = "";
 			switch (userInput) {
 				case FIND_USERS: {
 					userList = viewUsers();
