@@ -12,7 +12,7 @@ import static java.lang.Integer.parseInt;
 
 public class UserShopUI {
     private ProductService productService = new ProductService();
-    private  CartService cartService = new CartService();
+    private CartService cartService = new CartService();
     CartUI cartUI = new CartUI();
 
     private static final String EXIT_MENU = "0";
@@ -27,35 +27,15 @@ public class UserShopUI {
             userInput = InputPopUps.input("Shop Menu:\n\nFilter Products : 1\nView Cart : 2\nExit : 3");
             switch (userInput) {
                 case FILTER_PRODUCTS: {
-                    String categoryName = InputPopUps.input("Filter by Category: ");
-                    String productName = InputPopUps.input("Filter by Product Name: ");
-                    if (!categoryName.equals(CANCELLED) && !productName.equals(CANCELLED)) {
-                        for (Product product : productService.getProductsByCategoryAndName(categoryName, productName)) {
-                            PrintUI.printBox(product.toString());
-                        }
-                        userInput = InputPopUps.input("Add Product to cart : 1\nContinue Browsing : 0");
-                    } else break;
-
-                    switch (userInput) {
-                        case EXIT_MENU: {
-                            break;
-                        }
-                        case ADD_TO_CART: {
-                            String productIdForCart = InputPopUps.input("ID of the product to be added: ");
-                            String quantity = InputPopUps.input("Quantity Desired: ");
-                            if (!productIdForCart.equals(CANCELLED) && !quantity.equals(CANCELLED)) {
-                                cartService.addToCart(productService.getProductByID(parseInt(productIdForCart)), parseInt(quantity));
-                            } else break;
-                        }
-
-                    }
+                    filterProducts();
+                    break;
                 }
-                break;
-                case VIEW_CART : {
+                case VIEW_CART: {
                     if (!cartService.isCartNull) {
                         cartUI.manageCart();
+                    } else {
+                        PrintUI.printBox("Your Shopping Cart is empty");
                     }
-                    else {PrintUI.printBox("Your Shopping Cart is empty");}
                     break;
                 }
                 case CANCELLED:
@@ -69,5 +49,37 @@ public class UserShopUI {
             }
         } while (!userInput.equals(G0_BACK));
 
+    }
+
+    private void filterProducts() {
+        String userInput = "";
+        String categoryName = "";
+        String productName = "";
+        do {
+            categoryName = InputPopUps.input("Filter by Category: ");
+            productName = InputPopUps.input("Filter by Product Name: ");
+            StringBuilder filteredProducts = new StringBuilder();
+            if (!categoryName.equals(CANCELLED) && !productName.equals(CANCELLED)) {
+                filteredProducts.setLength(0);
+                filteredProducts.append("\n");
+                for (Product product : productService.getProductsByCategoryAndName(categoryName, productName)) {
+                    filteredProducts.append(product.toString()).append("\n");
+                }
+                userInput = InputPopUps.input(filteredProducts + "\n\nAdd Product to cart : 1\nContinue Browsing : 0");
+                switch (userInput) {
+                    case ADD_TO_CART: {
+                        String productIdForCart = InputPopUps.input(filteredProducts + "\n\nID of the product to be added: ");
+                        String quantity = InputPopUps.input("Quantity Desired: ");
+                        if (!productIdForCart.equals(CANCELLED) && !quantity.equals(CANCELLED)) {
+                            cartService.addToCart(productService.getProductByID(parseInt(productIdForCart)), parseInt(quantity));
+                            break;
+                        }
+                    }
+                    case CANCELLED : {
+                        break;
+                    }
+                }
+            }
+        } while (!userInput.equals(CANCELLED) && !categoryName.equals(CANCELLED) && !productName.equals(CANCELLED));
     }
 }
