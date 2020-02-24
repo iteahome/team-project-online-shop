@@ -15,16 +15,16 @@ import static com.shop.ui.handlers.InputPopUps.CANCELLED;
 
 public class UserAccountUI {
 
-    final String VIEW_ACCOUNT = "1";
-    final String MODIFY_ACCOUNT = "2";
-    final String GO_BACK = "0";
+    private static final String VIEW_ACCOUNT = "1";
+    private static final String MODIFY_ACCOUNT = "2";
+    private static final String GO_BACK = "0";
 
-    final String CHANGE_USERNAME = "1";
-    final String CHANGE_PASSWORD = "2";
-    final String CHANGE_PHONENO = "3";
+    private static final String CHANGE_USERNAME = "1";
+    private static final String CHANGE_PASSWORD = "2";
+    private static final String CHANGE_PHONENO = "3";
 
-    UserService userService = new UserService();
-    PhoneNoValidator phoneNoValidator = new PhoneNoValidator();
+    private UserService userService = new UserService();
+    private PhoneNoValidator phoneNoValidator = new PhoneNoValidator();
 
     void manageAccount(User user) throws ShopException {
         String userInput;
@@ -49,7 +49,7 @@ public class UserAccountUI {
     private void modifyAccount(User user) throws ShopException {
         String dataToChange;
         do {
-            dataToChange = InputPopUps.input("Modify account menu:\n\nChange username: 1\nChange password: 2\nChange phone number: 3\nGo Back: 0");
+            dataToChange = InputPopUps.input("Modify account menu:\n\nChange username: 1\nChange password: 2\nChange phone number: 3");
             switch (dataToChange) {
                 case CHANGE_USERNAME:
                     changeUserName(user);
@@ -60,13 +60,12 @@ public class UserAccountUI {
                 case CHANGE_PHONENO:
                     changePhoneNo(user);
                     break;
-                case GO_BACK:
                 case CANCELLED:
                     break;
                 default:
                     PrintUI.printBox("Please enter a valid option:");
             }
-        } while (!dataToChange.equals(GO_BACK));
+        } while (!dataToChange.equals(CANCELLED));
     }
 
     private void changeUserName(User user) throws ShopException {

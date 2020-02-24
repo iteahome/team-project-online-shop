@@ -8,7 +8,9 @@ import com.shop.service.UserService;
 
 import static com.shop.ui.handlers.InputPopUps.CANCELLED;
 
-/** SignUpUI class - creates new users by collecting user inputs. */
+/**
+ * SignUpUI class - creates new users by collecting user inputs.
+ */
 
 class SignUpUI {
 
@@ -17,21 +19,25 @@ class SignUpUI {
 
     void displaySignUp() throws ShopException {
 
-        String email = InputPopUps.input("Please enter your email address:");
-        String password = InputPopUps.input("Please enter desired password:");
-
-        if (!email.matches(CANCELLED) && !password.matches(CANCELLED)) {
-            if (emailValidator.isEmailValid(email)) {
-                if (userService.doesUserExist(email)) {
-                    PrintUI.printBox("User exists, please login.");
+        String email;
+        String password;
+        do {
+            email = InputPopUps.input("Please enter a valid email address:");
+            password = InputPopUps.input("Please enter a valid password:");
+            if (!email.matches(CANCELLED) && !password.matches(CANCELLED)) {
+                if (emailValidator.isEmailValid(email) && !password.equals(".")) {
+                    if (userService.doesUserExist(email)) {
+                        PrintUI.printBox("User exists, please login.");
+                        break;
+                    } else {
+                        userService.signUp(password, email);
+                        break;
+                    }
                 } else {
-                    userService.signUp(password, email);
+                    PrintUI.printBox("Your email/password is invalid. Please retry.");
                 }
-            } else {
-                PrintUI.printBox("Please enter a valid email address:");
             }
-        } else {
-            PrintUI.printBox("User canceled operation.");
-        }
+        } while (!email.equals(CANCELLED) && !password.equals(CANCELLED));
+
     }
 }

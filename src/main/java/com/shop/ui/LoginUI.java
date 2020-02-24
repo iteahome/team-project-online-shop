@@ -16,17 +16,20 @@ class LoginUI {
 
     void displayLogin() throws ShopException {
 
-        String email = InputPopUps.input("Please enter your email:");
-        String password = InputPopUps.input("Please enter your password:");
-
-        if (!email.equals(CANCELLED) && !password.equals(CANCELLED)) {
-            try {
-                userService.login(email, password);
-            } catch (ShopWrongCredentialsException e) {
-                PrintUI.printBox("Wrong credentials.");
+        String email;
+        String password;
+        do {
+            email = InputPopUps.input("Please enter your email:");
+            password = InputPopUps.input("Please enter your password:");
+            if (!email.equals(CANCELLED) && !password.equals(CANCELLED)) {
+                try {
+                    userService.login(email, password);
+                    break;
+                } catch (ShopWrongCredentialsException e) {
+                    PrintUI.printBox("Wrong credentials.");
+                }
             }
-        } else {
-            PrintUI.printBox("User canceled operation.");
-        }
+
+        } while (!email.equals(CANCELLED) && !password.equals(CANCELLED));
     }
 }
