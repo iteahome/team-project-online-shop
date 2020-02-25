@@ -16,7 +16,7 @@ public class ProductService {
 
     public void addProduct(String inputProdName, String inputProdCategory, String inputProdQuantity, String inputProductPrice) throws ShopTechnicalException {
         productDAO.createProduct(new Product(productDAO.getNextId(), inputProdName, inputProdCategory, inputProdQuantity, inputProductPrice));
-        productCache.reload();
+        productCache.load();
     }
     public Set<String> getCategories () {
         return productCache.cache.values().stream()
