@@ -39,6 +39,7 @@ public class MainUI {
                 switch (userInput) {
                     case OPTION_LOGIN: {
                         loginUI.displayLogin();
+                        dataToShow = "";
                         break;
                     }
                     case OPTION_SIGN_UP: {
