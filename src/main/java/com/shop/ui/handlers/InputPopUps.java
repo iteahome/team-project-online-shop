@@ -22,7 +22,7 @@ public class InputPopUps extends JFrame {
 
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
-        scrollPane.setPreferredSize(new Dimension(800, 500));
+        scrollPane.setPreferredSize(new Dimension(600, 800));
         scrollPane.setWheelScrollingEnabled(true);
 
         Optional<String> result = Optional.ofNullable(JOptionPane.showInputDialog(null, scrollPane, null));
