@@ -43,10 +43,14 @@ public class UserService {
 
     public List<User> getUsersByPartialEmail(String partialEmail) {
         return userDAO.findAllUsers().stream()
-                .filter(user -> user.getEmail().matches(".*" + partialEmail + ".*"))
+                .filter(user -> user.getEmail().toLowerCase().matches(".*" + partialEmail.toLowerCase() + ".*"))
                 .collect(Collectors.toList());
     }
-
+    public List<User> getUsersByFullEmail(String email) {
+        return userDAO.findAllUsers().stream()
+                .filter(user -> user.getEmail().toLowerCase().equals(email.toLowerCase()))
+                .collect(Collectors.toList());
+    }
     public void deleteUser(User user) throws ShopFileException {
         userDAO.deleteUser(user.getEmail());
     }

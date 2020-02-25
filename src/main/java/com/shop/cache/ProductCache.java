@@ -7,36 +7,22 @@ import com.shop.model.Product;
 import java.util.HashMap;
 
 public class ProductCache {
-    ProductDAO productDAO = new ProductDAO();
-    private static ProductCache instance = null;
-
-    static {
-        try {
-            instance = new ProductCache();
-        } catch (ShopFileException e) {
-            e.printStackTrace();
-        }
-    }
+    private ProductDAO productDAO = new ProductDAO();
+    private final static ProductCache instance = new ProductCache();
 
     public HashMap<Integer, Product> cache = new HashMap<>();
 
-    public ProductCache() throws ShopFileException {
-            load();
-    }
-
-    private void load() throws ShopFileException {
-            for (Product product: productDAO.findAllProducts()
-                 ) {
-                cache.put(product.getId(), product);
-            }
+    private ProductCache() {
     }
 
     public static ProductCache get() {
         return instance;
     }
 
-    public void reload() throws ShopFileException {
-        load();
+    public void load() throws ShopFileException {
+        for (Product product : productDAO.findAllProducts()) {
+            cache.put(product.getId(), product);
+        }
     }
 
 }

@@ -4,7 +4,6 @@ import com.shop.exception.ShopException;
 import com.shop.model.User;
 import com.shop.service.UserService;
 import com.shop.ui.handlers.InputPopUps;
-import com.shop.ui.handlers.PrintUI;
 import com.shop.ui.validator.PhoneNoValidator;
 
 import static com.shop.ui.handlers.InputPopUps.CANCELLED;
@@ -13,120 +12,106 @@ import static com.shop.ui.handlers.InputPopUps.CANCELLED;
  * UserAccountUI class - connects user input to UserService class to manage account data.
  */
 
-public class UserAccountUI {
+class UserAccountUI {
 
-    final String VIEW_ACCOUNT = "1";
-    final String MODIFY_ACCOUNT = "2";
-    final String GO_BACK = "0";
+    private static final String VIEW_ACCOUNT = "1";
+    private static final String MODIFY_ACCOUNT = "2";
+    private static String dataToShow = "";
+    private static final String CHANGE_USERNAME = "1";
+    private static final String CHANGE_PASSWORD = "2";
+    private static final String CHANGE_PHONENO = "3";
+    private static String userInput = "";
+    private static String result = "";
 
-    final String CHANGE_USERNAME = "1";
-    final String CHANGE_PASSWORD = "2";
-    final String CHANGE_PHONENO = "3";
-
-    UserService userService = new UserService();
-    PhoneNoValidator phoneNoValidator = new PhoneNoValidator();
+    private UserService userService = new UserService();
+    private PhoneNoValidator phoneNoValidator = new PhoneNoValidator();
 
     void manageAccount(User user) throws ShopException {
-        String userInput;
         do {
-            userInput = InputPopUps.input("User account menu:\n\nView account: 1\nModify account: 2\nGo Back: 0");
+            userInput = "";
+            userInput = InputPopUps.input("User account menu:\n\nView account: 1\nModify account: 2\n\n" + dataToShow);
             switch (userInput) {
                 case VIEW_ACCOUNT:
-                    PrintUI.printBox(user.printCompleteUserData());
+                    dataToShow = user.printCompleteUserData();
+                    userInput = "";
                     break;
                 case MODIFY_ACCOUNT:
                     modifyAccount(user);
-                    break;
-                case GO_BACK:
-                case CANCELLED:
+                    dataToShow = user.printCompleteUserData();
+                    userInput = "";
                     break;
                 default:
-                    PrintUI.printBox("Please enter a valid option:");
+                    dataToShow = "Please enter a valid option:";
             }
-        } while (!userInput.equals(GO_BACK));
+        } while (!userInput.equals(CANCELLED));
     }
 
     private void modifyAccount(User user) throws ShopException {
-        String dataToChange;
         do {
-            dataToChange = InputPopUps.input("Modify account menu:\n\nChange username: 1\nChange password: 2\nChange phone number: 3\nGo Back: 0");
-            switch (dataToChange) {
+            userInput = InputPopUps.input("Modify account menu:\n\nChange username: 1\nChange password: 2\nChange phone number: 3\n\n" + result + "\n\n" + dataToShow);
+            dataToShow = "";
+            switch (userInput) {
                 case CHANGE_USERNAME:
-                    changeUserName(user);
+                    result = changeUserName(user);
+                    dataToShow = user.printCompleteUserData();
+                    userInput = "";
                     break;
                 case CHANGE_PASSWORD:
-                    changePassword(user);
+                    result = changePassword(user);
+                    dataToShow = user.printCompleteUserData();
+                    userInput = "";
                     break;
                 case CHANGE_PHONENO:
-                    changePhoneNo(user);
-                    break;
-                case GO_BACK:
-                case CANCELLED:
+                    result = changePhoneNo(user);
+                    dataToShow = user.printCompleteUserData();
+                    userInput = "";
                     break;
                 default:
-                    PrintUI.printBox("Please enter a valid option:");
+                    dataToShow = "Please enter a valid option:";
             }
-        } while (!dataToChange.equals(GO_BACK));
+        } while (!userInput.equals(CANCELLED));
     }
 
-    private void changeUserName(User user) throws ShopException {
-        String newUserName;
-        do {
-            newUserName = InputPopUps.input("Enter new username:");
-            switch (newUserName) {
-                case CANCELLED: {
-                    break;
-                }
-
-                default: {
-                    user.setUserName(newUserName);
-                    userService.replaceUserData(user);
-                    newUserName = CANCELLED;
-                    break;
-                }
-                case ".": {
-                    PrintUI.printBox("Please choose a valid userName");
-                }
-            }
-        } while (!newUserName.equals(CANCELLED));
+    private String changeUserName(User user) throws ShopException {
+        userInput = InputPopUps.input("Enter new username:\n\n" + dataToShow);
+        if (!userInput.equals(CANCELLED) && !userInput.equals(".")) {
+            user.setUserName(userInput);
+            userService.replaceUserData(user);
+            return "Username Updated";
+        }
+        if (userInput.equals(".")) {
+            return "Please insert a valid username";
+        } else {
+            return "";
+        }
     }
 
-    private void changePassword(User user) throws ShopException {
-        String newPassword;
-        do {
-            newPassword = InputPopUps.input("Enter new password:");
-            switch (newPassword) {
-                case CANCELLED: {
-                    break;
-                }
-
-                default: {
-                    user.setPassword(newPassword);
-                    userService.replaceUserData(user);
-                    newPassword = CANCELLED;
-                    break;
-                }
-                case ".": {
-                    PrintUI.printBox("Please choose a valid password");
-                }
-            }
-        } while (!newPassword.equals(CANCELLED));
+    private String changePassword(User user) throws ShopException {
+        userInput = InputPopUps.input("Enter new password:\n\n" + dataToShow);
+        if (!userInput.equals(CANCELLED) && !userInput.equals(".")) {
+            user.setPassword(userInput);
+            userService.replaceUserData(user);
+            return "Password Updated";
+        }
+        if (userInput.equals(".")) {
+            return "Please insert a valid Password";
+        } else {
+            return "";
+        }
     }
 
-
-    private void changePhoneNo(User user) throws ShopException {
-        String newPhoneNo = InputPopUps.input("Enter new Romanian phone number:");
-        do {
-            if (phoneNoValidator.isPhoneNoValid((newPhoneNo))) {
-                newPhoneNo = phoneNoValidator.formatPhoneNo(newPhoneNo);
-                user.setPhoneNo(newPhoneNo);
-                userService.replaceUserData(user);
-                newPhoneNo = CANCELLED;
-            } else {
-                newPhoneNo = InputPopUps.input("Invalid number. Please try again:");
-            }
-
-        } while (!newPhoneNo.equals(CANCELLED));
-
+    private String changePhoneNo(User user) throws ShopException {
+        userInput = InputPopUps.input("Enter new Romanian phone number:\n\n" + dataToShow);
+        if (phoneNoValidator.isPhoneNoValid((userInput))) {
+            userInput = phoneNoValidator.formatPhoneNo(userInput);
+            user.setPhoneNo(userInput);
+            userService.replaceUserData(user);
+            return "Phone Number Updated";
+        }
+        if (userInput.equals(".")) {
+            return "Please insert a valid Password";
+        } else {
+            return "";
+        }
     }
 }
