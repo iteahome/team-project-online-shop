@@ -7,7 +7,7 @@ import com.shop.model.Product;
 import java.util.HashMap;
 
 public class ProductCache {
-    ProductDAO productDAO = new ProductDAO();
+    private ProductDAO productDAO = new ProductDAO();
     private static ProductCache instance = null;
 
     static {
@@ -20,7 +20,7 @@ public class ProductCache {
 
     public HashMap<Integer, Product> cache = new HashMap<>();
 
-    public ProductCache() throws ShopFileException {
+    private ProductCache() throws ShopFileException {
             load();
     }
 
