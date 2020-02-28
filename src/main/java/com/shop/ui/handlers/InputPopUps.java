@@ -19,6 +19,7 @@ public class InputPopUps extends JFrame {
         UIManager.put("Panel.background", inputPopUps.getPanelBG());
         textArea.setBackground(inputPopUps.getTxtAreaBG());
         textArea.setForeground(inputPopUps.getTxtAreaFG());
+        textArea.setFont(new Font("monospaced", Font.PLAIN, 15));
 
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
