@@ -6,7 +6,7 @@ public class UserContext {
 
     private static User loggedUser;
     private static final String ROLE_ADMIN = "ADMIN";
-    private static final String ROLE_SHOPPER = "Shopper";
+    private static final String ROLE_SHOPPER = "SHOPPER";
 
 
     public static User getLoggedUser() {

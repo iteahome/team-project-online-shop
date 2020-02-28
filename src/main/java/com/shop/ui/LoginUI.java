@@ -19,14 +19,14 @@ class LoginUI {
         String password;
         String dataToShow = "";
         do {
-            email = InputPopUps.input("Please enter your email:\n\n" + dataToShow);
-            password = InputPopUps.input("Please enter your password:");
+            email = InputPopUps.input("PLEASE ENTER YOUR EMAIL:\n\n" + dataToShow);
+            password = InputPopUps.input("PLEASE ENTER YOUR PASSWORD:");
             if (!email.equals(CANCELLED) && !password.equals(CANCELLED)) {
                 try {
                     userService.login(email, password);
                     break;
                 } catch (ShopWrongCredentialsException e) {
-                    dataToShow = "Wrong credentials.";
+                    dataToShow = "WRONG CREDENTIALS.";
                 }
             }
 

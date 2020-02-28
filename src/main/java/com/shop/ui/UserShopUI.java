@@ -24,7 +24,7 @@ public class UserShopUI {
         String result = "";
 
         do {
-            userInput = InputPopUps.input("Shop Menu:\nFilter Products : 1\nView Cart : 2\nAdd to Cart : 3\n\n" + result);
+            userInput = InputPopUps.input("SHOP MENU:\n\n1 : FILTER PRODUCTS\n2 : VIEW CART\n3 : ADD TO CART\n\n" + result);
             result = "";
             switch (userInput) {
                 case FILTER_PRODUCTS: {
@@ -37,7 +37,7 @@ public class UserShopUI {
                         result = "";
                         break;
                     } else {
-                        result = "Your Shopping Cart is empty";
+                        result = "YOUR SHOPPING CART IS EMPTY.";
                         break;
                     }
                 }
@@ -49,7 +49,7 @@ public class UserShopUI {
                     break;
                 }
                 default: {
-                    result = "Please choose a valid option";
+                    result = "PLEASE CHOOSE A VALID OPTION.";
                 }
 
             }
@@ -70,14 +70,14 @@ public class UserShopUI {
             for (String category : productService.getCategories()) {
                 categoryMenu.append(category).append("\n");
             }
-            String categoryName = InputPopUps.input("To stop filtering products to view, press Cancel" +
-                    "\nPlease filter products you want to check by the following Categories: \n\n" + categoryMenu);
+            String categoryName = InputPopUps.input("TO FIND PRODUCTS, TYPE A CATEGORY FROM THE LIST BELOW." +
+                    "\nTO STOP FILTERING AND VIEW RESULTS, PRESS ESC.\n\n" + categoryMenu);
             if (!categoryName.equals(CANCELLED)) {
                 for (String name : productService.getProductNamesForCategory(categoryName)) {
                     productMenu.append(name).append("\n");
                 }
-                String productName = InputPopUps.input("To stop filtering products to view, press Cancel" +
-                        "\nPlease filter products by name: \n\n" + productMenu);
+                String productName = InputPopUps.input("TO CONTINUE, TYPE A PRODUCT NAME FROM THE LIST BELOW." +
+                        "\nTO STOP FILTERING AND VIEW RESULTS, PRESS ESC.\n\n" + productMenu);
                 if (!productName.equals(CANCELLED)) {
                     for (Product product : productService.getProductsByCategoryAndName(categoryName, productName)) {
                         filteredProducts.append(product.toString()).append("\n");
@@ -95,19 +95,19 @@ public class UserShopUI {
         if (filteredProducts.length() > 0) {
             return filteredProducts.toString();
         } else {
-            return "No products found";
+            return "NO PRODUCTS FOUND.";
         }
     }
 
     private String addToCart(String filteredProductList) {
 
-        String productIdForCart = InputPopUps.input("ID of the product to be added: \n\n" + filteredProductList);
-        String quantity = InputPopUps.input("Quantity Desired: \n");
+        String productIdForCart = InputPopUps.input("ID OF THE PRODUCT TO BE ADDED TO CART:\n\n" + filteredProductList);
+        String quantity = InputPopUps.input("DESIRED QUANTITY:\n");
         if (!productIdForCart.equals(CANCELLED) && !quantity.equals(CANCELLED) && IntCheck.check(productIdForCart) && IntCheck.check(quantity)) {
             cartService.addToCart(productService.getProductByID(parseInt(productIdForCart)), parseInt(quantity));
-            return "Product added to Cart Successfully";
+            return "PRODUCT SUCCESSFULLY ADDED TO CART.";
         } else {
-            return "0 Products were added to Cart";
+            return "NO PRODUCTS WERE ADDED TO CART.";
         }
     }
 }

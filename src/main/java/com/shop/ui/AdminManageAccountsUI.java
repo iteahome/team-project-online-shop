@@ -29,7 +29,7 @@ class AdminManageAccountsUI {
     void manageAccounts() throws ShopException {
 
 		do {
-			userInput = InputPopUps.input("Find Users : 1\nEdit Users : 2\nDelete Users: 3\nClean Filter : 4\nManage Personal Account : 5" + result + "\n\n" + userList);
+			userInput = InputPopUps.input("1 : FIND USERS\n2 : EDIT USERS\n3 : DELETE USERS\n4 : CLEAR FILTER\n5 : MANAGE PERSONAL ACCOUNT" + result + "\n\n" + userList);
 //			result = "";
 			switch (userInput) {
 				case FIND_USERS: {
@@ -53,7 +53,7 @@ class AdminManageAccountsUI {
 					break;
 				}
 				default:
-					result = "Please Insert a valid option:";
+					result = "PLEASE ENTER A VALID OPTION.";
 			}
 
 		} while (!userInput.equals(CANCELLED));
@@ -62,7 +62,7 @@ class AdminManageAccountsUI {
 	private String viewUsers() {
 		StringBuilder userList = new StringBuilder();
 
-		String email = InputPopUps.input("Please filter users by email");
+		String email = InputPopUps.input("FILTER USERS BY EMAIL:");
 		if (!email.equals(CANCELLED)) {
 			for (User user : userService.getUsersByPartialEmail(email)) {
 				userList.append(user.toString()).append("\n");
@@ -71,28 +71,28 @@ class AdminManageAccountsUI {
 		if (userList.length() > 0) {
 			return userList.toString();
 		} else {
-			return "No Users Found for this email";
+			return "NO USERS MATCHED THAT EMAIL.";
 		}
 	}
 
 	private String deleteUsers(String userList) throws ShopFileException {
-		String email = InputPopUps.input("Insert full user email to delete user: \n\n" + userList);
+		String email = InputPopUps.input("ENTER FULL EMAIL OF THE USER TO BE DELETED:\n\n" + userList);
 		if (!email.equals(CANCELLED) && userService.doesUserExist(email)){
 			for (User user : userService.getUsersByFullEmail(email)){
 				userService.deleteUser(user);
 			}
-			return "Deleted User";
+			return "USER DELETED.";
 		}
-		else return "User not found";
+		else return "USER NOT FOUND.";
 	}
 
 	private void editUsers(String filteredUserList) throws ShopException {
-		String email = InputPopUps.input("Please insert full email of the user edit: \n\n" + filteredUserList);
+		String email = InputPopUps.input("ENTER FULL EMAIL OF THE USER TO BE EDITED:\n\n" + filteredUserList);
 		if (!email.equals(CANCELLED) && userService.doesUserExist(email)){
 			User userToBeEdited = userService.getUsersByFullEmail(email).get(0);
             userInput = "";
             do {
-                userInput  = InputPopUps.input("Change role : 1\nReset Password : 2\n" + userToBeEdited.toString());
+                userInput  = InputPopUps.input("1 : CHANGE ROLE\n2 : RESET PASSWORD\n" + userToBeEdited.toString());
                 switch (userInput) {
                     case CHANGE_ROLE : {
                         result = changeRole(userToBeEdited);
@@ -108,24 +108,24 @@ class AdminManageAccountsUI {
 	}
 
 	private String changeRole(User user) throws ShopException {
-        String newRole  = InputPopUps.input("New Role for User: \n\n" + user.toString());
+        String newRole  = InputPopUps.input("ENTER USER'S NEW ROLE (ADMIN/SHOPPER):\n\n" + user.toString());
         if (!newRole.equals(CANCELLED)){
             user.setRole(newRole);
             userService.replaceUserData(user);
-            return "User Updated";
+            return "USER UPDATED.";
 
         } else {return "";}
     }
 
     private String resetUserPassword (User user) throws ShopException {
-        String newPassword = InputPopUps.input("New password for User: \n\n" + user.toString());
+        String newPassword = InputPopUps.input("ENTER A NEW PASSWORD FOR THE SELECTED USER (CANNOT BE EMPTY):\n\n" + user.toString());
         if (!newPassword.equals(CANCELLED) && !newPassword.equals(".")){
             user.setPassword(newPassword);
             userService.replaceUserData(user);
-            return "Password reset";
+            return "PASSWORD SUCCESSFULLY RESET.";
         }
         if (newPassword.equals(".")) {
-            return "Please insert a valid Password";
+            return "PLEASE ENTER A VALID PASSWORD.";
         }
         else return "";
     }

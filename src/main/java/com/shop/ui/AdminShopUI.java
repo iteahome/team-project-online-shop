@@ -20,7 +20,7 @@ class AdminShopUI {
         String userInput;
         String operationResult = "";
         do {
-            userInput = InputPopUps.input("Admin product management options:" + dataToShow +"\nAdd products: 1\nFilter Products: 2\n\n " + operationResult);
+            userInput = InputPopUps.input("ADMIN PRODUCT MANAGEMENT OPTIONS:" + dataToShow +"\n\n1 : ADD PRODUCT\n2 : FILTER PRODUCTS\n\n" + operationResult);
             switch (userInput) {
                 case CREATE_PRODUCT:
                     operationResult = showAddProduct();
@@ -35,7 +35,7 @@ class AdminShopUI {
                     operationResult = "";
                     break;
                 default:
-                    dataToShow = "Please choose a valid option";
+                    dataToShow = "PLEASE ENTER A VALID OPTION.";
                     operationResult = "";
             }
         } while (!userInput.equals(CANCELLED));
@@ -55,12 +55,14 @@ class AdminShopUI {
             for (String category : productService.getCategories()) {
                 categoryMenu.append(category).append("\n");
             }
-            String categoryName = InputPopUps.input("Please filter products by the following Categories: \n\n" + categoryMenu);
+            String categoryName = InputPopUps.input("TO FIND PRODUCTS, TYPE A CATEGORY FROM THE LIST BELOW." +
+                    "\nTO STOP FILTERING AND VIEW RESULTS, PRESS ESC.\n\n" + categoryMenu);
             if (!categoryName.equals(CANCELLED)) {
                 for (String name : productService.getProductNamesForCategory(categoryName)) {
                     productMenu.append(name).append("\n");
                 }
-                String productName = InputPopUps.input("Please filter products by name: \n\n" + productMenu);
+                String productName = InputPopUps.input("TO CONTINUE, TYPE A PRODUCT NAME FROM THE LIST BELOW." +
+                        "\nTO STOP FILTERING AND VIEW RESULTS, PRESS ESC.\n\n" + productMenu);
 
                 for (Product product : productService.getProductsByCategoryAndName(categoryName, productName)) {
                     filteredProducts.append(product.toString()).append("\n");
@@ -75,25 +77,25 @@ class AdminShopUI {
         if (filteredProducts.length()>0) {
             return filteredProducts.toString();
         } else{
-           return "No products found";
+           return "NO PRODUCTS FOUND.";
         }
     }
 
     private String showAddProduct() throws ShopTechnicalException {
         String result = "";
-        String inputProdName = InputPopUps.input("Please insert new product name: ");
+        String inputProdName = InputPopUps.input("ENTER NEW PRODUCT'S NAME:");
 
-        String inputProdCategory = InputPopUps.input("Please insert new product category: ");
+        String inputProdCategory = InputPopUps.input("ENTER NEW PRODUCT'S CATEGORY:");
 
-        String inputProdQuantity = InputPopUps.input("Please insert new product quantity: ");
+        String inputProdQuantity = InputPopUps.input("ENTER NEW PRODUCT'S QUANTITY:");
 
-        String inputProdPrice = InputPopUps.input("Please insert new product price: ");
+        String inputProdPrice = InputPopUps.input("ENTER NEW PRODUCT'S PRICE:");
 
         if (!inputProdCategory.equals(CANCELLED) && !inputProdName.equals(CANCELLED) && !inputProdPrice.equals(CANCELLED) && !inputProdQuantity.equals(CANCELLED)) {
             productService.addProduct(inputProdName, inputProdCategory, inputProdQuantity, inputProdPrice);
-            result = "Product Created.";
+            result = "PRODUCT SUCCESSFULLY ADDED.";
         } else {
-            result = "User Canceled operation.";
+            result = "USER CANCELLED OPERATION.";
         }
         return result;
     }

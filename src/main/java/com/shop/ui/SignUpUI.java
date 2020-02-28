@@ -21,18 +21,18 @@ class SignUpUI {
         String email;
         String password;
         do {
-            email = InputPopUps.input(dataToShow + "\n\nPlease enter a valid email address:");
-            password = InputPopUps.input("Please enter a valid password:\nPassword cannot be empty");
+            email = InputPopUps.input(dataToShow + "PLEASE ENTER A VALID EMAIL ADDRESS:");
+            password = InputPopUps.input("PLEASE ENTER A VALID PASSWORD (IT CANNOT BE EMPTY):");
             if (!email.matches(CANCELLED) && !password.matches(CANCELLED)) {
                 if (emailValidator.isEmailValid(email) && !password.equals(".")) {
                     if (userService.doesUserExist(email)) {
-                        return "User Exists, Please Login.";
+                        return "USER ALREADY EXISTS. PLEASE LOG IN.";
                     } else {
                         userService.signUp(password, email);
                         break;
                     }
                     } else {
-                    dataToShow = "Your email/password is invalid. Please retry.";
+                    dataToShow = "YOUR EMAIL/PASSWORD IS INVALID. PLEASE TRY AGAIN. ";
                 }
             }
         } while (!email.equals(CANCELLED) && !password.equals(CANCELLED));

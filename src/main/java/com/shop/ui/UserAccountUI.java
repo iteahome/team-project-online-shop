@@ -29,7 +29,7 @@ class UserAccountUI {
     void manageAccount(User user) throws ShopException {
         do {
             userInput = "";
-            userInput = InputPopUps.input("User account menu:\n\nView account: 1\nModify account: 2\n\n" + dataToShow);
+            userInput = InputPopUps.input("USER ACCOUNT MENU:\n\n1 : VIEW ACCOUNT\n2 : MODIFY ACCOUNT\n\n" + dataToShow);
             switch (userInput) {
                 case VIEW_ACCOUNT:
                     dataToShow = user.printCompleteUserData();
@@ -41,14 +41,14 @@ class UserAccountUI {
                     userInput = "";
                     break;
                 default:
-                    dataToShow = "Please enter a valid option:";
+                    dataToShow = "PLEASE ENTER A VALID OPTION.";
             }
         } while (!userInput.equals(CANCELLED));
     }
 
     private void modifyAccount(User user) throws ShopException {
         do {
-            userInput = InputPopUps.input("Modify account menu:\n\nChange username: 1\nChange password: 2\nChange phone number: 3\n\n" + result + "\n\n" + dataToShow);
+            userInput = InputPopUps.input("MODIFY ACCOUNT:\n\n1 : CHANGE USER NAME\n2 : CHANGE PASSWORD\n3 : CHANGE PHONE NUMBER\n\n" + result + "\n\n" + dataToShow);
             dataToShow = "";
             switch (userInput) {
                 case CHANGE_USERNAME:
@@ -67,49 +67,49 @@ class UserAccountUI {
                     userInput = "";
                     break;
                 default:
-                    dataToShow = "Please enter a valid option:";
+                    dataToShow = "PLEASE ENTER A VALID OPTION.";
             }
         } while (!userInput.equals(CANCELLED));
     }
 
     private String changeUserName(User user) throws ShopException {
-        userInput = InputPopUps.input("Enter new username:\n\n" + dataToShow);
+        userInput = InputPopUps.input("ENTER NEW USER NAME:\n\n" + dataToShow);
         if (!userInput.equals(CANCELLED) && !userInput.equals(".")) {
             user.setUserName(userInput);
             userService.replaceUserData(user);
-            return "Username Updated";
+            return "USER NAME UPDATED.";
         }
         if (userInput.equals(".")) {
-            return "Please insert a valid username";
+            return "PLEASE ENTER A VALID USER NAME.";
         } else {
             return "";
         }
     }
 
     private String changePassword(User user) throws ShopException {
-        userInput = InputPopUps.input("Enter new password:\n\n" + dataToShow);
+        userInput = InputPopUps.input("ENTER NEW PASSWORD (CANNOT BE EMPTY):\n\n" + dataToShow);
         if (!userInput.equals(CANCELLED) && !userInput.equals(".")) {
             user.setPassword(userInput);
             userService.replaceUserData(user);
-            return "Password Updated";
+            return "PASSWORD UPDATED.";
         }
         if (userInput.equals(".")) {
-            return "Please insert a valid Password";
+            return "PLEASE ENTER A VALID PASSWORD.";
         } else {
             return "";
         }
     }
 
     private String changePhoneNo(User user) throws ShopException {
-        userInput = InputPopUps.input("Enter new Romanian phone number:\n\n" + dataToShow);
+        userInput = InputPopUps.input("ENTER NEW ROMANIAN PHONE NUMBER:\n\n" + dataToShow);
         if (phoneNoValidator.isPhoneNoValid((userInput))) {
             userInput = phoneNoValidator.formatPhoneNo(userInput);
             user.setPhoneNo(userInput);
             userService.replaceUserData(user);
-            return "Phone Number Updated";
+            return "PHONE NUMBER UPDATED.";
         }
         if (userInput.equals(".")) {
-            return "Please insert a valid Password";
+            return "PLEASE ENTER A VALID ROMANIAN PHONE NUMBER.";
         } else {
             return "";
         }

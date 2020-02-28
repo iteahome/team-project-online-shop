@@ -21,7 +21,7 @@ class ShopUI {
         String userInput;
         String dataToShow = "";
         do {
-            userInput = InputPopUps.input("Welcome to our online shop!\n" + dataToShow + "\n\nShop: 1\nManage account: 2\nLog out: 0");
+            userInput = InputPopUps.input("WELCOME TO OUR ONLINE SHOP!\n" + dataToShow + "\n1 : SHOP\n2 : MANAGE ACCOUNT\n0 : LOG OUT");
             switch (userInput) {
                 case OPTION_SHOP: {
                     if (UserContext.isAdminLogged()) {
@@ -47,7 +47,7 @@ class ShopUI {
                     break;
                 }
                 default: {
-                    dataToShow = "Please enter a valid option.";
+                    dataToShow = "PLEASE ENTER A VALID OPTION.";
                 }
             }
         } while (!userInput.equals(OPTION_LOGOUT));
